@@ -17,3 +17,10 @@
 @import "bootstrap-custom";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#main-header {
+  background-image: url('/images/winter.jpg');
+  background-size: cover;
+  background-position: top center;
+  height: 300px;
+}
