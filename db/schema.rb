@@ -34,6 +34,25 @@ ActiveRecord::Schema.define(version: 20140908151648) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "drink_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "drinks", force: true do |t|
+    t.string   "name"
+    t.string   "brewery"
+    t.string   "country"
+    t.float    "percentage"
+    t.float    "price"
+    t.integer  "DrinkType_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drinks", ["DrinkType_id"], name: "index_drinks_on_DrinkType_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

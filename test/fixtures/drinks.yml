@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  brewery: MyString
+  country: MyString
+  percentage: 1.5
+  price: 1.5
+  DrinkType_id: 
+
+two:
+  name: MyString
+  brewery: MyString
+  country: MyString
+  percentage: 1.5
+  price: 1.5
+  DrinkType_id: 
