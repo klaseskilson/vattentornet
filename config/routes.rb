@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admins
 
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation

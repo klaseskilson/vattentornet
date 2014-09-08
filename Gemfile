@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # User handling
 gem 'devise', '~> 3.2.4'
+gem 'cancan'
 
 # Opens mails in browser
 gem 'letter_opener', :group => :development
