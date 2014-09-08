@@ -8,10 +8,12 @@
 <body class="winter">
 <%= render 'layouts/header' %>
 
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-</div>
+<% if (defined?(notice) and !notice.blank?) or (defined?(alert) and !alert.blank?) %>
+  <section class="container">
+    <p class="notice"> <%= notice %> </p>
+    <p class="alert"> <%= alert %> </p>
+  </section>
+<% end %>
 
 <main class="container">
   <%= yield %>
