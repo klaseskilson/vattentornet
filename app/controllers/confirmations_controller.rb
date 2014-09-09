@@ -1,28 +1,5 @@
 class ConfirmationsController < Devise::ConfirmationsController
-
-  def show
-    @original_token = params[:confirmation_token]
-    digested_token = Devise.token_generator.digest(self, :confirmation_token,params[:confirmation_token])
-
-    self.resource = resource_class.find_by_confirmation_token(digested_token) if params[:confirmation_token].present?
-    super if resource.nil? or resource.confirmed?
-
-  end
-
-
-  def confirm
-
-    digested_token = Devise.token_generator.digest(self, :confirmation_token, params[resource_name][:confirmation_token])
-    self.resource = resource_class.find_by_confirmation_token(digested_token) if params[resource_name][:confirmation_token].present?
-    if resource.update_attributes(params[resource_name].except(:confirmation_token).permit(:email, :password, :password_confirmation)) && resource.password_match?
-      self.resource = resource_class.confirm_by_token(params[resource_name][:confirmation_token])
-      set_flash_message :notice, :confirmed
-      sign_in_and_redirect(resource_name, resource)
-    else
-      render :action => "show"
-    end
-
-  end
+  skip_before_filter :authenticate_user!
 
   # PUT /resource/confirmation
   def update
@@ -36,11 +13,27 @@ class ConfirmationsController < Devise::ConfirmationsController
           @confirmable.errors.clear #so that we wont render :new
         end
       else
-        self.class.add_error_on(self, :email, :password_already_set)
+        @confirmable.errors.add(:email, :password_already_set)
       end
     end
 
     if !@confirmable.errors.empty?
+      self.resource = @confirmable
+      render 'devise/confirmations/new' #Change this if you don't have the views on default path
+    end
+  end
+
+  # GET /resource/confirmation?confirmation_token=abcdef
+  def show
+    with_unconfirmed_confirmable do
+      if @confirmable.has_no_password?
+        do_show
+      else
+        do_confirm
+      end
+    end
+    if !@confirmable.errors.empty?
+      self.resource = @confirmable
       render 'devise/confirmations/new' #Change this if you don't have the views on default path
     end
   end
@@ -48,7 +41,9 @@ class ConfirmationsController < Devise::ConfirmationsController
   protected
 
   def with_unconfirmed_confirmable
-    @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, params[:confirmation_token])
+    original_token = params[:confirmation_token]
+    confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
+    @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
     if !@confirmable.new_record?
       @confirmable.only_if_unconfirmed {yield}
     end
@@ -58,7 +53,7 @@ class ConfirmationsController < Devise::ConfirmationsController
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     self.resource = @confirmable
-    render_with_scope :show
+    render 'devise/confirmations/show' #Change this if you don't have the views on default path
   end
 
   def do_confirm
