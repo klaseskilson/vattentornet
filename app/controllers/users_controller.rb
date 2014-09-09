@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def show
   end
 
@@ -10,9 +14,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_admin?
+    self.admin
+  end
+
   private
   def user_params
     accessible = [ :name, :email ] # extend with your own params
     params.require(:user).permit(accessible)
   end
+
 end
