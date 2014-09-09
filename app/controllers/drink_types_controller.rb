@@ -1,5 +1,6 @@
 class DrinkTypesController < ApplicationController
   before_action :set_drink_type, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /drink_types
   # GET /drink_types.json
