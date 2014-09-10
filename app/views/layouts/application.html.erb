@@ -26,7 +26,6 @@
   <li><%= link_to("Drinks", drinks_path) %></li>
   <li><%= link_to("Drink types", drink_types_path) %></li>
 
-  <%= yield %>
 </div>
 <% if (defined?(notice) and !notice.blank?) or (defined?(alert) and !alert.blank?) %>
   <section class="container">

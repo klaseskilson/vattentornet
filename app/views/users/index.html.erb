@@ -16,8 +16,8 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
-        <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
-        <td><%= link_to 'Destroy', registration_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user_path(user), data: { confirm: "Are you sure?" }, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
