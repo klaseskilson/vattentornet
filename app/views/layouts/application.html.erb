@@ -3,10 +3,10 @@
 <head>
   <title>Vattentornet</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="winter">
+
 <%= render 'layouts/header' %>
 
 <div class="container">
@@ -28,8 +28,19 @@
 
   <%= yield %>
 </div>
+<% if (defined?(notice) and !notice.blank?) or (defined?(alert) and !alert.blank?) %>
+  <section class="container">
+    <p class="notice"> <%= notice %> </p>
+    <p class="alert"> <%= alert %> </p>
+  </section>
+<% end %>
+
+<main class="container">
+  <%= yield %>
+</main>
 
 <%= render 'layouts/footer' %>
 
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>

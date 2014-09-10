@@ -18,9 +18,39 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  background-image: url('/images/background.png');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+}
+
 #main-header {
-  background-image: url('/images/winter.jpg');
   background-size: cover;
   background-position: top center;
   height: 300px;
+  padding: 50px 0;
+
+  body.winter & {
+    background-image: url('/images/winter.jpg');
+  }
+
+  .logo {
+    @include make-sm-column(4);
+
+    @media screen and (max-width: $screen-xs-max) {
+      text-align: center;
+
+      img {
+        display: inline;
+      }
+    }
+  }
+}
+
+#main-footer {
+  @extend .container;
+
+  .copyright {
+    @include make-sm-column(3);
+  }
 }
