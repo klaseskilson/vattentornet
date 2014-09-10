@@ -1,56 +1,50 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+ * Pub Vattentornet!
+ * Made by Klas Eskilson, Daniel Rönnkvist, Carl Englund
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
+ *= require font-awesome
  *= require_self
  */
 
-@import "bootstrap-custom";
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "mixins";
+
+@import "fonts";
+@import "pages";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
 
 body {
-  background-image: url('/images/background.png');
+  background-image: url('/images/background.jpg');
   background-repeat: repeat-x;
-  background-attachment: fixed;
+  padding-top: 40px;
 }
 
 #main-header {
-  background-size: cover;
-  background-position: top center;
-  height: 300px;
-  padding: 50px 0;
-
-  body.winter & {
-    background-image: url('/images/winter.jpg');
-  }
-
-  .logo {
-    @include make-sm-column(4);
-
-    @media screen and (max-width: $screen-xs-max) {
-      text-align: center;
-
-      img {
-        display: inline;
-      }
-    }
-  }
 }
 
 #main-footer {
-  @extend .container;
+  margin-top: $section-margins;
+  padding: 20px 15px;
+  background: #111;
+  color: $gray-lighter;
 
   .copyright {
     @include make-sm-column(3);
   }
+  .links {
+    @include make-sm-column(3);
+    @include make-sm-column-offset(6);
+  }
+}
+
+// misc
+.beige-color {
+  color: $beige;
 }

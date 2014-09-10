@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="winter">
+<body class="<%= controller.controller_name %> <%= @bodyclass if defined?(@bodyclass) %>">
 
 <%= render 'layouts/header' %>
 
@@ -16,9 +16,7 @@
   </section>
 <% end %>
 
-<main class="container">
-  <%= yield %>
-</main>
+<%= yield %>
 
 <%= render 'layouts/footer' %>
 
