@@ -1,0 +1,27 @@
+#big-img {
+  // TODO make this responsive
+  height: 600px;
+  height: calc(100% - 100px);
+  min-height: 320px;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 10px;
+  margin-bottom: $section-margins;
+
+  &.winter {
+    background-image: url('/images/winter.jpg');
+  }
+
+  img {
+    @include vertical-align;
+    width: 300px;
+    max-width: 100%;
+  }
+}
+
+body.pages.home {
+  background-position: 0 320px;
+  padding-top: 0;
+}
