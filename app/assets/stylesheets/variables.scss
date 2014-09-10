@@ -1,0 +1,12 @@
+// our own variables
+$beige: #fdefd2;
+$red: #f07060;
+
+$section-margins: 40px;
+
+// custom bootstrap variables
+$font-family-serif: "Fauna One", Georgia, "Times New Roman", Times, serif;
+$font-family-base: $font-family-serif;
+$body-bg: #000;
+$link-color: $red;
+$link-hover-color: lighten($link-color, 5%);
