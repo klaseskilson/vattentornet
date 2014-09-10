@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :posts
+
   resources :drinks
 
   resources :drink_types
