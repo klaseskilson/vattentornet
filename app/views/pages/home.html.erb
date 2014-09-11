@@ -3,4 +3,36 @@
 </section>
 
 <div class="container">
+  <div class="infobar">
+    <div class="pane">
+      <h3>
+        Pub <em>[pub']</em>
+      </h3>
+      <h4>
+        &mdash; bar med ölservering
+      </h4>
+      <p>
+        Pub Vattentornet är Norrköpings äldsta studentpub. Vi serverar finöl till
+        studentpris.
+      </p>
+    </div>
+    <div class="pane">
+      <h3>Facebook</h3>
+    </div>
+    <div class="pane">
+      <h3>Stundens öl</h3>
+      <p>
+        <%= @beer_of_the_moment.name %>, <%= @beer_of_the_moment.DrinkType.name.titleize %> från <%= @beer_of_the_moment.country %>.
+        <%= link_to("Mer information", @beer_of_the_moment) %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="main-content">
+
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
 </div>
