@@ -69,6 +69,6 @@ class DrinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :DrinkType_id)
+      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :DrinkType_id, :instock)
     end
 end

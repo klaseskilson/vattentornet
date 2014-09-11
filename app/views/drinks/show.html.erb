@@ -30,5 +30,10 @@
   <%= @drink.DrinkType %>
 </p>
 
+<p>
+  <strong>In stock:</strong>
+  <%= @drink.instock %>
+</p>
+
 <%= link_to 'Edit', edit_drink_path(@drink) %> |
 <%= link_to 'Back', drinks_path %>
