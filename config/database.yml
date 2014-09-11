@@ -2,21 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: motefm
-  password: fdhathor
-  host: localhost
-
-development:
-  <<: *default
-  database: backend-web_development
-
-test:
-  <<: *default
-  database: backend-web_test
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
   username: vattentornet
   password: tornet
   host: localhost

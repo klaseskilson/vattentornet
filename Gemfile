@@ -14,7 +14,14 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-gem 'devise'
+# User handling
+gem 'devise', '~> 3.2.4'
+gem 'cancan'
+
+gem 'debugger'
+
+# Opens mails in browser
+gem 'letter_opener', :group => :development
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
