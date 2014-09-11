@@ -18,8 +18,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.2.4'
 gem 'cancan'
 
-gem 'debugger'
-
 # Opens mails in browser
 gem 'letter_opener', :group => :development
 
@@ -50,7 +48,4 @@ gem 'spring',        group: :development
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
-
-#For booking system
-gem 'bookable', '~> 0.0.52'
+gem 'debugger', group: [:development, :test]
