@@ -45,3 +45,5 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#For booking system
+gem 'bookable', '~> 0.0.52'
