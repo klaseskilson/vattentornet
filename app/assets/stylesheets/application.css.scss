@@ -44,6 +44,10 @@ body {
   }
 }
 
+.container {
+  max-width: 978px;
+}
+
 .main-content {
   @include make-sm-column(9);
 }
