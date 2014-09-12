@@ -27,6 +27,31 @@ body {
 }
 
 #main-header {
+  position: fixed;
+  width: 100%;
+
+  &.transparent {
+    background: transparent;
+  }
+
+  &.transparent .menu-logo {
+    opacity: 0;
+  }
+
+  #main-nav {
+    @include make-row();
+
+    .menu-left {
+      @include make-xs-column(5);
+      text-align: right;
+    }
+    .menu-logo {
+      @include make-xs-column(2);
+    }
+    .menu-right {
+      @include make-xs-column(5);
+    }
+  }
 }
 
 #main-footer {
@@ -47,6 +72,8 @@ body {
 .container {
   max-width: 978px;
 }
+
+
 
 .main-content {
   @include make-sm-column(9);
