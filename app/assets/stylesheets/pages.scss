@@ -10,8 +10,10 @@
   padding: 10px;
   margin-bottom: $section-margins;
 
-  &.winter {
-    background-image: url('/images/home-0.jpg');
+  @for $i from 0 through 5 {
+    &.background-#{$i} {
+      background-image: url('/images/home-#{$i}.jpg');
+    }
   }
 
   img {
