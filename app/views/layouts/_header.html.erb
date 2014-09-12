@@ -2,15 +2,15 @@
   <div class="container">
     <nav id="main-nav" role="navigation">
       <div class="menu-left">
-        <a href="">Meny</a>
-        <a href="">Meny</a>
+        <%= link_to "Sortiment" %>
+        <%= link_to "Om Puben" %>
       </div>
       <div class="menu-logo">
-        <%= image_tag("/images/logo.png", alt: 'Pub Vattentornet') %>
+        <%= link_to image_tag("/images/logo.png", alt: 'Pub Vattentornet'), root_path %>
       </div>
       <div class="menu-right">
-        <a href="">Meny</a>
-        <a href="">Meny</a>
+        <%= link_to "Kontakt" %>
+        <%= link_to "Boka" %>
       </div>
     </nav>
   </div>

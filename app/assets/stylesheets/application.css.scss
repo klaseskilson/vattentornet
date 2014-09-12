@@ -1,17 +1,20 @@
 /*
  * Pub Vattentornet!
  * Made by Klas Eskilson, Daniel Rönnkvist, Carl Englund
+ * With inspiration from Finest Kind IPA, Hercules and lots of other tasty beers.
  *
  *= require font-awesome
  *= require_self
  */
 
 @import "variables";
+
+@import "bourbon";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "mixins";
-
 @import "fonts";
+
 @import "pages";
 
 html, body {
@@ -23,23 +26,44 @@ html, body {
 body {
   background-image: url('/images/background.jpg');
   background-repeat: repeat-x;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 #main-header {
+  @include transition(all .3s ease-in-out);
   position: fixed;
+  top: 0;
   width: 100%;
+  background: rgba(#111, .8);
+  z-index: 1;
 
-  &.transparent {
+  .pages.home &.transparent {
     background: transparent;
+
+    .menu-logo img {
+      opacity: 0;
+    }
   }
 
-  &.transparent .menu-logo {
-    opacity: 0;
+  .menu-logo img {
+    @include transition(opacity .3s linear);
+    max-height: 40px;
+    margin: 10px 0;
   }
 
   #main-nav {
     @include make-row();
+
+    a {
+      display: inline-block;
+      color: white;
+      font-size: 1.2em;
+      font-family: $font-family-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      line-height: 60px;
+      margin: 0 20px;
+    }
 
     .menu-left {
       @include make-xs-column(5);
@@ -47,6 +71,7 @@ body {
     }
     .menu-logo {
       @include make-xs-column(2);
+      text-align: center;
     }
     .menu-right {
       @include make-xs-column(5);
