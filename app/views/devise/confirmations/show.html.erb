@@ -1,15 +1,15 @@
-<h2>Account Activation</h2>
+<h2>Aktivera konto</h2>
 
 <%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
   <%= devise_error_messages! %>
   <fieldset>
-    <legend>Account Activation<% if resource.email %> for <%= resource.name %><% end %></legend>
+    <legend>Aktivera<% if resource.email %> för <%= resource.name %><% end %></legend>
 
   <%# if @requires_password %>
-      <p><%= f.label :password,'Choose a Password:' %> <%= f.password_field :password %></p>
-      <p><%= f.label :password_confirmation,'Password Confirmation:' %> <%= f.password_field :password_confirmation %></p>
+      <p><%= f.label :password,'Välj ett lösenord:' %> <%= f.password_field :password %></p>
+      <p><%= f.label :password_confirmation,'Bekräfta lösenord:' %> <%= f.password_field :password_confirmation %></p>
   <%# end %>
   <%= hidden_field_tag :confirmation_token,@confirmation_token %>
-  <p><%= f.submit "Activate" %></p>
+  <p><%= f.submit "Aktivera" %></p>
   </fieldset>
 <% end %>
