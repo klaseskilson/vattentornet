@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller.controller_name %> <%= @bodyclass if defined?(@bodyclass) %>">
+<body class="<%= controller.controller_name %> <%= yield(:body_class) %>">
 
 <%= render 'layouts/header' %>
 
