@@ -1,0 +1,51 @@
+#big-img {
+  // TODO make this responsive
+  height: 600px;
+  height: calc(100% - 100px);
+  min-height: 320px;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  // background-attachment: fixed;
+  padding: 10px;
+  margin-bottom: $section-margins;
+
+  @for $i from 0 through 5 {
+    &.background-#{$i} {
+      background-image: url('/images/home-#{$i}.jpg');
+    }
+  }
+
+  img {
+    @include vertical-align;
+    width: 300px;
+    max-width: 100%;
+  }
+}
+
+body.pages.home {
+  background-position: 0 320px;
+  padding-top: 0;
+}
+
+.home .infobar {
+  @include make-row;
+  margin-bottom: $section-margins;
+
+  .pane {
+    @include make-sm-column(4);
+
+    &:nth-of-type(1) {
+      color: #111;
+      background: $red;
+    }
+    &:nth-of-type(2) {
+      color: $beige;
+      background: #111;
+    }
+    &:nth-of-type(3) {
+      color: #111;
+      background: $beige;
+    }
+  }
+}

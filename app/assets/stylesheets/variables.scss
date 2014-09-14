@@ -1,0 +1,15 @@
+// our own variables
+$beige: #fdefd2;
+$red: #f07060;
+
+$section-margins: 40px;
+
+// custom bootstrap variables
+$font-family-sans-serif: "Open Sans", Helvetica, Arial, sans-serif;
+$font-family-serif: "Fauna One", Georgia, "Times New Roman", Times, serif;
+$font-family-serif-fancy: "Vollkorn", Georgia, "Times New Roman", Times, serif;
+$font-family-base: $font-family-serif;
+$headings-font-family: $font-family-serif-fancy;
+$body-bg: #000;
+$link-color: $red;
+$link-hover-color: lighten($link-color, 5%);

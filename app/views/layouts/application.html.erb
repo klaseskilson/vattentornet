@@ -1,32 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vattentornet</title>
+  <title>Vattentornet - <%= yield(:title) || "Norrköpings äldsta studentpub" %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="winter">
+<body class="<%= controller.controller_name %> <%= @bodyclass if defined?(@bodyclass) %>">
 
 <%= render 'layouts/header' %>
 
-<div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <% if user_signed_in? %>
-    <li><%= link_to 'Edit my profile', edit_user_registration_path %></li>
-    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-    <% if user_admin? %>
-      <li><%= link_to 'New User', new_user_registration_path %></li>
-      <li><%= link_to 'All users', users_path %></li>
-    <% end %>
-  <% else %>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-  <% end %>
-  <li><%= link_to("Drinks", drinks_path) %></li>
-  <li><%= link_to("Drink types", drink_types_path) %></li>
-
-</div>
 <% if (defined?(notice) and !notice.blank?) or (defined?(alert) and !alert.blank?) %>
   <section class="container">
     <p class="notice"> <%= notice %> </p>
@@ -34,9 +16,7 @@
   </section>
 <% end %>
 
-<main class="container">
-  <%= yield %>
-</main>
+<%= yield %>
 
 <%= render 'layouts/footer' %>
 

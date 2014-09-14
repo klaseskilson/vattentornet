@@ -1,56 +1,139 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+ * Pub Vattentornet!
+ * Made by Klas Eskilson, Daniel Rönnkvist, Carl Englund
+ * With inspiration from Finest Kind IPA, Hercules and lots of other tasty beers.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
+ *= require font-awesome
  *= require_self
  */
 
-@import "bootstrap-custom";
+@import "variables";
+
+@import "bourbon";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "mixins";
+@import "fonts";
+
+@import "pages";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
 
 body {
-  background-image: url('/images/background.png');
+  background-image: url('/images/background.jpg');
   background-repeat: repeat-x;
-  background-attachment: fixed;
+  padding-top: 60px;
 }
 
 #main-header {
-  background-size: cover;
-  background-position: top center;
-  height: 300px;
-  padding: 50px 0;
+  @include transition(all .3s ease-in-out);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(#111, .8);
+  z-index: 1;
 
-  body.winter & {
-    background-image: url('/images/winter.jpg');
+  .pages.home &.transparent {
+    background: transparent;
+
+    .menu-logo img {
+      opacity: 0;
+    }
   }
 
-  .logo {
-    @include make-sm-column(4);
+  .menu-logo img {
+    @include transition(opacity .3s linear);
+    max-height: 40px;
+    margin: 10px 0;
+  }
 
-    @media screen and (max-width: $screen-xs-max) {
+  #main-nav {
+    @include make-row();
+
+    a {
+      display: inline-block;
+      color: white;
+      font-size: 1.2em;
+      font-family: $font-family-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      line-height: 60px;
+      margin: 0 20px;
+    }
+
+    .menu-left {
+      @include make-xs-column(5);
+      text-align: right;
+    }
+    .menu-logo {
+      @include make-xs-column(2);
       text-align: center;
-
-      img {
-        display: inline;
-      }
+    }
+    .menu-right {
+      @include make-xs-column(5);
     }
   }
 }
 
 #main-footer {
-  @extend .container;
+  margin-top: $section-margins;
+  padding: 20px 15px;
+  background: #111;
+  color: $gray-lighter;
 
   .copyright {
     @include make-sm-column(3);
   }
+  .links {
+    @include make-sm-column(3);
+    @include make-sm-column-offset(6);
+  }
+}
+
+.container {
+  max-width: 978px;
+}
+
+
+
+.main-content {
+  @include make-sm-column(9);
+}
+
+.sidebar {
+  @include make-sm-column(3);
+
+  .pane {
+    background: #111;
+    color: $beige;
+    padding: 15px;
+    margin-bottom: 3px;
+
+    :first-child {
+      margin-top: 0;
+    }
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// misc
+.beige-color {
+  color: $beige;
+}
+.unica-one {
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+}
+.fat {
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .1em;
 }

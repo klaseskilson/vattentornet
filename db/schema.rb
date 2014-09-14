@@ -54,27 +54,6 @@ ActiveRecord::Schema.define(version: 20140909202302) do
 
   add_index "drinks", ["DrinkType_id"], name: "index_drinks_on_DrinkType_id", using: :btree
 
-
-  create_table "posts", force: true do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.string   "body"
-
-  create_table "roles", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
-
-  create_table "roles_users", id: false, force: true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
-  end
-
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

@@ -1,9 +1,17 @@
-<header id="main-header">
+<header id="main-header" class="transparent">
   <div class="container">
-    <div class="row">
-      <div class="logo">
-        <%= link_to image_tag("http://placekitten.com/g/300/200", alt: 'Pub Vattentornet', class: 'img-responsive'), root_url %>
+    <nav id="main-nav" role="navigation">
+      <div class="menu-left">
+        <%= link_to "Sortiment", drinks_path %>
+        <%= link_to "Om Puben" %>
       </div>
-    </div>
+      <div class="menu-logo">
+        <%= link_to image_tag("/images/logo.png", alt: 'Pub Vattentornet'), root_path %>
+      </div>
+      <div class="menu-right">
+        <%= link_to "Boka" %>
+        <%= link_to "Kontakt" %>
+      </div>
+    </nav>
   </div>
 </header>
