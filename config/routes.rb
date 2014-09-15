@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pages
+
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
