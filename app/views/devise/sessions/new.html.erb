@@ -4,7 +4,7 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label "Lösenord" %><br />
+  <div><%= f.label :password, "Lösenord" %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
   <% if devise_mapping.rememberable? -%>
