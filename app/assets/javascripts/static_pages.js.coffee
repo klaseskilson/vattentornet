@@ -4,4 +4,4 @@
 
 jQuery ->
   $(window).on "scroll", ->
-    $(".pages.home #main-header").toggleClass "transparent", $(window).scrollTop() < ($("#big-img .wall-logo").offset().top) * .625
+    $(".static_pages.home #main-header").toggleClass "transparent", $(window).scrollTop() < ($("#big-img .wall-logo").offset().top) * .625

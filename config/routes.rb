@@ -16,9 +16,9 @@ Rails.application.routes.draw do
 
   resources :drink_types
 
-  root 'pages#home'
+  root 'static_pages#home'
 
-  get '/hem' => 'pages#home'
-  get '/kontakt' => 'pages#contact', as: :contact
-  get '/om-puben' => 'pages#about', as: :about
+  get '/hem' => 'static_pages#home'
+  get '/kontakt' => 'static_pages#contact', as: :contact
+  get '/om-puben' => 'static_pages#about', as: :about
 end
