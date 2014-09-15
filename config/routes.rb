@@ -12,11 +12,13 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  resources :drinks
+  resources :drinks, path: '/sortiment'
 
   resources :drink_types
 
   root 'pages#home'
 
-  get '/home' => 'pages#home'
+  get '/hem' => 'pages#home'
+  get '/kontakt' => 'pages#contact', as: :contact
+  get '/om-puben' => 'pages#about', as: :about
 end
