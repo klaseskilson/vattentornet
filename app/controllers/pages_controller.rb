@@ -8,8 +8,13 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1
+  # GET /pages/slug
   # GET /pages/1.json
+  # GET /pages/slug.json
   def show
+    if request.path != pretty_page_path(@page)
+      redirect_to pretty_page_path(@page), status: :moved_permanently
+    end
   end
 
   # GET /pages/new

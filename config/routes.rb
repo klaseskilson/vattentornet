@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :pages
-
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
 
   scope "/admin" do
     resources :users
+    resources :pages
   end
 
   resources :posts
@@ -23,4 +22,7 @@ Rails.application.routes.draw do
   get '/hem' => 'static_pages#home'
   get '/kontakt' => 'static_pages#contact', as: :contact
   get '/om-puben' => 'static_pages#about', as: :about
+
+  get ':id' => 'pages#show', as: :pretty_page
+
 end
