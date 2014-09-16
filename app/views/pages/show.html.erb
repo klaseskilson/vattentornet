@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>
+          <%= @page.title %>
+          <% if (user_signed_in? && user_admin?) %>
+            <%= link_to 'Redigera', edit_page_path(@page) %>
+          <% end %>
+        </h1>
+        <div class="page-content">
+          <%= @page.text %>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @page.slug %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @page.text %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>

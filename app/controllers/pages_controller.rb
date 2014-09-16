@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+  authorize_resource
 
   # GET /pages
   # GET /pages.json
@@ -7,10 +9,8 @@ class PagesController < ApplicationController
     @pages = Page.all
   end
 
-  # GET /pages/1
-  # GET /pages/slug
-  # GET /pages/1.json
-  # GET /pages/slug.json
+  # GET /1
+  # GET /slug
   def show
     if request.path != pretty_page_path(@page)
       redirect_to pretty_page_path(@page), status: :moved_permanently
