@@ -23,7 +23,7 @@
       <h3>Stundens öl</h3>
       <% if @beer_of_the_moment.present? %>
         <p>
-          <%= @beer_of_the_moment.name %>, <%= @beer_of_the_moment.DrinkType.name.titleize %> från <%= @beer_of_the_moment.country %>.
+          <%= @beer_of_the_moment.name %>, <%= @beer_of_the_moment.DrinkType.name %> från <%= @beer_of_the_moment.country %>.
           <%= link_to("Mer information", @beer_of_the_moment) %>
         </p>
       <% end %>

@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label "Typ av dryck" %><br>
-    <%= f.text_field :DrinkType_id %>
+    <%= f.collection_select :DrinkType_id, DrinkType.order(:name), :id, :name %>
   </div>
    <div class="field">
     <%= f.label "Beskrivning" %><br>
