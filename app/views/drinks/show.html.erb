@@ -29,6 +29,17 @@
   <strong>Typ av dryck:</strong>
   <%= @drink.DrinkType.name %>
 </p>
+
+<p>
+  <strong>Beskrivning:</strong>
+  <%= @drink.description %>
+</p>
+
+<p>
+  <strong>I lager:</strong>
+  <%= @drink.instock %>
+</p>
+
 <% if user_signed_in_and_admin? %>
 <%= link_to 'Redigera', edit_drink_path(@drink) %> |
 <% end %>
