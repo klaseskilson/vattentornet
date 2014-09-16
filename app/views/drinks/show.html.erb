@@ -30,5 +30,15 @@
   <%= @drink.DrinkType %>
 </p>
 
+<p>
+  <strong>Beskrivning:</strong>
+  <%= @drink.description %>
+</p>
+
+<p>
+  <strong>I lager:</strong>
+  <%= @drink.instock %>
+</p>
+
 <%= link_to 'Redigera', edit_drink_path(@drink) %> |
 <%= link_to 'Tillbaka', drinks_path %>
