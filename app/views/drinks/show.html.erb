@@ -27,7 +27,7 @@
 
 <p>
   <strong>Typ av dryck:</strong>
-  <%= @drink.DrinkType %>
+  <%= @drink.DrinkType.name %>
 </p>
 
 <%= link_to 'Redigera', edit_drink_path(@drink) %> |
