@@ -22,9 +22,11 @@
         <td><%= drink.percentage %></td>
         <td><%= drink.price %></td>
         <td><%= drink.DrinkType.name %></td>
+        <% if user_signed_in? && user_admin? %>
         <td><%= link_to 'Visa', drink %></td>
         <td><%= link_to 'Redigera', edit_drink_path(drink) %></td>
         <td><%= link_to 'Ta bort', drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
