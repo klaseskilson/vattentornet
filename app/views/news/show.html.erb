@@ -15,10 +15,12 @@
   <%= @news.published %>
 </p>
 
+<% if User.find(@news.user_id) %>
 <p>
   <strong>User:</strong>
-  <%= @news.user %>
+  <%= User.find(@news.user_id).name %>
 </p>
+<% end %>
 
 <%= link_to 'Edit', edit_news_path(@news) %> |
 <%= link_to 'Back', news_index_path %>
