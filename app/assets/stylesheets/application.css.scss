@@ -120,6 +120,13 @@ body {
   }
 }
 
+// form stuff
+.main-form, .sidebar-form {
+  input[type="text"], input[type="submit"], textarea {
+    @extend .form-control;
+  }
+}
+
 // misc
 .beige-color {
   color: $beige;
