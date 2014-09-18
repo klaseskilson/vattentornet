@@ -8,8 +8,13 @@
             <%= link_to 'Redigera', edit_page_path(@page) %>
           <% end %>
         </h1>
+        <% if !@page.preamble.blank? %>
+          <p class="lead">
+            <%= @page.preamble %>
+          </p>
+        <% end %>
         <div class="page-content">
-          <%= @page.text %>
+          <%= GitHub::Markdown.render_gfm(@page.text).html_safe %>
         </div>
       </div>
     </div>
