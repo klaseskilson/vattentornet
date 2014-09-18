@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get '/hem' => 'static_pages#home'
-  get '/kontakt' => 'static_pages#contact', as: :contact
 
   get ':id' => 'pages#show', as: :pretty_page
 
