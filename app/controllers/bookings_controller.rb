@@ -40,8 +40,12 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    params = booking_params
+    if params[:confirmed]
+      params[:user_id] = current_user.id
+    end
     respond_to do |format|
-      if @booking.update(booking_params)
+      if @booking.update(params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
@@ -69,6 +73,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :description, :email, :pub, :confirmed, :user_id)
+      params.require(:booking).permit(:date, :description, :email, :pub, :confirmed, :user_id, :public)
     end
 end

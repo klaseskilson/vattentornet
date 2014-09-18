@@ -25,10 +25,12 @@
   <%= @booking.confirmed %>
 </p>
 
+<% if @booking.user_id && User.find(@booking.user_id) %>
 <p>
   <strong>User:</strong>
-  <%= @booking.user %>
+  <%= User.find(@booking.user_id).name %>
 </p>
+<% end %>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path %>
