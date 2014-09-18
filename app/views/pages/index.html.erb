@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <h1>Alla sidor</h1>
+        <p>
+          <%= link_to 'Skapa ny sida', new_page_path %>
+        </p>
+      </div>
+      <div class="pane">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Titel</th>
+                <th>Adress</th>
+                <th>Ingress</th>
+                <th>Text</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @pages.each do |page| %>
+                <tr>
+                  <td><%= page.title %></td>
+                  <td><%= page.slug %></td>
+                  <td><%= page.preamble %></td>
+                  <td><%= truncate page.text, :length => 100 %></td>
+                  <td><%= link_to 'Visa sida', page %></td>
+                  <td><%= link_to 'Redigera', edit_page_path(page) %></td>
+                  <td><%= link_to 'Ta bort', page, method: :delete, data: { confirm: 'Är du helt säker? Går inte alls att ångra, va.' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<table>
+
+</table>
