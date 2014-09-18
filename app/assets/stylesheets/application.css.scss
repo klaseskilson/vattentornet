@@ -99,7 +99,12 @@ body {
 }
 
 .main-content {
-  @include make-sm-column(9);
+  &:not(.wide) {
+    @include make-sm-column(9);
+  }
+  &.wide {
+    @include make-sm-column(12);
+  }
 }
 
 .sidebar {
