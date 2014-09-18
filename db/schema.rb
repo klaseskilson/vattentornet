@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140916155925) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "preamble"
+    t.text     "preamble",   default: ""
   end
 
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree

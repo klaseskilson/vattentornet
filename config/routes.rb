@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   get '/hem' => 'static_pages#home'
   get '/kontakt' => 'static_pages#contact', as: :contact
-  get '/om-puben' => 'static_pages#about', as: :about
 
   get ':id' => 'pages#show', as: :pretty_page
 
