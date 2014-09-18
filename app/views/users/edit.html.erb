@@ -1,9 +1,9 @@
-<h2>Edit <%= @user.name %></h2>
+<h2>Redigera <%= @user.name %></h2>
 
 <%= form_for(@user, as: @user, url: user_path(@user), html: { method: :put }) do |f| %>
 
   <div>
-    <%= f.label :name %><br/>
+    <%= f.label :name, "Namn" %><br/>
     <%= f.text_field :name %>
   </div>
 
@@ -19,8 +19,8 @@
 <% end %>
 
 
-<h3>Cancel account</h3>
+<h3>Ta bort konto</h3>
 
-<p><%= button_to "Cancel account", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "Ta bort konto", user_path(@user), data: { confirm: "Är du säker?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "Tillbaka", :back %>

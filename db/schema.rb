@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916155925) do
+ActiveRecord::Schema.define(version: 20140916163616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20140916155925) do
     t.integer  "DrinkType_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
+    t.boolean  "instock"
   end
 
   add_index "drinks", ["DrinkType_id"], name: "index_drinks_on_DrinkType_id", using: :btree

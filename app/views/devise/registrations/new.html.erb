@@ -1,9 +1,9 @@
-<h2>Sign up</h2>
+<h2>Registrera användare</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br/>
+  <div><%= f.label :name, "Namn" %><br/>
   <%= f.text_field :name, autofocus: true %></div>
 
   <div><%= f.label :email %><br />
@@ -14,7 +14,7 @@
     <%= f.check_box :admin %>
   </div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.submit "Registrera användare" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

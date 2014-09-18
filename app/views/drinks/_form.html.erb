@@ -12,30 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label "Namn" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :brewery %><br>
+    <%= f.label "Bryggeri" %><br>
     <%= f.text_field :brewery %>
   </div>
   <div class="field">
-    <%= f.label :country %><br>
+    <%= f.label "Land" %><br>
     <%= f.text_field :country %>
   </div>
   <div class="field">
-    <%= f.label :percentage %><br>
+    <%= f.label "Procentsats" %><br>
     <%= f.text_field :percentage %>
   </div>
   <div class="field">
-    <%= f.label :price %><br>
+    <%= f.label "Pris" %><br>
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :DrinkType_id %><br>
-    <%= f.text_field :DrinkType_id %>
+    <%= f.label "Typ av dryck" %><br>
+    <%= f.collection_select :DrinkType_id, DrinkType.order(:name), :id, :name %>
+  </div>
+   <div class="field">
+    <%= f.label "Beskrivning" %><br>
+    <%= f.text_field :description %>
+  </div>
+   <div class="field">
+    <%= f.label "I lager" %><br>
+    <%= f.check_box :instock %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Skapa Dryck" %>
   </div>
 <% end %>

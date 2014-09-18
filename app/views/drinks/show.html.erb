@@ -1,34 +1,46 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Namn:</strong>
   <%= @drink.name %>
 </p>
 
 <p>
-  <strong>Brewery:</strong>
+  <strong>Bryggeri:</strong>
   <%= @drink.brewery %>
 </p>
 
 <p>
-  <strong>Country:</strong>
+  <strong>Land:</strong>
   <%= @drink.country %>
 </p>
 
 <p>
-  <strong>Percentage:</strong>
+  <strong>Procentsats:</strong>
   <%= @drink.percentage %>
 </p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>Pris:</strong>
   <%= @drink.price %>
 </p>
 
 <p>
-  <strong>Drinktype:</strong>
-  <%= @drink.DrinkType %>
+  <strong>Typ av dryck:</strong>
+  <%= @drink.DrinkType.name %>
 </p>
 
-<%= link_to 'Edit', edit_drink_path(@drink) %> |
-<%= link_to 'Back', drinks_path %>
+<p>
+  <strong>Beskrivning:</strong>
+  <%= @drink.description %>
+</p>
+
+<p>
+  <strong>I lager:</strong>
+  <%= @drink.instock %>
+</p>
+
+<% if user_signed_in_and_admin? %>
+<%= link_to 'Redigera', edit_drink_path(@drink) %> |
+<% end %>
+<%= link_to 'Tillbaka', drinks_path %>
