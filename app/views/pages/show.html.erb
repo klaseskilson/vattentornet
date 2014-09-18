@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="main-content">
+      <% if @page.slug == 'kontakt' %>
+        <iframe width="100%" height="300" frameborder="0" class="pane" src="https://www.google.com/maps/embed/v1/place?q=Lennings%20gata%202%2C%20Norrk%C3%B6ping%2C%20Sverige&key=AIzaSyAhpQd4rEUK8dBpvPFxqgurpwWJM_X7v34"></iframe>
+      <% end %>
       <div class="pane">
         <h1>
           <%= @page.title %>
