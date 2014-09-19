@@ -5,16 +5,16 @@ var calendar = angular.module('calendar', []);
 
 calendar.controller('calendarController', function ($scope, $http) {
   $scope.month = moment();
-  var bookings = $http.get('/bookings.json').
+  var bookings
+  $http.get('/bookings.json').
     success(function (data, status, headers, config){
       makeArray($scope.month.daysInMonth(), data)
-      return data;
+      bookings = data;
     });
 
   $scope.changeMonth = function(x) {
-    console.log("TJENA")
+    console.log("changeMonth")
     $scope.month = $scope.month.add(x, 'months')
-    console.log($scope.month)
     makeArray($scope.month.daysInMonth(), bookings)
   }
 
@@ -22,13 +22,21 @@ calendar.controller('calendarController', function ($scope, $http) {
     $scope.days = []
     var pub = false;
     var confirmed = false;
+    var loopDate = "";
     for(var j=0; j<i; j++)
     {
-      var loopDate = $scope.month.format("YYYY-MM-")
+      loopDate = $scope.month.format("YYYY-MM-");
+      var d = loopDate
       if(j<10)
-        loopDate += "0"+j;
+      {
+        loopDate += "0"+(j+1);
+        d += "0"+j;
+      }
       else
-        loopDate += j;
+      {
+        loopDate += (j+1);
+        d += j;
+      }
       for(var k = 0; k < bookings.length; k++)
       {
         if ( loopDate == bookings[k].date )
@@ -37,9 +45,8 @@ calendar.controller('calendarController', function ($scope, $http) {
           confirmed = bookings[k].confirmed;
         }
       }
-      console.log(moment(loopDate).weekday())
       $scope.days.push({
-        weekday: moment(loopDate).weekday(),
+        weekday: moment(d).weekday(),
         day: (j+1),
         pub: pub,
         confirmed: confirmed
@@ -48,5 +55,4 @@ calendar.controller('calendarController', function ($scope, $http) {
       confirmed = false;
     }
   }
-
 });

@@ -5,8 +5,9 @@
     </div>
   </div>
   <div id="calendar" class="row" ng-controller="calendarController">
-  <div class="row">
+  <div class="row text-center">
     <button class="button" ng-click="changeMonth(-1)">bakåt</button>
+    <h2>{{ month.format("MMMM") }}</h2>
     <button class="button" ng-click="changeMonth(1)">framåt</button>
   </div>
     <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
