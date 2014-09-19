@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    angularjs-rails (1.2.22)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (3.0.1.20140826)
       execjs
@@ -138,6 +139,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails (~> 1.2.18)
   autoprefixer-rails
   bootstrap-sass (~> 3.2.0.2)
   bourbon

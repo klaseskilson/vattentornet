@@ -16,25 +16,27 @@
     <%= f.date_select :date, :order => [:day, :month, :year] %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
     <%= f.label :pub %><br>
     <%= f.check_box :pub %>
   </div>
-  <div class="field">
-    <%= f.label :confirmed %><br>
-    <%= f.check_box :confirmed %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br>
-    <%= f.check_box :public %>
-  </div>
+  <% if user_signed_in_and_admin? %>
+    <div class="field">
+      <%= f.label :confirmed %><br>
+      <%= f.check_box :confirmed %>
+    </div>
+    <div class="field">
+      <%= f.label :public %><br>
+      <%= f.check_box :public %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

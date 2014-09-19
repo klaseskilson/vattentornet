@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # User handling
 gem 'devise', '~> 3.2.4'
+
+# User level authentication
 gem 'cancan'
 
 # Opens mails in browser
@@ -34,6 +36,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'font-awesome-sass'
 gem 'bourbon'
+
+# get automagic angular
+gem 'angularjs-rails', '~> 1.2.18'
 
 gem 'autoprefixer-rails'
 
