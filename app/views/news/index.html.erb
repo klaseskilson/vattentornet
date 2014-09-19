@@ -1,5 +1,4 @@
 <h1>Listing news</h1>
-
 <table>
   <thead>
     <tr>
@@ -14,13 +13,14 @@
   <tbody>
     <% @news.each do |news| %>
       <tr>
+        <% t = Time.zone.parse(news.created_at.strftime("%Y-%m-%d %H:%M")) %>
         <td><%= news.title %></td>
         <td><%= news.body %></td>
-        <td><%= news.published %></td>
+        <td><%= distance_of_time_in_words_to_now(t) %></td>
         <td><%= User.find(news.user_id).name %></td>
-        <td><%= link_to 'Show', news %></td>
-        <td><%= link_to 'Edit', edit_news_path(news) %></td>
-        <td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Visa', news %></td>
+        <td><%= link_to 'Redigera', edit_news_path(news) %></td>
+        <td><%= link_to 'Ta bort', news, method: :delete, data: { confirm: 'Är du säker?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New News', new_news_path %>
+<%= link_to 'Nytt inlägg', new_news_path %>
