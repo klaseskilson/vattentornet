@@ -26,7 +26,11 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    params = booking_params
+    if params[:confirmed]
+      params[:user_id] = current_user.id
+    end
+    @booking = Booking.new(params)
 
     respond_to do |format|
       if @booking.save

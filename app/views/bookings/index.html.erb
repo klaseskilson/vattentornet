@@ -1,15 +1,17 @@
-<div class="container" ng-app="calendar" ng-controller="calendar-controller">
+<div class="container" ng-app="calendar">
   <div class="row">
     <div class="text-right">
       <%= link_to 'New Booking', new_booking_path %>
     </div>
   </div>
-  <div id="calendar" class="row">
-    <div class="row" ng-repeat="weeks in month">
-      <div class="day" ng-repeat="days in month">
-        <h5>{{ day.name }}</h5>
-        <h7>{{ day.number }}</h7>
-      </div>
+  <div id="calendar" class="row" ng-controller="calendarController">
+  <div class="row">
+    <button class="button" ng-click="changeMonth(-1)">bakåt</button>
+    <button class="button" ng-click="changeMonth(1)">framåt</button>
+  </div>
+    <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
+      <h3>{{ day.day }}</h3>
+      <h1 ng-if="day.confirmed">BAJS</h1>
     </div>
   </div>
     <table>

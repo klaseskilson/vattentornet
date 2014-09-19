@@ -1,0 +1,19 @@
+// Place all the styles related to the bookings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$class-slug: offset !default;
+$day: 100%/7;
+.weekday
+{
+  height: 100px;
+  width: $day;
+  float: left;
+}
+@for $i from 0 through 6
+{
+  .#{$class-slug}-#{$i}
+  {
+    margin-left: $day*($i);
+    @extend .weekday;
+  }
+}
