@@ -46,6 +46,9 @@ gem 'spring',        group: :development
 # render pages and news with github flavored markdown
 gem 'github-markdown', '~> 0.6.7'
 
+# BEEEEEER
+gem 'brewery_db', '~> 0.2.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
