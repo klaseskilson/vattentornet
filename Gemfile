@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.2.4'
 gem 'cancan'
 
+# nice, pretty urls
+gem 'friendly_id', '~> 5.0.0'
+
 # Opens mails in browser
 gem 'letter_opener', :group => :development
 
@@ -39,6 +42,9 @@ gem 'autoprefixer-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
+# render pages and news with github flavored markdown
+gem 'github-markdown', '~> 0.6.7'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

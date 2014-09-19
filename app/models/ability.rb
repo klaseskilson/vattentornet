@@ -7,7 +7,8 @@ class Ability
     if user.admin?
         can :manage, :all # Admins can do everything
     else
-        can :read, :all
+        can :read, Drink
+        can :read, Page
         can :update, User do |user|
           user.try(:user) == user
         end

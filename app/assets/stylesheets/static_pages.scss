@@ -23,7 +23,7 @@
   }
 }
 
-body.pages.home {
+body.static_pages.home {
   background-position: 0 320px;
   padding-top: 0;
 }
@@ -47,5 +47,26 @@ body.pages.home {
       color: #111;
       background: $beige;
     }
+  }
+}
+
+.main-content {
+  .pane {
+    background: $beige;
+    color: #111;
+    padding: $section-margins;
+    margin-bottom: $section-margins;
+
+    :first-child {
+      margin-top: 0;
+    }
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  iframe.pane {
+    margin-bottom: 0;
+    padding: 0;
+    border: 0;
   }
 }

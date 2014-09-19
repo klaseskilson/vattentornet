@@ -11,17 +11,18 @@
       </div>
       <div class="links">
         <ul class="list-unstyled">
-          <li><%= link_to "Kontakt" %></li>
-          <li><%= link_to "Sortiment" %></li>
+          <li><%= link_to "Kontakt", pretty_page_path(:id => 'kontakt') %></li>
+          <li><%= link_to "Sortiment", drinks_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Redigera min profil', edit_user_registration_path %></li>
-            <li><%= link_to "Logga ut", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'Logga ut', destroy_user_session_path, method: :delete %></li>
             <% if user_admin? %>
               <li><%= link_to 'Ny användare', new_user_registration_path %></li>
               <li><%= link_to 'Alla användare', users_path %></li>
+              <li><%= link_to 'Hantera sidor', pages_path %></li>
             <% end %>
           <% else %>
-            <li><%= link_to "Logga in", new_user_session_path %></li>
+            <li><%= link_to 'Logga in', new_user_session_path %></li>
           <% end %>
         </ul>
       </div>

@@ -1,7 +1,7 @@
-<section id="big-img" class="background-<%= rand(5) %>">
+<% body_class 'home' %>
+<section id="big-img" class="background-<%= rand(6) %>">
   <%= image_tag("/images/wall.png", alt: 'Pub Vattentornet', class: 'wall-logo') %>
 </section>
-
 <div class="container">
   <div class="infobar">
     <div class="pane">
@@ -17,8 +17,9 @@
       </p>
     </div>
     <div class="pane">
-      <h3>Facebook</h3>
-    </div>
+      <h3>Följ oss!</h3>
+      <div class="fb-like-box" data-href="https://www.facebook.com/Pub.Vattentornet" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+      </div>
     <div class="pane">
       <h3>Stundens öl</h3>
       <% if @beer_of_the_moment.present? %>
@@ -31,7 +32,6 @@
   </div>
   <div class="row">
     <div class="main-content">
-
     </div>
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>

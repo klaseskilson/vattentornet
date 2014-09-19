@@ -39,12 +39,12 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :admin)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :admin)
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
 end
