@@ -22,7 +22,7 @@ calendar.controller('calendarController', function ($scope, $http) {
     $scope.days = []
     var pub = false;
     var confirmed = false;
-    var open_public = false;
+    var public = false;
     var loopDate;
     for(var j=1; j<=i; j++)
     {
@@ -44,7 +44,7 @@ calendar.controller('calendarController', function ($scope, $http) {
         {
           pub = bookings[k].pub;
           confirmed = bookings[k].confirmed;
-          open_public = bookings[k].public;
+          public = bookings[k].public;
         }
       }
       $scope.days.push({
@@ -52,10 +52,11 @@ calendar.controller('calendarController', function ($scope, $http) {
         day: (j),
         pub: pub,
         confirmed: confirmed,
-        open_public: open_public
+        public: public
       });
       pub = false;
       confirmed = false;
+      public = false;
     }
   }
 });

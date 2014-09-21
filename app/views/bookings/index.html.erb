@@ -12,7 +12,8 @@
   </div>
     <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
       <h3>{{ day.day }}</h3>
-      <h1 ng-if="day.confirmed">BAJS</h1>
+      <h1 ng-if="day.confirmed && !day.public">BAJS</h1>
+      <h1 ng-if="day.confirmed && day.public">KISS</h1>
     </div>
   </div>
 </div>

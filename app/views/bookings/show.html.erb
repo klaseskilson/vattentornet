@@ -25,6 +25,11 @@
   <%= @booking.confirmed %>
 </p>
 
+<p>
+  <strong>Public:</strong>
+  <%= @booking.public %>
+</p>
+
 <% if @booking.user_id && User.find(@booking.user_id) %>
 <p>
   <strong>User:</strong>

@@ -8,6 +8,11 @@ $day: 100%/7;
   height: 100px;
   width: $day;
   float: left;
+  background-color: $beige;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  @extend .text-center;
 }
 @for $i from 0 through 6
 {

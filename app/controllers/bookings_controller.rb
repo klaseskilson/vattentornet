@@ -23,6 +23,12 @@ class BookingsController < ApplicationController
   def edit
   end
 
+  def multi_create
+    # For each params.start_date to params.end_date
+    # Put each date in params and call next line
+    # Booking.create(params)
+  end
+
   # POST /bookings
   # POST /bookings.json
   def create
