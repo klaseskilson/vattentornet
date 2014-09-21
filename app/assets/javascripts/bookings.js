@@ -22,19 +22,19 @@ calendar.controller('calendarController', function ($scope, $http) {
     $scope.days = []
     var pub = false;
     var confirmed = false;
-    var loopDate = "";
-    for(var j=0; j<i; j++)
+    var loopDate;
+    for(var j=1; j<=i; j++)
     {
       loopDate = $scope.month.format("YYYY-MM-");
       var d = loopDate
-      if(j<10)
+      if((j-1)<10)
       {
-        loopDate += "0"+(j+1);
-        d += "0"+j;
+        loopDate += "0"+((j));
+        d += "0"+(j);
       }
       else
       {
-        loopDate += (j+1);
+        loopDate += (j);
         d += j;
       }
       for(var k = 0; k < bookings.length; k++)
@@ -47,7 +47,7 @@ calendar.controller('calendarController', function ($scope, $http) {
       }
       $scope.days.push({
         weekday: moment(d).weekday(),
-        day: (j+1),
+        day: (j),
         pub: pub,
         confirmed: confirmed
       });
