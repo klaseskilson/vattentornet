@@ -11,9 +11,9 @@
     <button class="button" ng-click="changeMonth(1)">framåt</button>
   </div>
     <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
-      <h3>{{ day.day }}</h3>
-      <h1 ng-if="day.confirmed && !day.public">BAJS</h1>
-      <h1 ng-if="day.confirmed && day.public">KISS</h1>
+      <h3 ng-hide="day.confirmed && day.public">{{ day.day }}</h3>
+      <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
+      <h1 ng-if="day.confirmed && day.public"><%= image_tag("/images/wall.png", alt: 'Pub Vattentornet', class: 'calendar-logo') %></h1>
     </div>
   </div>
 </div>

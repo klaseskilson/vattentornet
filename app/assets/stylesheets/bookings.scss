@@ -22,3 +22,13 @@ $day: 100%/7;
     @extend .weekday;
   }
 }
+.calendar-logo
+{
+  @extend .img-responsive;
+  max-height: 109px;
+  margin: 0 auto;
+  margin-top: -18%;
+  padding: 10px;
+  -webkit-filter: invert(100%);
+  color: rgba(0,0,0,0.3) !important;
+}
