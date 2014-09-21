@@ -46,6 +46,9 @@ gem 'spring',        group: :development
 # render pages and news with github flavored markdown
 gem 'github-markdown', '~> 0.6.7'
 
+#Pagination gem
+gem 'will_paginate'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

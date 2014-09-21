@@ -17,6 +17,10 @@ class NewsController < ApplicationController
     @news = News.new
   end
 
+  def home
+    @latest_post = News.last;
+  end
+
   # GET /news/1/edit
   def edit
   end
