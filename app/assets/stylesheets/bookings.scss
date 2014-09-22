@@ -30,5 +30,22 @@ $day: 100%/7;
   margin-top: -18%;
   padding: 10px;
   -webkit-filter: invert(100%);
-  color: rgba(0,0,0,0.3) !important;
+}
+.calendar-headline
+{
+  color: $beige;
+  float: left;
+}
+.calendar-tool
+{
+  @extend .btn, .btn-default, .glyphicon;
+  float: left;
+  &:nth-child(1)
+  {
+    @extend .glyphicon-chevron-left;
+  }
+  &:nth-child(3)
+  {
+    @extend .glyphicon-chevron-right;
+  }
 }

@@ -5,10 +5,12 @@
     </div>
   </div>
   <div id="calendar" class="row" ng-controller="calendarController">
-  <div class="row text-center">
-    <button class="button" ng-click="changeMonth(-1)">bakåt</button>
-    <h2>{{ month.format("MMMM") }}</h2>
-    <button class="button" ng-click="changeMonth(1)">framåt</button>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-3">
+      <button class="calendar-tool" ng-click="changeMonth(-1)"></button>
+      <h2 class="calendar-headline">{{ month.format("MMMM") }}</h2>
+      <button class="calendar-tool" ng-click="changeMonth(1)"></button>
+    </div>
   </div>
     <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
       <h3 ng-hide="day.confirmed && day.public">{{ day.day }}</h3>

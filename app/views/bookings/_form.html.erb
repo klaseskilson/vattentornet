@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.date_select :date, :order => [:day, :month, :year] %>
+    <%= f.date_field :date, :order => [:day, :month, :year] %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
@@ -36,6 +36,18 @@
       <%= f.label :public %><br>
       <%= f.check_box :public %>
     </div>
+    <div class="field">
+      <%= f.label :interval %><br>
+      <%= f.check_box :interval %>
+    </div>
+    <div class="field">
+      <%= f.label :weekdays %><br>
+        <% ['måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag', 'söndag'].each_with_index do |wday, index| %>
+          <%= f.check_box('weekdays', {:multiple => true}, index, nil) %>
+          <%= f.label wday %>
+        <% end %>
+    </div>
+    <div class="field"></div>
   <% end %>
   <div class="actions">
     <%= f.submit %>
