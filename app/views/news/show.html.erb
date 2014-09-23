@@ -1,27 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @news.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @news.body %>
-</p>
-
-<p>
-  <strong>Published at:</strong>
-  <%= @news.updated_at %>
-</p>
-
-<% if User.find(@news.user_id) %>
-<p>
-  <strong>User:</strong>
-  <%= User.find(@news.user_id).name %>
-</p>
-<% end %>
 
 
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Back', news_index_path %>
+
+<%= link_to 'Redigera', edit_news_path(@news) %> |
+<%= link_to 'Tillbaka', news_index_path %>
+
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>
+          <%= @news.title %>
+        </h1>
+		<% if (user_signed_in? && user_admin?) %>
+		<%= link_to 'Redigera', edit_news_path(@news) %>
+		<% end %>
+        <div class="page-content">
+          <%= GitHub::Markdown.render_gfm(@news.body).html_safe %>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>
+
+

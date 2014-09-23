@@ -32,17 +32,20 @@
   </div>
   <div class="row">
     <div class="main-content">
-      <div class="pane">
         <% @latest_post.each do |single_post| %>
+        <div class="pane">
         <h3><%= single_post.title %></h3>
         <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(single_post.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= User.find(single_post.user_id).name %></h5>
         <div class="page-content">
           <p><%= single_post.body %></p>
         </div>
+       </div>
         <% end %>
-        <%= will_paginate @latest_post %>
+        <div class="pane">
+         <%= will_paginate @latest_post %>
         </div>
-      </div>
+        </div>
+     
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>
     </div>
