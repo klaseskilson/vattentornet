@@ -37,14 +37,20 @@
         <h3><%= single_post.title %></h3>
         <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(single_post.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= User.find(single_post.user_id).name %></h5>
         <div class="page-content">
-          <p><%= single_post.body %></p>
+          <p><%= GitHub::Markdown.render_gfm(single_post.body).html_safe %></p>
         </div>
        </div>
         <% end %>
+        <% if (@latest_post.total_pages > 1) %>
         <div class="pane">
-         <%= will_paginate @latest_post %>
+          <% if @latest_post.total_pages == @latest_post.current_page %>
+           <%= will_paginate @latest_post,  :next_label => '' %>
+          <% else %>
+          <%= will_paginate @latest_post %>
+          <% end %>
         </div>
-        </div>
+          <% end %>
+    </div>
      
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>

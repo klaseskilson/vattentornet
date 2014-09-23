@@ -1,3 +1,4 @@
+<% if (user_signed_in? && user_admin?) %>
 <%= form_for(@news) do |f| %>
 <div class="main-content main-form">
   <% if @news.errors.any? %>
@@ -29,6 +30,7 @@
           <%= f.text_area :body, :rows => 10, :placeholder => 'Vad ska din nyhet handla om?' %>
         </div>
         <div class="field">
+        <br>
         <%= f.label 'Publicera' %><br>
         <%= f.check_box :published %>
         </div>
@@ -44,12 +46,12 @@
     <div class="pane">
       <h4 class="fat">Spara</h4>
       <p>
-        <%= f.submit %>
+        <%= f.submit 'Spara nyhet' %>
       </p>
 
     </div>
   </div>
 
   
-  
+<% end %>
 <% end %>

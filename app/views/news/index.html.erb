@@ -2,9 +2,9 @@
   <div class="row">
     <div class="main-content wide">
       <div class="pane">
-        <h1>Alla sidor</h1>
+        <h1>Alla nyheter</h1>
         <p>
-          <%= link_to 'Skapa ny sida', new_news_path %>
+          <%= link_to 'Skapa ny nyhet', new_news_path %>
         </p>
       </div>
       <div class="pane">
@@ -28,7 +28,7 @@
                   <td><%= news.title %></td>
                   <td><%= truncate news.body, :length => 100 %></td>
                   <td><%= news.published %></td>
-                  <td><%= distance_of_time_in_words_to_now(t) %></td>
+                  <td><%= news.created_at.strftime("%Y-%m-%d") %></td>
                   <td><%= User.find(news.user_id).name %></td>
                   <td><%= link_to 'Visa sida', news %></td>
                   <td><%= link_to 'Redigera', edit_news_path(news) %></td>
