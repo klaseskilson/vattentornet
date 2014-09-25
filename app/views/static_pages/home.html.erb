@@ -24,8 +24,8 @@
       <h3>Stundens öl</h3>
       <% if @botm.present? %>
         <p>
-          <%= @botm.name %>, <%= @botm.DrinkType.name %> från <%= @botm.country %>.
-          <%= link_to("Mer information", url_for([@botm.DrinkType, @botm])) %>
+          <%= @botm.name %>, <%= @botm.drink_type.name %> från <%= @botm.country %>.
+          <%= link_to("Mer information", stock_drink_path(@botm.drink_type, @botm)) %>
         </p>
       <% end %>
     </div>

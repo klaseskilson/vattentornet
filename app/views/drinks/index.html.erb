@@ -18,13 +18,6 @@
           <% end %>
         </h2>
 
-        <% @drink_types.each do |drink_type| %>
-          <%= drink_type.name %> <br>
-          <% Drink.find(drink_type).each do |drink| %>
-            <%= drink.name %>
-          <% end %>
-        <% end %>
-
         <table>
           <thead>
             <tr>
@@ -48,7 +41,7 @@
                 <td><%= drink.country %></td>
                 <td><%= drink.percentage %></td>
                 <td><%= drink.price %></td>
-                <td><%= drink.DrinkType.name %></td>
+                <td><%= drink.drink_type.name %></td>
                 <td><%= drink.description %></td>
                 <td><%= drink.instock %></td>
                 <td><%= link_to 'Visa', drink %></td>
