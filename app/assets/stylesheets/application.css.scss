@@ -128,8 +128,12 @@ body {
 
 // form stuff
 .main-form, .sidebar-form {
-  input[type="text"], input[type="submit"], textarea {
+  input[type="text"], input[type="submit"], input[type="number"], textarea, select {
     @extend .form-control;
+  }
+
+  .row {
+    margin-bottom: $section-margins/2;
   }
 }
 
