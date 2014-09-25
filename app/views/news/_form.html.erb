@@ -14,7 +14,6 @@
 
     <div class="pane">
       <h3 class="fat"><%= yield(:title) %></h3>
-
       <div class="row">
         <div class="col-sm-7">
           <%= f.label :title, "Titel" %><br>
@@ -24,7 +23,7 @@
           <%= f.label 'Publicera' %><br>
           <%= f.check_box :published %>
         </div>
-       </div>
+      </div>
     </div>
       <div class="pane">
         <div class="field">
@@ -46,7 +45,6 @@
         <%= link_to 'Visa sidan', news_path %>
         <%= link_to 'Gå tillbaka', news_index_path %>
       </p>
-
     </div>
   </div>
 <% end %>
