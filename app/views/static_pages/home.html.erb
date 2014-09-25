@@ -22,10 +22,10 @@
     </div>
     <div class="pane">
       <h3>Stundens öl</h3>
-      <% if @beer_of_the_moment.present? %>
+      <% if @botm.present? %>
         <p>
-          <%= @beer_of_the_moment.name %>, <%= @beer_of_the_moment.DrinkType.name %> från <%= @beer_of_the_moment.country %>.
-          <%= link_to("Mer information", @beer_of_the_moment) %>
+          <%= @botm.name %>, <%= @botm.DrinkType.name %> från <%= @botm.country %>.
+          <%= link_to("Mer information", url_for([@botm.DrinkType, @botm])) %>
         </p>
       <% end %>
     </div>

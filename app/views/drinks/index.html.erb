@@ -1,42 +1,70 @@
-<h1>Drycker</h1>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>Vårt sortiment</h1>
+        <p>
+          På Pub Vattentornet har vi som mål att servera det bästa utav samtliga
+          drycker. Oavsett om du är på jakt efter en ale, lager, whisky eller vin
+          är vårt mål att du ska hitta en ny favorit hos oss varje gång. Nedan finner
+          du allt vi har inne för tillfället.
+        </p>
+      </div>
+      <div class="pane">
+        <h2>
+          Drycker
+          <% if user_signed_in_and_admin? %>
+            <%= link_to 'Lägg till ny', new_drink_path %>
+          <% end %>
+        </h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Namn</th>
-      <th>Bryggeri</th>
-      <th>Land</th>
-      <th>Procentsats</th>
-      <th>Pris</th>
-      <th>Typ av dryck</th>
-      <th>Beskrivning</th>
-      <th>I lager</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @drinks.each do |drink| %>
-      <tr>
-        <td><%= drink.name %></td>
-        <td><%= drink.brewery %></td>
-        <td><%= drink.country %></td>
-        <td><%= drink.percentage %></td>
-        <td><%= drink.price %></td>
-        <td><%= drink.DrinkType.name %></td>
-        <td><%= drink.description %></td>
-        <td><%= drink.instock %></td>
-        <td><%= link_to 'Visa', drink %></td>
-        <% if user_signed_in_and_admin? %>
-          <td><%= link_to 'Redigera', edit_drink_path(drink) %></td>
-          <td><%= link_to 'Ta bort', drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' } %></td>
+        <% @drink_types.each do |drink_type| %>
+          <%= drink_type.name %> <br>
+          <% Drink.find(drink_type).each do |drink| %>
+            <%= drink.name %>
+          <% end %>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-<% if user_signed_in_and_admin? %>
-<%= link_to 'Ny dryck', new_drink_path %>
-<% end %>
+        <table>
+          <thead>
+            <tr>
+              <th>Namn</th>
+              <th>Bryggeri</th>
+              <th>Land</th>
+              <th>Procentsats</th>
+              <th>Pris</th>
+              <th>Typ av dryck</th>
+              <th>Beskrivning</th>
+              <th>I lager</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @drinks.each do |drink| %>
+              <tr>
+                <td><%= drink.name %></td>
+                <td><%= drink.brewery %></td>
+                <td><%= drink.country %></td>
+                <td><%= drink.percentage %></td>
+                <td><%= drink.price %></td>
+                <td><%= drink.DrinkType.name %></td>
+                <td><%= drink.description %></td>
+                <td><%= drink.instock %></td>
+                <td><%= link_to 'Visa', drink %></td>
+                <% if user_signed_in_and_admin? %>
+                  <td><%= link_to 'Redigera', edit_drink_path(drink) %></td>
+                  <td><%= link_to 'Ta bort', drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' } %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>

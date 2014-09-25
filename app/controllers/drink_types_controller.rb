@@ -66,7 +66,7 @@ class DrinkTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drink_type
-      @drink_type = DrinkType.find(params[:id])
+      @drink_type = DrinkType.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

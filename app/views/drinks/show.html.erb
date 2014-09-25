@@ -1,46 +1,85 @@
-<p id="notice"><%= notice %></p>
+<% title @drink.name %>
 
-<p>
-  <strong>Namn:</strong>
-  <%= @drink.name %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>
+          <%= @drink.name %>
+          <small>
+            <%= @drink.price.round %> kr
 
-<p>
-  <strong>Bryggeri:</strong>
-  <%= @drink.brewery %>
-</p>
+            <% if user_signed_in_and_admin? %>
+              <%= link_to 'Redigera', edit_drink_path(@drink) %>
+            <% end %>
+          </small>
+        </h1>
 
-<p>
-  <strong>Land:</strong>
-  <%= @drink.country %>
-</p>
+        <div class="drink-info">
+          <div class="image">
+            <%= image_tag @api_info.labels.large, alt: 'Etikett!' if @api_info %>
 
-<p>
-  <strong>Procentsats:</strong>
-  <%= @drink.percentage %>
-</p>
+            <% if @drink.description.present? and !@api_info %>
+              <h5 class="fat text-left">Beskrivning</h5>
+              <%= GitHub::Markdown.render_gfm(@drink.description).html_safe%>
+            <% end %>
+          </div>
+          <div class="info">
+            <div class="point">
+              <h5 class="fat">
+                Tillverkare
+              </h5>
+              <h4>
+                <%= @drink.brewery %>
+              </h5>
+            </div>
+            <div class="row">
+              <div class="point">
+                <h5 class="fat">
+                  Ursprung
+                </h5>
+                <h4>
+                  <%= @drink.country %>
+                </h5>
+              </div>
+              <div class="point">
+                <h5 class="fat">
+                  Typ
+                </h5>
+                <h4>
+                  <%= link_to @drink.DrinkType.name, @drink.DrinkType %>
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="point">
+                <h5 class="fat">
+                  Lagerstatus
+                </h5>
+                <h4>
+                  <%= @drink.instock ? "I lager!" : "Ej i lager" %>
+                </h5>
+              </div>
+              <div class="point">
+                <h5 class="fat" title="Styrka">
+                  ABV
+                </h5>
+                <h4>
+                  <%= @drink.percentage %>%
+                </h5>
+              </div>
+            </div>
 
-<p>
-  <strong>Pris:</strong>
-  <%= @drink.price %>
-</p>
-
-<p>
-  <strong>Typ av dryck:</strong>
-  <%= @drink.DrinkType.name %>
-</p>
-
-<p>
-  <strong>Beskrivning:</strong>
-  <%= @drink.description %>
-</p>
-
-<p>
-  <strong>I lager:</strong>
-  <%= @drink.instock %>
-</p>
-
-<% if user_signed_in_and_admin? %>
-<%= link_to 'Redigera', edit_drink_path(@drink) %> |
-<% end %>
-<%= link_to 'Tillbaka', drinks_path %>
+            <% if @drink.description.present? and @api_info %>
+              <h5 class="fat text-left">Beskrivning</h5>
+              <%= GitHub::Markdown.render_gfm(@drink.description).html_safe%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>
