@@ -12,6 +12,7 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types/1
   # GET /drink_types/1.json
   def show
+    @drinks = @drink_type.drinks
   end
 
   # GET /drink_types/new
@@ -30,7 +31,7 @@ class DrinkTypesController < ApplicationController
 
     respond_to do |format|
       if @drink_type.save
-        format.html { redirect_to @drink_type, notice: 'Drink type was successfully created.' }
+        format.html { redirect_to stock_path(@drink_type), notice: 'Drink type was successfully created.' }
         format.json { render :show, status: :created, location: @drink_type }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class DrinkTypesController < ApplicationController
   def update
     respond_to do |format|
       if @drink_type.update(drink_type_params)
-        format.html { redirect_to @drink_type, notice: 'Drink type was successfully updated.' }
+        format.html { redirect_to stock_path(@drink_type), notice: 'Drink type was successfully updated.' }
         format.json { render :show, status: :ok, location: @drink_type }
       else
         format.html { render :edit }

@@ -2,7 +2,15 @@
   <div class="row">
     <div class="main-content">
       <div class="pane">
-        <h1>Vårt sortiment</h1>
+        <h1>
+          Vårt sortiment
+          <% if user_signed_in_and_admin? %>
+            <small>
+              Admin:
+              <%= link_to "Drycker", drinks_path %>
+            </small>
+          <% end %>
+        </h1>
         <p>
           På Pub Vattentornet har vi som mål att servera det bästa utav samtliga
           drycker. Oavsett om du är på jakt efter en ale, lager, whisky eller vin
@@ -16,7 +24,11 @@
           <% beers = drink_type.drinks.where(instock: true) %>
           <% if beers.count > 0 %>
             <h3>
-              <%= drink_type.name %>, <%= beers.count %> stk
+              <%= drink_type.name %>, <%= beers.count %> stk inne
+              <small>
+                <%= link_to "Visa alla", stock_path(drink_type) %>
+                <%= link_to "Byt namn", edit_drink_type_path(drink_type) if user_signed_in_and_admin? %>
+              </small>
             </h3>
           <% end %>
 

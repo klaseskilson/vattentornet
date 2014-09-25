@@ -1,9 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @drink_type.name %>
-</p>
-
-<%= link_to 'Edit', edit_drink_type_path(@drink_type) %> |
-<%= link_to 'Back', drink_types_path %>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>
+          <%= @drink_type.name %>
+          <% if user_signed_in_and_admin? %>
+            <small>
+              <%= link_to "Redigera", edit_drink_type_path %>
+            </small>
+          <% end %>
+        </h1>
+        <p>
+          Här visas alla drycker av typen <%= @drink_type.name %> vi någonsin haft inne.
+        </p>
+        <% @drinks.each do |drink| %>
+          <h4>
+            <%= link_to drink.name, stock_drink_path(@drink_type, drink), title: "Läs mer om drycken" %>
+            <%= icon('beer', 'Finns i lager!', title: 'I lager!') if drink.instock? %>
+            <small>
+              <%= drink.country %>, <%= drink.price.to_i %> kr
+            </small>
+          </h4>
+        <% end %>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>
