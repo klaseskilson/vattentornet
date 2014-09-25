@@ -26,8 +26,12 @@
                 <tr>
                   <% t = Time.zone.parse(news.created_at.strftime("%Y-%m-%d %H:%M")) %>
                   <td><%= news.title %></td>
-                  <td><%= truncate news.body, :length => 100 %></td>
-                  <td><%= news.published %></td>
+                  <td><%= truncate news.body, :length => 30 %></td>
+                  <% if news.published %>
+                    <td>Japp</td>
+                  <% else %>
+                    <td>Nepp</td>
+                  <% end %>
                   <td><%= news.created_at.strftime("%Y-%m-%d") %></td>
                   <td><%= User.find(news.user_id).name %></td>
                   <td><%= link_to 'Visa sida', news %></td>

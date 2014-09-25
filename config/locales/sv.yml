@@ -93,7 +93,7 @@ sv:
         other: mer än %{count} år
       x_days:
         one: en dag
-        other: ! 'några dagar sen'
+        other: ! 'för några dagar sen'
       x_hours:
         one: en timme
         other: ! 'för några timmar sen'

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :news
-
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
@@ -19,10 +17,14 @@ Rails.application.routes.draw do
 
   resources :drink_types
 
+  resources :news, path: 'nyheter'
+
+
   root 'static_pages#home'
 
   get '/hem' => 'static_pages#home'
 
   get ':id' => 'pages#show', as: :pretty_page
+
 
 end
