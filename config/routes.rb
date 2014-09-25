@@ -17,10 +17,14 @@ Rails.application.routes.draw do
 
   resources :drink_types
 
+  resources :news, path: 'nyheter'
+
+
   root 'static_pages#home'
 
   get '/hem' => 'static_pages#home'
 
   get ':id' => 'pages#show', as: :pretty_page
+
 
 end

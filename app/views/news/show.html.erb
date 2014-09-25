@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>
+          <%= @news.title %>
+        </h1>
+		<% if (user_signed_in? && user_admin?) %>
+		<%= link_to 'Redigera', edit_news_path(@news) %>
+    <%= link_to 'Tillbaka', news_index_path %>
+		<% end %>
+        <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(@news.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= User.find(@news.user_id).name %></h5>
+       
+        <div class="page-content">
+          <%= GitHub::Markdown.render_gfm(@news.body).html_safe %>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
+  </div>
+</div>
+
+
