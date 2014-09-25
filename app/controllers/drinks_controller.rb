@@ -32,7 +32,7 @@ class DrinksController < ApplicationController
 
     respond_to do |format|
       if @drink.save
-        format.html { redirect_to @drink, notice: 'Drink was successfully created.' }
+        format.html { redirect_to url_for([@drink.drink_type, @drink]), notice: 'Drink was successfully created.' }
         format.json { render :show, status: :created, location: @drink }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class DrinksController < ApplicationController
   def update
     respond_to do |format|
       if @drink.update(drink_params)
-        format.html { redirect_to url_for([@drink.DrinkType, @drink]), notice: 'Drink was successfully updated.' }
+        format.html { redirect_to [@drink.drink_type, @drink], notice: 'Drink was successfully updated.' }
         format.json { render :show, status: :ok, location: @drink }
       else
         format.html { render :edit }
@@ -73,6 +73,6 @@ class DrinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :DrinkType_id, :description, :instock)
+      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
     end
 end
