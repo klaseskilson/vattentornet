@@ -4,30 +4,36 @@
 </section>
 <div class="container">
   <div class="infobar">
-    <div class="pane">
-      <h3>
-        Pub <em>[pub']</em>
-      </h3>
-      <h4>
-        &mdash; bar med ölservering
-      </h4>
-      <p>
-        Pub Vattentornet är Norrköpings äldsta studentpub. Sedan 2002 serverar vi
-        finöl till studentpriser.
-      </p>
-    </div>
-    <div class="pane">
-      <h3>Följ oss!</h3>
-      <div class="fb-like-box" data-href="https://www.facebook.com/Pub.Vattentornet" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-      </div>
-    <div class="pane">
-      <h3>Stundens öl</h3>
-      <% if @botm.present? %>
+    <div class="card">
+      <div class="pane">
+        <h3>
+          Pub <em>[pub']</em>
+        </h3>
+        <h4>
+          &mdash; bar med ölservering
+        </h4>
         <p>
-          <%= @botm.name %>, <%= @botm.drink_type.name %> från <%= @botm.country %>.
-          <%= link_to("Mer information", stock_drink_path(@botm.drink_type, @botm)) %>
+          Pub Vattentornet är Norrköpings äldsta studentpub. Sedan 2002 serverar vi
+          finöl till studentpriser.
         </p>
-      <% end %>
+      </div>
+    </div>
+    <div class="card">
+      <div class="pane">
+        <h3>Följ oss!</h3>
+        <div class="fb-like-box" data-href="https://www.facebook.com/Pub.Vattentornet" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="pane">
+        <h3>Stundens öl</h3>
+        <% if @botm.present? %>
+          <p>
+            <%= @botm.name %>, <%= @botm.drink_type.name %> från <%= @botm.country %>.
+            <%= link_to("Mer information", stock_drink_path(@botm.drink_type, @botm)) %>
+          </p>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -51,7 +57,7 @@
         </div>
           <% end %>
     </div>
-     
+
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>
     </div>

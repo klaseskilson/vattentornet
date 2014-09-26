@@ -30,6 +30,15 @@ body {
   padding-top: 80px;
 }
 
+.pane {
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
 #main-header {
   @include transition(all .3s ease-in-out);
   position: fixed;
@@ -116,13 +125,6 @@ body {
     color: $beige;
     padding: 15px;
     margin-bottom: 3px;
-
-    :first-child {
-      margin-top: 0;
-    }
-    :last-child {
-      margin-bottom: 0;
-    }
   }
 }
 

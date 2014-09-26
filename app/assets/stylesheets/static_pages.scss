@@ -32,18 +32,22 @@ body.static_pages.home {
   @include make-row;
   margin-bottom: $section-margins;
 
-  .pane {
+  .card {
     @include make-sm-column(4);
 
-    &:nth-of-type(1) {
+    .pane {
+      padding: 15px;
+    }
+
+    &:nth-of-type(1) .pane {
       color: #111;
       background: $red;
     }
-    &:nth-of-type(2) {
+    &:nth-of-type(2) .pane {
       color: $beige;
       background: #111;
     }
-    &:nth-of-type(3) {
+    &:nth-of-type(3) .pane {
       color: #111;
       background: $beige;
     }
@@ -56,13 +60,6 @@ body.static_pages.home {
     color: #111;
     padding: $section-margins;
     margin-bottom: $section-margins;
-
-    :first-child {
-      margin-top: 0;
-    }
-    :last-child {
-      margin-bottom: 0;
-    }
   }
   iframe.pane {
     margin-bottom: 0;
