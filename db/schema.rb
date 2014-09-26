@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "published"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
+
   create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "slug"

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <h1>Alla nyheter</h1>
+        <p>
+          <%= link_to 'Skapa ny nyhet', new_news_path %>
+        </p>
+      </div>
+      <div class="pane">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Titel</th>
+                <th>Text</th>
+                <th>Publicerad</th>
+                <th>Datum</th>
+                <th>Författare</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @news.each do |news| %>
+                <tr>
+                  <% t = Time.zone.parse(news.created_at.strftime("%Y-%m-%d %H:%M")) %>
+                  <td><%= news.title %></td>
+                  <td><%= truncate news.body, :length => 30 %></td>
+                  <% if news.published %>
+                    <td>Japp</td>
+                  <% else %>
+                    <td>Nepp</td>
+                  <% end %>
+                  <td><%= news.created_at.strftime("%Y-%m-%d") %></td>
+                  <td><%= User.find(news.user_id).name %></td>
+                  <td><%= link_to 'Visa sida', news %></td>
+                  <td><%= link_to 'Redigera', edit_news_path(news) %></td>
+                  <td><%= link_to 'Ta bort', news, method: :delete, data: { confirm: 'Är du helt säker? Går inte alls att ångra, va.' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<table>
+
+</table>

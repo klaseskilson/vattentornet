@@ -2,7 +2,6 @@
 <section id="big-img" class="background-<%= rand(6) %>">
   <%= image_tag("/images/wall.png", alt: 'Pub Vattentornet', class: 'wall-logo') %>
 </section>
-
 <div class="container">
   <div class="infobar">
     <div class="pane">
@@ -18,8 +17,9 @@
       </p>
     </div>
     <div class="pane">
-      <h3>Facebook</h3>
-    </div>
+      <h3>Följ oss!</h3>
+      <div class="fb-like-box" data-href="https://www.facebook.com/Pub.Vattentornet" data-colorscheme="dark" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
+      </div>
     <div class="pane">
       <h3>Stundens öl</h3>
       <% if @botm.present? %>
@@ -32,8 +32,26 @@
   </div>
   <div class="row">
     <div class="main-content">
-
+        <% @latest_post.each do |single_post| %>
+        <div class="pane">
+        <h3><%= link_to single_post.title, news_path(single_post) %></h3>
+        <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(single_post.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= User.find(single_post.user_id).name %></h5>
+        <div class="page-content">
+          <p><%= GitHub::Markdown.render_gfm(single_post.body).html_safe %></p>
+        </div>
+       </div>
+        <% end %>
+        <% if (@latest_post.total_pages > 1) %>
+        <div class="pane">
+          <% if @latest_post.total_pages == @latest_post.current_page %>
+           <%= will_paginate @latest_post,  :next_label => '' %>
+          <% else %>
+          <%= will_paginate @latest_post %>
+          <% end %>
+        </div>
+          <% end %>
     </div>
+     
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>
     </div>

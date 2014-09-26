@@ -14,7 +14,6 @@
 
     <div class="pane">
       <h3 class="fat"><%= yield(:title) %></h3>
-
       <div class="row">
         <div class="col-sm-7">
           <%= f.label :title, "Titel" %><br>
@@ -25,10 +24,9 @@
           <%= f.text_field :slug, :placeholder => 'T.ex. "pubens-hemligheter"' %>
         </div>
       </div>
-
       <div class="field">
         <%= f.label :preamble, "Ingress" %><br>
-        <%= f.text_area :preamble, :placeholder => 'Puben har sedan urminnes tider många hemligheter...' %>
+        <%= f.text_area :preamble, :placeholder => 'Puben har sedan urminnes tider många hemligheter...'%>
       </div>
     </div>
     <div class="pane">
