@@ -1,12 +1,15 @@
 <header id="main-header" class="transparent">
   <div class="container">
     <nav id="main-nav" role="navigation">
+      <div class="menu-logo">
+        <%= link_to image_tag("/images/logo.png", alt: 'Pub Vattentornet'), root_path, class: 'logo' %>
+        <button class="menu-toggle">
+          <%= icon 'bars', '', class: 'fa-2x' %>
+        </button>
+      </div>
       <div class="menu-left">
         <%= link_to "Sortiment", stock_index_path %>
         <%= link_to "Om Puben", pretty_page_path(:id => 'om-puben') %>
-      </div>
-      <div class="menu-logo">
-        <%= link_to image_tag("/images/logo.png", alt: 'Pub Vattentornet'), root_path %>
       </div>
       <div class="menu-right">
         <%= link_to "Boka" %>

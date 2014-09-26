@@ -54,16 +54,8 @@ body.static_pages.home {
   }
 }
 
-.main-content {
-  .pane {
-    background: $beige;
-    color: #111;
-    padding: $section-margins;
-    margin-bottom: $section-margins;
-  }
-  iframe.pane {
-    margin-bottom: 0;
-    padding: 0;
-    border: 0;
-  }
+.main-content iframe.pane {
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
 }
