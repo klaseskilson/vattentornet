@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   scope "/admin" do
     resources :users
     resources :pages
+    resources :drinks, as: :drinks
+    resources :drink_types, except: [:index, :show]
   end
 
-  resources :posts
-
-  resources :drinks, path: '/sortiment'
-
-  resources :drink_types
+  resources :drink_types, path: '/sortiment', as: :stock, only: [:index, :show] do
+    resources :drinks, path: '/', only: [:show]
+  end
 
   resources :news, path: 'nyheter'
 

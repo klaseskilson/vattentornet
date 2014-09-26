@@ -1,21 +1,34 @@
 <%= form_for(@drink_type) do |f| %>
-  <% if @drink_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@drink_type.errors.count, "error") %> prohibited this drink_type from being saved:</h2>
+  <div class="main-content main-form">
+    <% if @drink_type.errors.any? %>
+      <div class="pane" id="error_explanation">
+        <h2><%= pluralize(@drink_type.errors.count, "error") %> prohibited this drink_type from being saved:</h2>
 
-      <ul>
-      <% @drink_type.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @drink_type.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="pane">
+      <h3 class="fat"><%= yield(:title) %></h3>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.label :name, "Namn" %><br>
+          <%= f.text_field :name, placeholder: "Tex IPA, Lager, Rött vin, Whisky..." %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="sidebar sidebar-form">
+    <div class="pane">
+      <h4 class="fat">Spara</h4>
+      <p>
+        <%= f.submit %>
+      </p>
+    </div>
   </div>
 <% end %>

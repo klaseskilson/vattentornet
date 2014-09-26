@@ -12,7 +12,7 @@
       <div class="links">
         <ul class="list-unstyled">
           <li><%= link_to "Kontakt", pretty_page_path(:id => 'kontakt') %></li>
-          <li><%= link_to "Sortiment", drinks_path %></li>
+          <li><%= link_to "Sortiment", stock_index_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Redigera min profil', edit_user_registration_path %></li>
             <li><%= link_to 'Logga ut', destroy_user_session_path, method: :delete %></li>

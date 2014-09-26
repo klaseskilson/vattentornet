@@ -1,0 +1,30 @@
+.drink-info {
+  @include make-row;
+
+  .info, .image {
+    @include make-sm-column(6);
+
+    img {
+      @extend .img-responsive;
+      border: 1px solid rgba($gray-darker, .3);
+    }
+  }
+  .info {
+    @include make-sm-column-pull(6);
+  }
+  .image {
+    @include make-sm-column-push(6);
+  }
+}
+
+.drink-info .info {
+  .fat {
+    text-align: left;
+  }
+  .point {
+    margin-bottom: $section-margins/2;
+  }
+  .row .point {
+    @include make-xs-column(6);
+  }
+}

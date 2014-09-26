@@ -42,7 +42,7 @@
         <%= f.submit 'Spara nyhet' %>
       </p>
        <p>
-        <%= link_to 'Visa sidan', news_path %>
+        <%= link_to 'Visa sidan', news_path if @news.id? %>
         <%= link_to 'Gå tillbaka', news_index_path %>
       </p>
     </div>

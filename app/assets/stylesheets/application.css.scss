@@ -16,6 +16,7 @@
 @import "fonts";
 
 @import "static_pages";
+@import "drinks";
 
 html, body {
   height: 100%;
@@ -27,6 +28,15 @@ body {
   background-image: url('/images/background.jpg');
   background-repeat: repeat-x;
   padding-top: 80px;
+}
+
+.pane {
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
 }
 
 #main-header {
@@ -115,20 +125,17 @@ body {
     color: $beige;
     padding: 15px;
     margin-bottom: 3px;
-
-    :first-child {
-      margin-top: 0;
-    }
-    :last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
 // form stuff
 .main-form, .sidebar-form {
-  input[type="text"], input[type="submit"], textarea {
+  input[type="text"], input[type="submit"], input[type="number"], textarea, select {
     @extend .form-control;
+  }
+
+  .row {
+    margin-bottom: $section-margins/2;
   }
 }
 
@@ -144,6 +151,13 @@ body {
   font-family: $font-family-sans-serif;
   text-transform: uppercase;
   font-weight: 800;
-  text-align: center;
   letter-spacing: .1em;
+  text-align: center;
+
+  &.text-left {
+    text-align: left;
+  }
+  &.text-right {
+    text-align: right;
+  }
 }
