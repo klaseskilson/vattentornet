@@ -40,7 +40,7 @@ calendar.controller('calendarController', function ($scope, $http) {
       }
       for(var k = 0; k < bookings.length; k++)
       {
-        if ( loopDate == bookings[k].date )
+        if ( moment(loopDate).weekday() == 3 || moment(loopDate).weekday() == 4 || loopDate == bookings[k].date )
         {
           pub = bookings[k].pub;
           confirmed = bookings[k].confirmed;

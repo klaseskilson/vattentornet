@@ -1,21 +1,25 @@
 <div class="container" ng-app="calendar">
-  <div class="row">
-    <div class="text-right">
-      <%= link_to 'New Booking', new_booking_path %>
-    </div>
-  </div>
   <div id="calendar" class="row" ng-controller="calendarController">
-  <div class="row">
-    <div class="col-md-2 col-md-offset-3">
-      <button class="calendar-tool" ng-click="changeMonth(-1)"></button>
-      <h2 class="calendar-headline">{{ month.format("MMMM") }}</h2>
-      <button class="calendar-tool" ng-click="changeMonth(1)"></button>
+    <div class="calendarbar">
+      <div class="pane">
+        <div class="controls">
+          <a class="calendar-tool" ng-click="changeMonth(-1)">
+            <%= icon 'arrow-left', '', class: 'fa-2x' %>
+          </a>
+          <h2>{{ month.format("MMMM") }}</h2>
+          <a class="calendar-tool" ng-click="changeMonth(1)">
+            <%= icon 'arrow-right', '', class: 'fa-2x' %>
+          </a>
+        </div>
+      </div>
+      <div class="new-booking">
+        <%= link_to 'Ny bokning', new_booking_path %>
+      </div>
     </div>
-  </div>
     <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
-      <h3 ng-hide="day.confirmed && day.public">{{ day.day }}</h3>
+      <h3>{{ day.day }}</h3>
       <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
-      <h1 ng-if="day.confirmed && day.public"><%= image_tag("/images/wall.png", alt: 'Pub Vattentornet', class: 'calendar-logo') %></h1>
+      <h3 ng-if="day.confirmed && day.public">Pub</h3>
     </div>
   </div>
 </div>

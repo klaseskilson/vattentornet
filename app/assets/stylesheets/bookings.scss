@@ -22,30 +22,41 @@ $day: 100%/7;
     @extend .weekday;
   }
 }
-.calendar-logo
+.calendarbar
 {
-  @extend .img-responsive;
-  max-height: 109px;
-  margin: 0 auto;
-  margin-top: -18%;
-  padding: 10px;
-  -webkit-filter: invert(100%);
-}
-.calendar-headline
-{
+  @include make-row();
+  margin-top: $section-margins;
   color: $beige;
-  float: left;
-}
-.calendar-tool
-{
-  @extend .btn, .btn-default, .glyphicon;
-  float: left;
-  &:nth-child(1)
+  .pane
   {
-    @extend .glyphicon-chevron-left;
+    @extend .col-sm-6, .col-sm-offset-3, .text-center;
+    .controls
+    {
+      @include make-row();
+      h2
+      {
+        @extend .col-xs-4;
+        margin-top: 0px;
+      }
+      .calendar-tool
+      {
+        // @extend .glyphicon;
+        cursor: pointer;
+        float: left;
+        &:nth-child(1)
+        {
+          @extend .col-xs-4;
+        }
+        &:nth-child(3)
+        {
+          @extend .col-xs-4;
+          float: right;
+        }
+      }
+    }
   }
-  &:nth-child(3)
+  .new-booking
   {
-    @extend .glyphicon-chevron-right;
+    @extend .col-sm-3,.text-right;
   }
 }
