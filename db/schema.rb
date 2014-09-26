@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918165710) do
+ActiveRecord::Schema.define(version: 20140925174118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(version: 20140918165710) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "drink_types", ["slug"], name: "index_drink_types_on_slug", using: :btree
 
   create_table "drinks", force: true do |t|
     t.string   "name"
@@ -47,14 +50,16 @@ ActiveRecord::Schema.define(version: 20140918165710) do
     t.string   "country"
     t.float    "percentage"
     t.float    "price"
-    t.integer  "DrinkType_id"
+    t.integer  "drink_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
     t.boolean  "instock"
+    t.string   "slug"
   end
 
-  add_index "drinks", ["DrinkType_id"], name: "index_drinks_on_DrinkType_id", using: :btree
+  add_index "drinks", ["drink_type_id"], name: "index_drinks_on_drink_type_id", using: :btree
+  add_index "drinks", ["slug"], name: "index_drinks_on_slug", using: :btree
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
