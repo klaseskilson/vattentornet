@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# set ruby version
+ruby '2.1.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -58,6 +60,9 @@ gem 'will_paginate'
 
 # Use unicorn as the app server
 gem 'unicorn'
+
+# heroku wants this to be here
+gem 'rails_12factor', group: "production"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
