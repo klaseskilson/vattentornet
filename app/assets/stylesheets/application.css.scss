@@ -30,7 +30,7 @@ body {
   padding-top: 80px;
 }
 
-.pane {
+.container .pane {
   :first-child {
     margin-top: 0;
   }
@@ -188,9 +188,14 @@ body {
 }
 
 // form stuff
-input[type="text"], input[type="submit"], input[type="number"], textarea, select {
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], textarea, select {
   @extend .form-control;
 }
+button, input[type="submit"] {
+  @extend .btn;
+  @extend .btn-default;
+}
+
 .main-form, .sidebar-form, .main-content {
   .row {
     margin-bottom: $section-margins/2;

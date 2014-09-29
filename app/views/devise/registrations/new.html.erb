@@ -1,20 +1,41 @@
-<h2>Registrera användare</h2>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>Registrera användare</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <p>
+          Personen kommer få ett email med instruktioner för att välja ett personligt lösenord.
+        </p>
 
-  <div><%= f.label :name, "Namn" %><br/>
-  <%= f.text_field :name, autofocus: true %></div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= f.label :name, "Namn" %><br/>
+              <%= f.text_field :name, autofocus: true %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label :email %><br />
+              <%= f.email_field :email %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label :admin %><br/>
+              <%= f.check_box :admin %>
+            </div>
+          </div>
+          <p>
+            <%= f.submit "Registrera användare" %>
+          </p>
+        <% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div>
-    <%= f.label :admin %><br/>
-    <%= f.check_box :admin %>
+        <p>
+          <%= render "devise/shared/links" %>
+        </p>
+      </div>
+    </div>
+    <div class="sidebar">
+      <%= render 'layouts/sidebar' %>
+    </div>
   </div>
-
-  <div><%= f.submit "Registrera användare" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
