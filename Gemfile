@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# set ruby version
+ruby '2.1.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -32,6 +34,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+# angular es nice
+gem 'angularjs-rails'
 
 # front end stuff
 gem 'bootstrap-sass', '~> 3.2.0.2'
@@ -58,6 +62,9 @@ gem 'will_paginate'
 
 # Use unicorn as the app server
 gem 'unicorn'
+
+# heroku wants this to be here
+gem 'rails_12factor', group: "production"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
