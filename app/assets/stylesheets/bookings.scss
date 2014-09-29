@@ -60,3 +60,23 @@ $day: 100%/7;
     @extend .col-sm-3,.text-right;
   }
 }
+
+.booking-new
+{
+  h1
+  {
+    color: white;
+  }
+  form
+  {
+    @extend .container;
+    background-color: $beige;
+  }
+}
+
+.admin-bookings
+{
+  @include make-row();
+  margin-top: 20px;
+  background-color: $beige;
+}
