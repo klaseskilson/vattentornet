@@ -12,7 +12,7 @@ tack pello<3
 
 ### BreweryDB
 
-Vi användaer BreweryDB! För att använda detta behöver ni ha tillgång till en API-nyckel
+Vi använder BreweryDB! För att använda detta behöver ni ha tillgång till en API-nyckel
 från dem. Gör det genom att gå in [här](http://www.brewerydb.com/developers/apps).
 Först, spara api-nyckeln som en miljövariabel i din datta! I din `.bashrc`-fil kan
 du exempelvis skriva
