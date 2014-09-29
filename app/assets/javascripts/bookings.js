@@ -38,13 +38,21 @@ calendar.controller('calendarController', function ($scope, $http) {
         loopDate += (j);
         d += j;
       }
-      for(var k = 0; k < bookings.length; k++)
+      var n = bookings.length != 0 ? bookings.length : 1;
+      for(var k = 0; k < n; k++)
       {
-        if ( moment(loopDate).weekday() == 3 || moment(loopDate).weekday() == 4 || loopDate == bookings[k].date )
+        bookings[k] = bookings[k] ? bookings[k] : {date: null}
+        if( loopDate == bookings[k].date )
         {
           pub = bookings[k].pub;
           confirmed = bookings[k].confirmed;
           public = bookings[k].public;
+        }
+        else if((moment(loopDate).weekday() == 3 || moment(loopDate).weekday() == 4) && (moment(loopDate) < moment('2014-12-15') && moment(loopDate) > moment('2014-09-01')))
+        {
+          pub = true;
+          confirmed = true;
+          public = true;
         }
       }
       $scope.days.push({
@@ -59,4 +67,11 @@ calendar.controller('calendarController', function ($scope, $http) {
       public = false;
     }
   }
+});
+
+calendar.controller('bookingList', function ($scope, $http){
+  $http.get('/bookings.json').
+    success(function (data, status, headers, config){
+      $scope.bookings = data;
+    });
 });
