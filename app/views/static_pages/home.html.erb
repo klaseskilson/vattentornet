@@ -40,8 +40,8 @@
     <div class="main-content">
         <% @latest_post.each do |single_post| %>
         <div class="pane">
-        <h3><%= link_to single_post.title, news_path(single_post) %></h3>
-        <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(single_post.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= User.find(single_post.user_id).name %></h5>
+        <h3><%= link_to single_post.title, public_news_path(single_post) %></h3>
+        <h5>Skapad <%= distance_of_time_in_words_to_now(Time.zone.parse(single_post.created_at.strftime("%Y-%m-%d %H:%M"))) %> av <%= single_post.user.name %></h5>
         <div class="page-content">
           <p><%= GitHub::Markdown.render_gfm(single_post.body).html_safe %></p>
         </div>
