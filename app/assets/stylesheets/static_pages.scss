@@ -59,3 +59,16 @@ body.static_pages.home {
   padding: 0;
   border: 0;
 }
+
+.no-link
+{
+  color: $beige;
+  &:hover
+  {
+    color: $beige;
+  }
+  &:active
+  {
+    color: $beige;
+  }
+}
