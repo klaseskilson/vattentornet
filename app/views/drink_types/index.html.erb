@@ -20,11 +20,19 @@
       </div>
 
       <div class="pane">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>I lager</h2>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" ng-model="drinksSearch" placeholder="Sök bland drycker i lager...">
+          </div>
+        </div>
         <p ng-hide="message == ''">
           {{message}}
         </p>
         <div ng-repeat="drink_type in drink_types | orderBy: name">
-          <h3>
+          <h3 ng-show="drinksSearch == ''">
             {{drink_type.name}}, {{drink_type.drinks.length}} stk inne
             <small>
               <a href="{{drink_type.url}}">Visa alla</a>
@@ -34,9 +42,12 @@
             </small>
           </h3>
 
-          <h4 ng-repeat="drink in drink_type.drinks">
+          <h4 ng-repeat="drink in drink_type.drinks | filter: drinksSearch">
             <a href="{{drink.url}}" title="Läs mer om drycken">{{drink.name}}</a>
             <small>
+              <span ng-hide="drinksSearch == ''">
+                {{drink_type.name}},
+              </span>
               {{drink.country}}, {{drink.price}} kr
             </small>
           </h4>

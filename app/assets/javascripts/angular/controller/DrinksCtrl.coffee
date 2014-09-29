@@ -1,6 +1,7 @@
 @pubApp.controller 'DrinksCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.drink_types = []
   $scope.message = "Laddar drycker..."
+  $scope.drinksSearch = ""
 
   $http.get('/sortiment.json')
   .success((data) ->
