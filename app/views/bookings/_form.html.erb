@@ -70,6 +70,8 @@
           </div>
         </div>
       </div>
+    <% else %>
+      <%= f.hidden_field :confirmed, :value => true %>
     <% end %>
 </div>
 <div class="sidebar sidebar-form booking-sidebar">
