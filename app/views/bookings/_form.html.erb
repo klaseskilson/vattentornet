@@ -1,4 +1,5 @@
-<%= form_for @booking, :html=>{:class=>'booking-form','ng-app'=> 'booking-form'} do |f| %>
+<%= form_for @booking, :html=>{'ng-app'=> 'booking-form'} do |f| %>
+<div class="main-content main-form booking-new">
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -10,51 +11,71 @@
       </ul>
     </div>
   <% end %>
+    <div class="pane">
+      <h3 class="fat"><%= yield(:title) %></h3>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_field :date, :order => [:day, :month, :year] %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :pub %><br>
-    <%= f.check_box :pub %>
-  </div>
-  <% if user_signed_in_and_admin? %>
-    <div id="admin" ng-controller="admin-form" >
-      <div class="field">
-        <%= f.label :confirmed %><br>
-        <%= f.check_box :confirmed %>
-      </div>
-      <div class="field">
-        <%= f.label :public %><br>
-        <%= f.check_box :public %>
-      </div>
-      <div class="field">
-        <%= f.label :interval %><br>
-        <%= f.check_box :interval, 'ng-model'=>'interval' %>
-      </div>
-      <div class="field" ng-show="interval">
-        <%= f.label :weekdays %><br>
-          <% ['måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag', 'söndag'].each_with_index do |wday, index| %>
-            <%= f.check_box('weekdays', {:multiple => true}, index, nil) %>
-            <%= f.label wday %>
-          <% end %>
-      </div>
-      <div class="field" ng-show="interval">
-        <%= f.label :end_date %><br>
-        <%= f.date_field :end_date %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.label "Mail" %><br>
+          <%= f.text_field :email %>
+        </div>
+        <div class="col-sm-6">
+          <%= f.label "Pub?" %><br>
+          <%= f.check_box :pub %>
+        </div>
       </div>
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.label "Datum" %><br>
+        <%= f.date_field :date, :order => [:day, :month, :year] %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label "Beskrivning" %><br>
+        <%= f.text_area :description %>
+      </div>
+    </div>
+    <% if user_signed_in_and_admin? %>
+      <div id="adminBooking" ng-controller="admin-form" >
+        <div class="row">
+          <div class="col-sm-3">
+            <%= f.label "Bekräftad" %><br>
+            <%= f.check_box :confirmed %>
+          </div>
+          <div class="col-sm-3">
+            <%= f.label "Publik" %><br>
+            <%= f.check_box :public %>
+          </div>
+          <div class="col-sm-3">
+            <%= f.label :interval %><br>
+            <%= f.check_box :interval, 'ng-model'=>'interval' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12" ng-show="interval">
+          <%= f.label :weekdays %><br>
+            <% ['måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag', 'söndag'].each_with_index do |wday, index| %>
+              <%= f.check_box('weekdays', {:multiple => true}, index, nil) %>
+              <%= f.label wday %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" ng-show="interval">
+            <%= f.label "Slutdatum" %><br>
+            <%= f.date_field :end_date %>
+            <i><%= f.label "Sista datumet för intervallet." %></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
+<div class="sidebar sidebar-form booking-sidebar">
+  <h3 class="fat">Skicka</h3>
+  <p>
+    <%= f.submit "GO!" %>
+  </p>
+</div>
 <% end %>

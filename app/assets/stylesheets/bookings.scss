@@ -63,20 +63,40 @@ $day: 100%/7;
 
 .booking-new
 {
-  h1
+  background-color: $beige;
+  margin-top: $section-margins;
+  textarea
   {
-    color: white;
-  }
-  form
-  {
-    @extend .container;
-    background-color: $beige;
+    width: 100%;
+    height: 100px;
+    resize: none;
   }
 }
-
+.booking-sidebar
+{
+  margin-top: $section-margins;
+  background-color: black;
+  color: white;
+  p
+  {
+    @extend .text-center;
+    color: black;
+    margin: 20px auto;
+    input
+    {
+      @extend .btn, .btn-default;
+    }
+  }
+}
 .admin-bookings
 {
-  @include make-row();
-  margin-top: 20px;
   background-color: $beige;
+  margin: $section-margins 0;
+}
+
+#adminBooking
+{
+  margin-top: $section-margins;
+  border-top-style: solid;
+  border-top-width: 1px;
 }
