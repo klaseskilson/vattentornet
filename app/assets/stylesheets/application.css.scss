@@ -188,11 +188,10 @@ body {
 }
 
 // form stuff
-.main-form, .sidebar-form {
-  input[type="text"], input[type="submit"], input[type="number"], textarea, select {
-    @extend .form-control;
-  }
-
+input[type="text"], input[type="submit"], input[type="number"], textarea, select {
+  @extend .form-control;
+}
+.main-form, .sidebar-form, .main-content {
   .row {
     margin-bottom: $section-margins/2;
   }
