@@ -3,34 +3,36 @@ class DrinksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   authorize_resource
 
-  # GET /drinks
-  # GET /drinks.json
+  # GET /sortiment/:id/dryck
+  # GET /sortiment/:id/dryck.json
   def index
     @drinks = Drink.all
+    @drink_types = DrinkType.all
   end
 
-  # GET /drinks/1
-  # GET /drinks/1.json
+  # GET /sortiment/:id/dryck/1
+  # GET /sortiment/:id/dryck/1.json
   def show
+    @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
   end
 
-  # GET /drinks/new
+  # GET /sortiment/:id/dryck/new
   def new
     @drink = Drink.new
   end
 
-  # GET /drinks/1/edit
+  # GET /sortiment/:id/dryck/1/edit
   def edit
   end
 
-  # POST /drinks
-  # POST /drinks.json
+  # POST /sortiment/:id/dryck
+  # POST /sortiment/:id/dryck.json
   def create
     @drink = Drink.new(drink_params)
 
     respond_to do |format|
       if @drink.save
-        format.html { redirect_to @drink, notice: 'Drink was successfully created.' }
+        format.html { redirect_to stock_drink_path(@drink.drink_type, @drink), notice: 'Drink was successfully created.' }
         format.json { render :show, status: :created, location: @drink }
       else
         format.html { render :new }
@@ -39,12 +41,12 @@ class DrinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /drinks/1
-  # PATCH/PUT /drinks/1.json
+  # PATCH/PUT /sortiment/:id/dryck/1
+  # PATCH/PUT /sortiment/:id/dryck/1.json
   def update
     respond_to do |format|
       if @drink.update(drink_params)
-        format.html { redirect_to @drink, notice: 'Drink was successfully updated.' }
+        format.html { redirect_to stock_drink_path(@drink.drink_type, @drink), notice: 'Drink was successfully updated.' }
         format.json { render :show, status: :ok, location: @drink }
       else
         format.html { render :edit }
@@ -53,8 +55,8 @@ class DrinksController < ApplicationController
     end
   end
 
-  # DELETE /drinks/1
-  # DELETE /drinks/1.json
+  # DELETE /sortiment/:id/dryck/1
+  # DELETE /sortiment/:id/dryck/1.json
   def destroy
     @drink.destroy
     respond_to do |format|
@@ -66,12 +68,11 @@ class DrinksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drink
-      # self.resource = Drink.find(params[:id])
-      @drink = Drink.find(params[:id])
+      @drink = Drink.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :DrinkType_id, :description, :instock)
+      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
     end
 end

@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @bookings_approved = Booking.where(:confirmed => true)
-    @bookings_pending = Booking.where(:confirmed => false)
+    @bookings_pending = Booking.where(:confirmed => false || nil)
   end
 
   # GET /bookings/1

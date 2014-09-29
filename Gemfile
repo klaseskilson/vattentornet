@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# set ruby version
+# ruby '2.1.2'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -20,6 +22,9 @@ gem 'devise', '~> 3.2.4'
 # User level authentication
 gem 'cancan'
 
+# nice, pretty urls
+gem 'friendly_id', '~> 5.0.0'
+
 # Opens mails in browser
 gem 'letter_opener', :group => :development
 
@@ -31,25 +36,37 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+# angular es nice
+gem 'angularjs-rails'
 
 # front end stuff
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'font-awesome-sass'
 gem 'bourbon'
 
-# get automagic angular
-gem 'angularjs-rails', '~> 1.2.18'
-
 gem 'autoprefixer-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# render pages and news with github flavored markdown
+gem 'github-markdown', '~> 0.6.7'
+
+# BEEEEEER
+gem 'brewery_db', '~> 0.2.4'
+
+# Pagination gem
+gem 'will_paginate'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+
+# heroku wants this to be here
+gem 'rails_12factor', group: "production"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

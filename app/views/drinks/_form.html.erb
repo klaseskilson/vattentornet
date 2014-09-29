@@ -1,49 +1,74 @@
 <%= form_for(@drink) do |f| %>
-  <% if @drink.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@drink.errors.count, "error") %> prohibited this drink from being saved:</h2>
+  <div class="main-content main-form">
+    <% if @drink.errors.any? %>
+      <div class="pane" id="error_explanation">
+        <h2><%= pluralize(@drink.errors.count, "error") %> prohibited this drink from being saved:</h2>
 
-      <ul>
-      <% @drink.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @drink.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="pane">
+      <h3 class="fat"><%= yield(:title) %></h3>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.label "Namn" %><br>
+          <%= f.text_field :name, placeholder: "Tex Berkants Bärka..." %>
+        </div>
+        <div class="col-sm-6">
+          <%= f.label "I lager" %><br>
+          <%= f.check_box :instock %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.label "Typ av dryck" %> <%= link_to "(skapa ny)", new_drink_type_path %><br>
+          <%= f.collection_select :drink_type_id, DrinkType.order(:name), :id, :name %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.label "Bryggeri" %><br>
+          <%= f.text_field :brewery, placeholder: "Tex Bärkeriet..." %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.label "Land" %><br>
+          <%= f.text_field :country, placeholder: "Tex Bärkaland..."  %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <%= f.label "Styrka (%)" %><br>
+          <%= f.number_field :percentage, placeholder: "Tex 13.37...", step: "any", min: 0 %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.label "Pris (kr)" %><br>
+          <%= f.number_field :price, placeholder: "Tex 12...", step: "any", min: 0 %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.label "Beskrivning" %><br>
+          <%= f.text_area :description, rows: 4, placeholder: "Tex Den finaste fulölen på norra hemisvären..." %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label "Namn" %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label "Bryggeri" %><br>
-    <%= f.text_field :brewery %>
-  </div>
-  <div class="field">
-    <%= f.label "Land" %><br>
-    <%= f.text_field :country %>
-  </div>
-  <div class="field">
-    <%= f.label "Procentsats" %><br>
-    <%= f.text_field :percentage %>
-  </div>
-  <div class="field">
-    <%= f.label "Pris" %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label "Typ av dryck" %><br>
-    <%= f.collection_select :DrinkType_id, DrinkType.order(:name), :id, :name %>
-  </div>
-   <div class="field">
-    <%= f.label "Beskrivning" %><br>
-    <%= f.text_field :description %>
-  </div>
-   <div class="field">
-    <%= f.label "I lager" %><br>
-    <%= f.check_box :instock %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Skapa Dryck" %>
+  <div class="sidebar sidebar-form">
+    <div class="pane">
+      <h4 class="fat">Spara</h4>
+      <p>
+        <%= f.submit %>
+      </p>
+      <p>
+        <%= link_to 'Visa drycken', drink_path(@drink.drink_type, @drink) if @drink.id? %>
+      </p>
+    </div>
   </div>
 <% end %>

@@ -23,7 +23,7 @@
   }
 }
 
-body.pages.home {
+body.static_pages.home {
   background-position: 0 320px;
   padding-top: 0;
 }
@@ -32,20 +32,30 @@ body.pages.home {
   @include make-row;
   margin-bottom: $section-margins;
 
-  .pane {
+  .card {
     @include make-sm-column(4);
 
-    &:nth-of-type(1) {
+    .pane {
+      padding: 15px;
+    }
+
+    &:nth-of-type(1) .pane {
       color: #111;
       background: $red;
     }
-    &:nth-of-type(2) {
+    &:nth-of-type(2) .pane {
       color: $beige;
       background: #111;
     }
-    &:nth-of-type(3) {
+    &:nth-of-type(3) .pane {
       color: #111;
       background: $beige;
     }
   }
+}
+
+.main-content iframe.pane {
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
 }

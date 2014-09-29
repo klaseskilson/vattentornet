@@ -1,0 +1,55 @@
+<%= form_for(@page) do |f| %>
+  <div class="main-content main-form">
+    <% if @page.errors.any? %>
+      <div class="pane" id="error_explanation">
+        <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+        <ul>
+        <% @page.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="pane">
+      <h3 class="fat"><%= yield(:title) %></h3>
+      <div class="row">
+        <div class="col-sm-7">
+          <%= f.label :title, "Titel" %><br>
+          <%= f.text_field :title, :placeholder => 'T.ex. "Pubens hemligheter"' %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.label :slug, "Adress" %><br>
+          <%= f.text_field :slug, :placeholder => 'T.ex. "pubens-hemligheter"' %>
+        </div>
+      </div>
+      <div class="field">
+        <%= f.label :preamble, "Ingress" %><br>
+        <%= f.text_area :preamble, :placeholder => 'Puben har sedan urminnes tider många hemligheter...'%>
+      </div>
+    </div>
+    <div class="pane">
+      <div class="field">
+        <%= f.label :text, "Text" %><br>
+        <%= f.text_area :text, :rows => 10, :placeholder => 'Hemligheterna handlar om vad som helst!' %>
+      </div>
+    </div>
+    <div class="pane">
+      <%= render 'layouts/markdown' %>
+    </div>
+  </div>
+
+  <div class="sidebar sidebar-form">
+    <div class="pane">
+      <h4 class="fat">Spara</h4>
+      <p>
+        <%= f.submit %>
+      </p>
+      <p>
+        <%= link_to 'Visa sidan', @page %>
+        <%= link_to 'Gå tillbaka', pages_path %>
+      </p>
+    </div>
+  </div>
+<% end %>

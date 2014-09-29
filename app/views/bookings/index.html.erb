@@ -1,4 +1,4 @@
-<div class="container" ng-app="calendar">
+<div class="container">
   <div id="calendar" class="row" ng-controller="calendarController">
     <div class="calendarbar">
       <div class="pane">
@@ -24,7 +24,9 @@
   </div>
   <% if user_signed_in_and_admin? %>
     <div class="admin-bookings" ng-controller="bookingList">
-    <h3 class="fat">bokningar</h3>
+    <% if !@bookings.empty? %>
+      <h3 class="fat">bokningar</h3>
+    <% end %>
     <% if !@bookings_pending.empty? %>
       <table>
         <h6 class="fat">Obekräftade</h6>
@@ -89,6 +91,9 @@
           <% end %>
         </tbody>
       </table>
+      <% end %>
+      <% if @bookings.empty? %>
+        <h4 class="fat">Inga bokningar</h4>
       <% end %>
     </div>
   <% end %>

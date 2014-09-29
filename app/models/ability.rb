@@ -9,7 +9,8 @@ class Ability
     else
         can :read, Drink
         can [:read, :create], Booking
-        #can :read, Page
+        can :read, DrinkType
+        can :read, Page
         can :update, User do |user|
           user.try(:user) == user
         end

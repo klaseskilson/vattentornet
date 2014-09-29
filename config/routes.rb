@@ -10,15 +10,23 @@ Rails.application.routes.draw do
 
   scope "/admin" do
     resources :users
+    resources :pages
+    resources :drinks, as: :drinks
+    resources :drink_types, except: [:index, :show]
   end
 
-  resources :posts
+  resources :drink_types, path: '/sortiment', as: :stock, only: [:index, :show] do
+    resources :drinks, path: '/', only: [:show]
+  end
 
-  resources :drinks
+  resources :news, path: 'nyheter'
 
-  resources :drink_types
 
-  root 'pages#home'
+  root 'static_pages#home'
 
-  get '/home' => 'pages#home'
+  get '/hem' => 'static_pages#home'
+
+  get ':id' => 'pages#show', as: :pretty_page
+
+
 end

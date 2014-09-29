@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918185108) do
+ActiveRecord::Schema.define(version: 20140925174118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(version: 20140918185108) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "drink_types", ["slug"], name: "index_drink_types_on_slug", using: :btree
 
   create_table "drinks", force: true do |t|
     t.string   "name"
@@ -61,14 +64,51 @@ ActiveRecord::Schema.define(version: 20140918185108) do
     t.string   "country"
     t.float    "percentage"
     t.float    "price"
-    t.integer  "DrinkType_id"
+    t.integer  "drink_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
     t.boolean  "instock"
+    t.string   "slug"
   end
 
-  add_index "drinks", ["DrinkType_id"], name: "index_drinks_on_DrinkType_id", using: :btree
+  add_index "drinks", ["drink_type_id"], name: "index_drinks_on_drink_type_id", using: :btree
+  add_index "drinks", ["slug"], name: "index_drinks_on_slug", using: :btree
+
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "published"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "preamble",   default: ""
+  end
+
+  add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

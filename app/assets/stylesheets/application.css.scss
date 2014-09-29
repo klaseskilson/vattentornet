@@ -17,6 +17,8 @@
 
 @import "pages";
 @import "bookings";
+@import "static_pages";
+@import "drinks";
 
 html, body {
   height: 100%;
@@ -27,7 +29,16 @@ html, body {
 body {
   background-image: url('/images/background.jpg');
   background-repeat: repeat-x;
-  padding-top: 60px;
+  padding-top: 80px;
+}
+
+.pane {
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
 }
 
 #main-header {
@@ -38,7 +49,7 @@ body {
   background: rgba(#111, .8);
   z-index: 1;
 
-  .pages.home &.transparent {
+  .static_pages.home &.transparent:not(.expanded) {
     background: transparent;
 
     .menu-logo img {
@@ -47,9 +58,9 @@ body {
   }
 
   .menu-logo img {
-    @include transition(opacity .3s linear);
     max-height: 40px;
     margin: 10px 0;
+    @include transition(opacity .3s linear);
   }
 
   #main-nav {
@@ -64,18 +75,66 @@ body {
       letter-spacing: .1em;
       line-height: 60px;
       margin: 0 20px;
+      @extend .clearfix;
+      @include transition(all .2s linear)
+    }
+    a:not(.logo) {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
     }
 
-    .menu-left {
-      @include make-xs-column(5);
-      text-align: right;
-    }
     .menu-logo {
-      @include make-xs-column(2);
-      text-align: center;
+      @include make-sm-column(2);
+      @include make-sm-column-push(5);
+    }
+    .menu-toggle {
+      float: right;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      margin-top: 15px;
+    }
+    .menu-toggle:focus {
+      outline: 0;
+    }
+    .menu-left {
+      @include make-sm-column(5);
+      @include make-sm-column-pull(2);
+      max-height: 0;
     }
     .menu-right {
-      @include make-xs-column(5);
+      @include make-sm-column(5);
+      max-height: 0;
+    }
+  }
+}
+#main-header.expanded #main-nav {
+  a, .menu-left, .menu-right {
+    max-height: 200px;
+    opacity: 1;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  #main-header #main-nav {
+    .menu-toggle {
+      display: none;
+    }
+    .menu-left {
+      text-align: right;
+      max-height: 200px;
+    }
+    .menu-right {
+      max-height: 200px;
+    }
+    .menu-logo {
+      text-align: center;
+    }
+    a:not(.logo) {
+      max-height: 100px;
+      opacity: 1;
+      clear: none;
     }
   }
 }
@@ -99,10 +158,24 @@ body {
   max-width: 978px;
 }
 
-
-
 .main-content {
-  @include make-sm-column(9);
+  .pane {
+    background: $beige;
+    color: #111;
+    padding: $section-margins;
+    margin-bottom: $section-margins;
+
+    @media (max-width: $screen-sm-min) {
+      padding: 15px;
+    }
+  }
+
+  &:not(.wide) {
+    @include make-sm-column(9);
+  }
+  &.wide {
+    @include make-sm-column(12);
+  }
 }
 
 .sidebar {
@@ -113,13 +186,16 @@ body {
     color: $beige;
     padding: 15px;
     margin-bottom: 3px;
+  }
+}
 
-    :first-child {
-      margin-top: 0;
-    }
-    :last-child {
-      margin-bottom: 0;
-    }
+// form stuff
+input[type="text"], input[type="submit"], input[type="number"], textarea, select {
+  @extend .form-control;
+}
+.main-form, .sidebar-form, .main-content {
+  .row {
+    margin-bottom: $section-margins/2;
   }
 }
 
@@ -135,6 +211,13 @@ body {
   font-family: $font-family-sans-serif;
   text-transform: uppercase;
   font-weight: 800;
-  text-align: center;
   letter-spacing: .1em;
+  text-align: center;
+
+  &.text-left {
+    text-align: left;
+  }
+  &.text-right {
+    text-align: right;
+  }
 }
