@@ -7,7 +7,7 @@ Rails.application.routes.draw do
                                        :registrations => 'registrations' }
 
   scope '/admin' do
-    get '/' => 'static_pages#admin'
+    get '/' => 'static_pages#admin', as: :admin_dashboard
     resources :users
     resources :pages
     resources :news, except: [:show]
