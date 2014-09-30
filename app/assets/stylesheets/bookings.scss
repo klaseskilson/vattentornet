@@ -29,13 +29,14 @@ $day: 100%/7;
   color: $beige;
   .pane
   {
-    @extend .col-sm-6, .col-sm-offset-3, .text-center;
+    @include make-sm-column(6);
+    @extend .col-sm-offset-3, .text-center;
     .controls
     {
       @include make-row();
       h2
       {
-        @extend .col-xs-4;
+        @include make-xs-column(4);
         margin-top: 0px;
       }
       .calendar-tool
@@ -43,10 +44,7 @@ $day: 100%/7;
         // @extend .glyphicon;
         cursor: pointer;
         float: left;
-        &:nth-child(1)
-        {
-          @extend .col-xs-4;
-        }
+        @include make-xs-column(4);
         &:nth-child(3)
         {
           @extend .col-xs-4;
@@ -57,7 +55,8 @@ $day: 100%/7;
   }
   .new-booking
   {
-    @extend .col-sm-3,.text-right;
+    @include make-sm-column(3);
+    @extend .text-right;
   }
 }
 
