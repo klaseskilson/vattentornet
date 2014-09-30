@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $class-slug: offset !default;
 $day: 100%/7;
-.weekday
-{
+
+.weekday {
   height: 100px;
   width: $day;
   float: left;
@@ -14,87 +14,72 @@ $day: 100%/7;
   border-width: 1px;
   @extend .text-center;
 }
-@for $i from 0 through 6
-{
-  .#{$class-slug}-#{$i}
-  {
+@for $i from 0 through 6 {
+  .#{$class-slug}-#{$i} {
     margin-left: $day*($i);
     @extend .weekday;
   }
 }
-.calendarbar
-{
+.calendarbar {
   @include make-row();
   margin-top: $section-margins;
   color: $beige;
-  .pane
-  {
+  .pane {
+    @extend .text-center;
     @include make-sm-column(6);
-    @extend .col-sm-offset-3, .text-center;
-    .controls
-    {
+    @include make-sm-column-offset(3);
+    .controls {
       @include make-row();
-      h2
-      {
-        @include make-xs-column(4);
-        margin-top: 0px;
-      }
-      .calendar-tool
-      {
-        // @extend .glyphicon;
-        cursor: pointer;
-        float: left;
-        @include make-xs-column(4);
-        &:nth-child(3)
-        {
-          @extend .col-xs-4;
-          float: right;
-        }
-      }
+    }
+    .controls h2 {
+      margin-top: 0px;
+      @include make-xs-column(4);
+    }
+    .calendar-tool {
+      // @extend .glyphicon;
+      cursor: pointer;
+      float: left;
+      @include make-xs-column(4);
+    }
+    .calendar-tool:nth-child(3) {
+      @extend .col-xs-4;
+      float: right;
     }
   }
-  .new-booking
-  {
+  .new-booking {
     @include make-sm-column(3);
     @extend .text-right;
   }
 }
 
-.booking-new
-{
+.booking-new {
   background-color: $beige;
   margin-top: $section-margins;
-  textarea
-  {
+  textarea {
     width: 100%;
     height: 100px;
     resize: none;
   }
 }
-.booking-sidebar
-{
+.booking-sidebar {
   margin-top: $section-margins;
   background-color: black;
   color: white;
-  p
-  {
+  p {
     @extend .text-center;
     color: black;
     margin: 20px auto;
-    input
-    {
+    input {
       @extend .btn, .btn-default;
     }
   }
 }
-.admin-bookings
-{
+.admin-bookings {
   background-color: $beige;
   margin: $section-margins 0;
 }
 
-#adminBooking
-{
+#adminBooking {
   margin-top: $section-margins;
   border-top-style: solid;
   border-top-width: 1px;
