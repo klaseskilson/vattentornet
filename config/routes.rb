@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
-  devise_for :users, :controllers => { :confirmations => "confirmations",
-                                       :registrations => "registrations" }
+  devise_for :users, :controllers => { :confirmations => 'confirmations',
+                                       :registrations => 'registrations' }
 
-  scope "/admin" do
+  scope '/admin' do
+    get '/' => 'static_pages#admin', as: :admin_dashboard
     resources :users
     resources :pages
+    resources :news, except: [:show]
     resources :drinks, as: :drinks
     resources :drink_types, except: [:index, :show]
   end
@@ -17,8 +19,7 @@ Rails.application.routes.draw do
     resources :drinks, path: '/', only: [:show]
   end
 
-  resources :news, path: 'nyheter'
-
+  resources :news, path: 'nyheter', as: :public_news, only: [:show]
 
   root 'static_pages#home'
 

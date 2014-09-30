@@ -1,26 +1,37 @@
-<h1>Listing users</h1>
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <h1>Samtliga användare</h1>
+        <p>
+          <%= link_to "Ny användare", new_user_registration_path %>
+        </p>
+      </div>
+      <div class="pane">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Namn</th>
+              <th>email</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>email</th>
-      <th>admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to 'Redigera', edit_user_path(user) %></td>
-        <td><%= link_to 'Ta bort', user_path(user), data: { confirm: "Är du säker?" }, method: :delete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= user.name %>
+                  <%= icon 'flag', 'Admin' if user.admin? %>
+                </td>
+                <td><%= user.email %></td>
+                <td><%= link_to 'Redigera', edit_user_path(user) %></td>
+                <td><%= link_to 'Ta bort', user_path(user), data: { confirm: "Är du säker? Detta går verkligen inte att ångra!" }, method: :delete %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
