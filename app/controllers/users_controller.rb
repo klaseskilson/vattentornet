@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.all.order(admin: :desc, name: :asc)
   end
 
   def edit
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @person = User.find(params[:id])
     if @person.update_attributes(user_params)
       sign_in @person, :bypass => true if current_user.id == @person.id
-      redirect_to  users_path, :notice  => "Successfully updated user."
+      redirect_to  users_path, :notice  => "Användare uppdaterad."
     else
       render :action => 'edit'
     end

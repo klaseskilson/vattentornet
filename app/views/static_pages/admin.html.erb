@@ -1,0 +1,61 @@
+<% title 'Admin' %>
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <h1>Admin</h1>
+
+        <ul class="list-inline">
+          <li><%= link_to "Hantera användare", users_path %></li>
+          <li><%= link_to "Se nyheter", news_index_path %></li>
+          <li><%= link_to "Redigera sidor", pages_path %></li>
+          <li><%= link_to "Alla drycker", drinks_path %></li>
+          <li><%= link_to "Dryckestyper", drink_types_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="infobar">
+    <div class="card">
+      <div class="pane">
+        <h3 class="fat">
+          <%= @in_stock %> drycker
+        </h3>
+        <p class="text-center">
+          i lager just nu
+        </p>
+        <p class="text-center">
+          <%= link_to "Dryckestyper", stock_index_path %>, <%= link_to "drycker", drinks_path %>, <%= link_to "ny dryck", new_drink_path %>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="pane">
+        <h3 class="fat">
+          <%= @new_users %> användare
+        </h3>
+        <p class="text-center">
+          har ännu inte bekräftat sitt konto
+        </p>
+        <p class="text-center">
+          <%= link_to "Ny användare", new_user_registration_path %>, <%= link_to "alla användare", users_path %>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="pane">
+        <h3 class="fat">
+          <%= (DateTime.now - @latest_news.created_at.to_datetime).to_i %> dagar
+        </h3>
+        <p class="text-center">
+          sedan senaste nyhetsinlägget
+        </p>
+        <p class="text-center">
+          <%= link_to "Alla nyheter", news_index_path %>, <%= link_to "ny nyhet", new_news_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,26 +1,39 @@
-<h2>Redigera <%= @user.name %></h2>
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <h2>Redigera <%= @user.name %></h2>
 
-<%= form_for(@user, as: @user, url: user_path(@user), html: { method: :put }) do |f| %>
+        <%= form_for(@user, as: @user, url: user_path(@user), html: { method: :put }) do |f| %>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= f.label :name, "Namn" %><br>
+              <%= f.text_field :name %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label :email %><br>
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label :admin %><br>
+              <%= f.check_box :admin %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= f.submit "Spara" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
-  <div>
-    <%= f.label :name, "Namn" %><br/>
-    <%= f.text_field :name %>
+      <div class="pane">
+        <h3>Ta bort konto</h3>
+
+        <p><%= button_to "Ta bort konto", user_path(@user), data: { confirm: "Är du säker? Detta går inte att ångra." }, method: :delete %></p>
+
+        <%= link_to "Tillbaka", :back %>
+      </div>
+    </div>
   </div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div>
-    <%= f.label :admin %><br/>
-    <%= f.check_box :admin %>
-  </div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-
-<h3>Ta bort konto</h3>
-
-<p><%= button_to "Ta bort konto", user_path(@user), data: { confirm: "Är du säker?" }, method: :delete %></p>
-
-<%= link_to "Tillbaka", :back %>
+</div>
