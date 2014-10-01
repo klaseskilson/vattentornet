@@ -1,0 +1,67 @@
+$class-slug: offset !default;
+$day: 100%/7;
+
+.weekday {
+  height: 100px;
+  width: $day;
+  float: left;
+  background-color: $beige;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  @extend .text-center;
+}
+@for $i from 0 through 6 {
+  .#{$class-slug}-#{$i} {
+    margin-left: $day*($i);
+    @extend .weekday;
+  }
+}
+.calendarbar {
+  @include make-row();
+  margin-top: $section-margins;
+  color: $beige;
+  .pane {
+    @extend .text-center;
+    @include make-sm-column(6);
+    @include make-sm-column-offset(3);
+    .controls {
+      @include make-row();
+    }
+    .controls h2 {
+      margin-top: 0px;
+      @include make-xs-column(4);
+    }
+    .calendar-tool {
+      // @extend .glyphicon;
+      cursor: pointer;
+      float: left;
+      @include make-xs-column(4);
+    }
+    .calendar-tool:nth-child(3) {
+      @extend .col-xs-4;
+      float: right;
+    }
+  }
+  .new-booking {
+    @include make-sm-column(3);
+    @extend .text-right;
+  }
+}
+
+.booking-sidebar p {
+  @extend .text-center;
+  margin: 20px auto;
+  input {
+    @extend .btn, .btn-default;
+  }
+}
+.admin-bookings {
+  margin: $section-margins 0;
+}
+
+#adminBooking {
+  margin-top: $section-margins;
+  border-top-style: solid;
+  border-top-width: 1px;
+}

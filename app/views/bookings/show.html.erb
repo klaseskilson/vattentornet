@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @booking.date %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @booking.description %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @booking.email %>
+</p>
+
+<p>
+  <strong>Pub:</strong>
+  <%= @booking.pub %>
+</p>
+
+<p>
+  <strong>Confirmed:</strong>
+  <%= @booking.confirmed %>
+</p>
+
+<p>
+  <strong>Public:</strong>
+  <%= @booking.public %>
+</p>
+
+<% if @booking.user_id && User.find(@booking.user_id) %>
+<p>
+  <strong>User:</strong>
+  <%= User.find(@booking.user_id).name %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

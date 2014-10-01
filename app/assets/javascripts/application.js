@@ -14,5 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require angular
+//= require moment
+//= require moment/sv.js
 //= require main
 //= require_tree .

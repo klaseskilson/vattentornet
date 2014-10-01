@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # User handling
 gem 'devise', '~> 3.2.4'
+
+# User level authentication
 gem 'cancan'
 
 # nice, pretty urls
@@ -36,6 +38,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # angular es nice
 gem 'angularjs-rails'
+# moment.js
+gem 'momentjs-rails'
 
 # front end stuff
 gem 'bootstrap-sass', '~> 3.2.0.2'

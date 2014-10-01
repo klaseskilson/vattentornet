@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "bookings", force: true do |t|
+    t.date     "date"
+    t.text     "description"
+    t.string   "email"
+    t.boolean  "pub"
+    t.boolean  "confirmed"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "public"
+  end
+
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "drink_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
