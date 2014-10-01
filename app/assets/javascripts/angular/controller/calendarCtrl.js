@@ -1,6 +1,8 @@
-pubApp.controller('calendarController', function ($scope, $http) {
-  $scope.month = moment();
+pubApp.controller('CalendarCtrl', function ($scope, $http) {
+  $scope.month = moment(new Date());
+  $scope.days = [];
   var bookings;
+
   $http.get('/bookings.json')
     .success(function (data, status, headers, config) {
       makeArray($scope.month.daysInMonth(), data)
@@ -8,19 +10,19 @@ pubApp.controller('calendarController', function ($scope, $http) {
     });
 
   $scope.changeMonth = function(x) {
-    $scope.month = $scope.month.add(x, 'months')
-    makeArray($scope.month.daysInMonth(), bookings)
+    $scope.month = $scope.month.add(x, 'months');
+    makeArray($scope.month.daysInMonth(), bookings);
   }
 
   function makeArray(i, bookings) {
-    $scope.days = []
+    $scope.days = [];
     var pub = false;
     var confirmed = false;
     var public = false;
     var loopDate;
     for(var j=1; j<=i; j++) {
       loopDate = $scope.month.format("YYYY-MM-");
-      var d = loopDate
+      var d = loopDate;
       if((j-1)<10) {
         loopDate += "0"+((j));
         d += "0"+(j);

@@ -1,6 +1,3 @@
-// Place all the styles related to the bookings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 $class-slug: offset !default;
 $day: 100%/7;
 
@@ -52,30 +49,14 @@ $day: 100%/7;
   }
 }
 
-.booking-new {
-  background-color: $beige;
-  margin-top: $section-margins;
-  textarea {
-    width: 100%;
-    height: 100px;
-    resize: none;
-  }
-}
-.booking-sidebar {
-  margin-top: $section-margins;
-  background-color: black;
-  color: white;
-  p {
-    @extend .text-center;
-    color: black;
-    margin: 20px auto;
-    input {
-      @extend .btn, .btn-default;
-    }
+.booking-sidebar p {
+  @extend .text-center;
+  margin: 20px auto;
+  input {
+    @extend .btn, .btn-default;
   }
 }
 .admin-bookings {
-  background-color: $beige;
   margin: $section-margins 0;
 }
 

@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="calendar" class="row" ng-controller="calendarController">
+  <div id="calendar" class="row" ng-controller="CalendarCtrl">
     <div class="calendarbar">
       <div class="pane">
         <div class="controls">
@@ -22,79 +22,84 @@
       <h3 ng-if="day.confirmed && day.public">Pub</h3>
     </div>
   </div>
+
   <% if user_signed_in_and_admin? %>
-    <div class="admin-bookings" ng-controller="bookingList">
-    <% if !@bookings.empty? %>
-      <h3 class="fat">bokningar</h3>
-    <% end %>
-    <% if !@bookings_pending.empty? %>
-      <table>
-        <h6 class="fat">Obekräftade</h6>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Email</th>
-            <th>Pub</th>
-            <th>Confirmed</th>
-            <th>User</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @bookings_pending.each do |booking| %>
-            <tr>
-              <td><%= booking.date %></td>
-              <td><%= booking.description %></td>
-              <td><%= booking.email %></td>
-              <td><%= booking.pub %></td>
-              <td><%= booking.confirmed %></td>
-              <td><%= booking.user %></td>
-              <td><%= link_to 'Show', booking %></td>
-              <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+    <div class="row">
+      <div class="main-content wide">
+        <div class="admin-bookings pane">
+          <% if !@bookings.empty? %>
+            <h3 class="fat">Bokningar</h3>
           <% end %>
-        </tbody>
-      </table>
-      <% end %>
+          <% if !@bookings_pending.empty? %>
+            <table>
+              <h6 class="fat">Obekräftade</h6>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Email</th>
+                  <th>Pub</th>
+                  <th>Confirmed</th>
+                  <th>User</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-      <% if !@bookings_approved.empty? %>
-      <table>
-        <h6 class="fat">Bekräftade</h6>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Email</th>
-            <th>Pub</th>
-            <th>Confirmed</th>
-            <th>User</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @bookings_approved.each do |booking| %>
-            <tr>
-              <td><%= booking.date %></td>
-              <td><%= booking.description %></td>
-              <td><%= booking.email %></td>
-              <td><%= booking.pub %></td>
-              <td><%= booking.confirmed %></td>
-              <td><%= booking.user %></td>
-              <td><%= link_to 'Show', booking %></td>
-              <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+              <tbody>
+                <% @bookings_pending.each do |booking| %>
+                  <tr>
+                    <td><%= booking.date %></td>
+                    <td><%= booking.description %></td>
+                    <td><%= booking.email %></td>
+                    <td><%= booking.pub %></td>
+                    <td><%= booking.confirmed %></td>
+                    <td><%= booking.user %></td>
+                    <td><%= link_to 'Show', booking %></td>
+                    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+                    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           <% end %>
-        </tbody>
-      </table>
-      <% end %>
-      <% if @bookings.empty? %>
-        <h4 class="fat">Inga bokningar</h4>
-      <% end %>
+
+          <% if !@bookings_approved.empty? %>
+            <table>
+              <h6 class="fat">Bekräftade</h6>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Email</th>
+                  <th>Pub</th>
+                  <th>Confirmed</th>
+                  <th>User</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @bookings_approved.each do |booking| %>
+                  <tr>
+                    <td><%= booking.date %></td>
+                    <td><%= booking.description %></td>
+                    <td><%= booking.email %></td>
+                    <td><%= booking.pub %></td>
+                    <td><%= booking.confirmed %></td>
+                    <td><%= booking.user %></td>
+                    <td><%= link_to 'Show', booking %></td>
+                    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+                    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+          <% if @bookings.empty? %>
+            <h4 class="fat">Inga bokningar</h4>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
