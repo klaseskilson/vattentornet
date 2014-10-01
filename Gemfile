@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # angular es nice
 gem 'angularjs-rails'
+# moment.js
+gem 'momentjs-rails'
 
 # front end stuff
 gem 'bootstrap-sass', '~> 3.2.0.2'
