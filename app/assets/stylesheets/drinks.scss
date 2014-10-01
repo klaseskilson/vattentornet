@@ -28,3 +28,7 @@
     @include make-xs-column(6);
   }
 }
+
+.drinks-list-item {
+  margin-bottom: $section-margins/2;
+}
