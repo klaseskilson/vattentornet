@@ -46,7 +46,7 @@
     <div class="card">
       <div class="pane">
         <h3 class="fat">
-          <%= (DateTime.now - @latest_news.created_at.to_datetime).to_i %> dagar
+          <%= (DateTime.now - @latest_news.created_at.to_datetime).to_i if @latest_news.present? %> dagar
         </h3>
         <p class="text-center">
           sedan senaste nyhetsinlägget
