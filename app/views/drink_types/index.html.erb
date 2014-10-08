@@ -31,9 +31,9 @@
         <p ng-hide="message == ''">
           {{message}}
         </p>
-        <div ng-repeat="drink_type in drink_types | orderBy: name">
+        <div ng-repeat="drink_type in drink_types | orderBy: name" class="drinks-list-item">
           <h3 ng-show="drinksSearch == ''">
-            {{drink_type.name}}, {{drink_type.drinks.length}} stk inne
+            {{drink_type.name}}, {{drink_type.drinks.length}} st. inne
             <small>
               <a href="{{drink_type.url}}">Visa alla</a>
               <% if user_signed_in_and_admin? %>

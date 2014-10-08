@@ -1,4 +1,4 @@
-pubApp.controller('CalendarCtrl', function ($scope, $http) {
+pubApp.controller('CalendarCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.month = moment(new Date());
   $scope.days = [];
   var bookings;
@@ -58,4 +58,4 @@ pubApp.controller('CalendarCtrl', function ($scope, $http) {
       public = false;
     }
   }
-});
+}]);
