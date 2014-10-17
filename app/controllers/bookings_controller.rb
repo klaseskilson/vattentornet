@@ -81,6 +81,9 @@ class BookingsController < ApplicationController
     params = booking_params
     respond_to do |format|
       if @booking.update(params)
+        if params[:confirmed] && !params[:public]
+          BookingMailer.booking_confirmed(@booking).deliver!
+        end
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
