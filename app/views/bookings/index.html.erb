@@ -16,7 +16,7 @@
         <%= link_to 'Ny bokning', new_booking_path %>
       </div>
     </div>
-    <div ng-class="day.day == 1 ? 'offset-{{day.weekday}}' : 'weekday'" ng-repeat="day in days">
+    <div ng-class="{ 'offset-{{day.weekday}}' : day.day == 1, 'booking-confirmed' : day.confirmed, 'weekday' : day.day != 1}" ng-repeat="day in days">
       <h3>{{ day.day }}</h3>
       <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
       <h3 ng-if="day.confirmed && day.public">Pub</h3>
