@@ -11,6 +11,9 @@ $day: 100%/7;
   border-width: 1px;
   @extend .text-center;
 }
+.booking-confirmed {
+  background-color: #E1CDA5;
+}
 @for $i from 0 through 6 {
   .#{$class-slug}-#{$i} {
     margin-left: $day*($i);
