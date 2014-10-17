@@ -5,9 +5,9 @@
     <div class="main-content">
       <div class="pane">
         <h1>
-          <%= @drink.name %>
+          <%= @drink.name if @drink.name.present? %>
           <small>
-            <%= @drink.price.round %> kr
+            <%= @drink.price.round if @drink.price.present? %> kr
 
             <% if user_signed_in_and_admin? %>
               <%= link_to 'Redigera', edit_drink_path(@drink) %>
@@ -30,7 +30,7 @@
                 Tillverkare
               </h5>
               <h4>
-                <%= @drink.brewery %>
+                <%= @drink.brewery if @drink.brewery.present? %>
               </h5>
             </div>
             <div class="row">
@@ -39,7 +39,7 @@
                   Ursprung
                 </h5>
                 <h4>
-                  <%= @drink.country %>
+                  <%= @drink.country if @drink.country.present?  %>
                 </h5>
               </div>
               <div class="point">
@@ -65,7 +65,7 @@
                   ABV
                 </h5>
                 <h4>
-                  <%= @drink.percentage %>%
+                  <%= @drink.percentage if @drink.percentage.present? %>%
                 </h5>
               </div>
             </div>

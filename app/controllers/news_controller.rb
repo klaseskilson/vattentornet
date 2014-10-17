@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: :show
 
   # GET /news
   # GET /news.json
@@ -17,10 +18,6 @@ class NewsController < ApplicationController
     @news = News.new
   end
 
-  def home
-    @latest_post = News.last;
-  end
-
   # GET /news/1/edit
   def edit
   end
@@ -34,7 +31,7 @@ class NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        format.html { redirect_to edit_news_path(@news), notice: 'Nyheten har skapats!' }
         format.json { render :show, status: :created, location: @news }
       else
         format.html { render :new }
@@ -48,7 +45,7 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        format.html { redirect_to public_news_path(@news), notice: 'Nyheten uppdaterades.' }
         format.json { render :show, status: :ok, location: @news }
       else
         format.html { render :edit }

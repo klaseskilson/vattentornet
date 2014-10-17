@@ -70,6 +70,11 @@ gem 'unicorn'
 # heroku wants this to be here
 gem 'rails_12factor', group: "production"
 
+# gzip them assets
+gem 'heroku-deflater', :group => :production
+# minify dat html
+gem 'htmlcompressor', :group => :production
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
