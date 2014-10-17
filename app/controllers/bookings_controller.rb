@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @bookings_approved = Booking.where(:confirmed => true)
-    @bookings_pending = Booking.where(:confirmed => false || nil)
+    @bookings_pending = Booking.where(:confirmed => false)
   end
 
   # GET /bookings/1
@@ -53,6 +53,11 @@ class BookingsController < ApplicationController
     #     format.html { render json: { hurray: "yay" }, status: :created }
     #   end
     # else
+      if current_user
+        params[:user_id] = current_user.id
+      else
+        params[:confirmed] = false
+      end
       @booking = Booking.new(params)
 
       respond_to do |format|
