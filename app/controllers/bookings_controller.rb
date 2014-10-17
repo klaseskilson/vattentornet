@@ -58,7 +58,8 @@ class BookingsController < ApplicationController
       respond_to do |format|
         if @booking.save
           # send mail
-          # BookingMailer.booking_notice(@booking).deliver!
+          BookingMailer.booking_received_booker(@booking).deliver!
+          BookingMailer.booking_received_board(@booking).deliver!
           format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
