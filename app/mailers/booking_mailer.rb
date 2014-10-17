@@ -3,13 +3,11 @@ class BookingMailer < ActionMailer::Base
 
   def booking_received_booker(booking)
     @booking = booking
-    @url = "http://www.vattentor.net"
     mail subject: "Ny bokningsforfragan", to: @booking.email
   end
 
   def booking_received_board(booking)
     @booking = booking
-    @url = "http://www.vattentor.net"
     mail subject: "Ny bokningsforfragan", to: "bokning@vattentor.net"
   end
 
