@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @bookings_approved = Booking.where(:confirmed => true)
-    @bookings_pending = Booking.where(:confirmed => false || nil)
+    @bookings_pending = Booking.where(:confirmed => false)
   end
 
   # GET /bookings/1
@@ -53,12 +53,18 @@ class BookingsController < ApplicationController
     #     format.html { render json: { hurray: "yay" }, status: :created }
     #   end
     # else
+      if current_user
+        params[:user_id] = current_user.id
+      else
+        params[:confirmed] = false
+      end
       @booking = Booking.new(params)
 
       respond_to do |format|
         if @booking.save
           # send mail
-          # BookingMailer.booking_notice(@booking).deliver!
+          BookingMailer.booking_received_booker(@booking).deliver!
+          BookingMailer.booking_received_board(@booking).deliver!
           format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
@@ -75,6 +81,9 @@ class BookingsController < ApplicationController
     params = booking_params
     respond_to do |format|
       if @booking.update(params)
+        if @booking.confirmed && !@booking.public
+          BookingMailer.booking_confirmed(@booking).deliver!
+        end
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
