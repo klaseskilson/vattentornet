@@ -1,5 +1,5 @@
 class BookingMailer < ActionMailer::Base
-  default from: "bokning@vattentor.net"
+  default from: "info@vattentor.net"
 
   def booking_received_booker(booking)
     @booking = booking
@@ -8,7 +8,7 @@ class BookingMailer < ActionMailer::Base
 
   def booking_received_board(booking)
     @booking = booking
-    mail subject: "Ny bokningsforfragan", to: "bokning@vattentor.net"
+    mail subject: "Ny bokningsforfragan", to: "info@vattentor.net"
   end
 
   def booking_confirmed(booking)
