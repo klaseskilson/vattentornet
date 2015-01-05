@@ -1,14 +1,12 @@
 <%= form_for @booking, :html=>{'ng-app' => 'booking-form'} do |f| %>
 <div class="main-content main-form booking-new">
   <% if @booking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+    <div id="error_explanation" class="notices">
+      <h3><%= @booking.errors.count %> fel skedde:</h3>
 
-      <ul>
       <% @booking.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <p><%= message %></p>
       <% end %>
-      </ul>
     </div>
   <% end %>
     <div class="pane">
@@ -17,7 +15,11 @@
       <div class="row">
         <div class="col-sm-5">
           <%= f.label "Mail" %><br>
-          <%= f.text_field :email, placeholder: "Din epostadress" %>
+          <% if user_signed_in_and_admin? %>
+            <%= f.text_field :email, value: current_user.email %>
+          <% else %>
+            <%= f.text_field :email, placeholder: "Din epostadress" %>
+          <% end %>
         </div>
         <div class="col-sm-4">
           <%= f.label "Datum" %><br>
