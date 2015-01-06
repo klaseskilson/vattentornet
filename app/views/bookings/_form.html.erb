@@ -18,12 +18,12 @@
           <% if user_signed_in_and_admin? %>
             <%= f.text_field :email, value: current_user.email %>
           <% else %>
-            <%= f.text_field :email, placeholder: "Din epostadress" %>
+            <%= f.text_field :email, placeholder: "Din epostadress", :required => true %>
           <% end %>
         </div>
         <div class="col-sm-4">
           <%= f.label "Datum" %><br>
-          <%= f.date_field :date, :order => [:day, :month, :year] %>
+          <%= f.date_field :date, :order => [:day, :month, :year], :required => true %>
         </div>
         <div class="col-sm-3">
           <%= f.label "Boka puben?" %><br>
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-md-12">
           <%= f.label "Beskrivning" %><br>
-          <%= f.text_area :description, rows: 4, placeholder: "Vad skall du göra?" %>
+          <%= f.text_area :description, rows: 4, placeholder: "Vad skall du göra?", :required => true %>
         </div>
       </div>
       <% if user_signed_in_and_admin? %>
@@ -64,7 +64,7 @@
           <div class="row">
             <div class="col-sm-12" ng-show="interval">
               <%= f.label "Slutdatum" %><br>
-              <%= f.date_field :end_date %>
+              <%= f.date_field :end_date, :required => true %>
               <i><%= f.label "Sista datumet för intervallet." %></i>
             </div>
           </div>
@@ -77,6 +77,9 @@
     <h3 class="fat">Boka</h3>
     <p>
       <%= f.submit "Skicka bokning!" %>
+    </p>
+    <p class="small">
+      Vid bokning av pub kommer pubutrymmet och serveringspersonal finnas tillgängligt. Pris diskuteras senare, läs mer <a href="/om-puben">här!</a>
     </p>
     <p class="small">
       Din bokning skickas till borådet. Du kommer få ett bekräftelsemail när den

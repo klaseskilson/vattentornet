@@ -17,9 +17,22 @@
       </div>
     </div>
     <div ng-class="{ 'offset-{{day.weekday}}' : day.day == 1, 'booking-confirmed' : day.confirmed, 'weekday' : day.day != 1}" ng-repeat="day in days">
-      <h3>{{ day.day }}</h3>
-      <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
-      <h3 ng-if="day.confirmed && day.public">Pub</h3>
+      <% if user_signed_in_and_admin? %>
+        <a ng-if="day.confirmed" href="{{day.url}}">
+          <h3>{{ day.day }}</h3>
+          <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
+          <h3 ng-if="day.confirmed && day.public">Pub</h3>
+        </a>
+        <span ng-if="!day.confirmed">
+          <h3>{{ day.day }}</h3>
+          <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
+          <h3 ng-if="day.confirmed && day.public">Pub</h3>
+        </span>
+      <% else %>
+        <h3>{{ day.day }}</h3>
+        <h3 ng-if="day.confirmed && !day.public">Bokat</h3>
+        <h3 ng-if="day.confirmed && day.public">Pub</h3>
+      <% end %>
     </div>
   </div>
 
@@ -35,13 +48,13 @@
               <h6 class="fat">Obekräftade</h6>
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Description</th>
+                  <th>Datum</th>
+                  <th>Beskrivning</th>
                   <th>Email</th>
                   <th>Pub</th>
-                  <th>Confirmed</th>
-                  <th>User</th>
-                  <th colspan="3"></th>
+                  <th>Bekräftad</th>
+                  <th>Användare</th>
+                  <th colspan="2"></th>
                 </tr>
               </thead>
 
@@ -54,9 +67,8 @@
                     <td><%= booking.pub %></td>
                     <td><%= booking.confirmed %></td>
                     <td><%= booking.user %></td>
-                    <td><%= link_to 'Show', booking %></td>
-                    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-                    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Visa', edit_booking_path(booking) %></td>
+                    <td><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -68,13 +80,13 @@
               <h6 class="fat">Bekräftade</h6>
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Description</th>
+                  <th>Datum</th>
+                  <th>Beskrivning</th>
                   <th>Email</th>
                   <th>Pub</th>
-                  <th>Confirmed</th>
+                  <th>Bekräftad</th>
                   <th>User</th>
-                  <th colspan="3"></th>
+                  <th colspan="1"></th>
                 </tr>
               </thead>
 
@@ -87,9 +99,7 @@
                     <td><%= booking.pub %></td>
                     <td><%= booking.confirmed %></td>
                     <td><%= booking.user %></td>
-                    <td><%= link_to 'Show', booking %></td>
-                    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-                    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Visa', edit_booking_path(booking) %></td>
                   </tr>
                 <% end %>
               </tbody>
