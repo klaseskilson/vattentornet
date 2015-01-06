@@ -20,6 +20,7 @@ pubApp.controller('CalendarCtrl', ['$scope', '$http', function ($scope, $http) {
     var confirmed = false;
     var public = false;
     var loopDate;
+    var url = "#";
     for(var j=1; j<=i; j++) {
       loopDate = $scope.month.format("YYYY-MM-");
       var d = loopDate;
@@ -38,12 +39,7 @@ pubApp.controller('CalendarCtrl', ['$scope', '$http', function ($scope, $http) {
           pub = bookings[k].pub;
           confirmed = bookings[k].confirmed;
           public = bookings[k].public;
-        }
-        // This line is just a hotfix until interval booking is fixed
-        else if((moment(loopDate).weekday() == 3 || moment(loopDate).weekday() == 4) && (moment(loopDate) < moment('2014-12-15') && moment(loopDate) > moment('2014-09-01'))){
-          pub = true;
-          confirmed = true;
-          public = true;
+          url = bookings[k].url
         }
       }
       $scope.days.push({
@@ -51,6 +47,7 @@ pubApp.controller('CalendarCtrl', ['$scope', '$http', function ($scope, $http) {
         day: (j),
         pub: pub,
         confirmed: confirmed,
+        url: url,
         public: public
       });
       pub = false;
