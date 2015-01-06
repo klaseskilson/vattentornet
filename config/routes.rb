@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :bookings
+  get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
