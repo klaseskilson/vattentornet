@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :user_confirmed, only: [:create, :update]
   before_action :authenticate_user!, except: [:index, :new, :create]
   authorize_resource
@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @bookings_approved = Booking.where(:confirmed => true)
-    @bookings_pending = Booking.where(:confirmed => false || nil)
+    @bookings_pending = Booking.where(:confirmed => false)
   end
 
   # GET /bookings/1
@@ -31,6 +31,8 @@ class BookingsController < ApplicationController
   def create
     params = booking_params
     if params[:interval].to_i == 1
+      params[:user_id] = current_user.id
+
       date = Date.parse(params[:date])
       end_date = Date.parse(params[:end_date])
       (date..end_date).to_a.each do |d|
@@ -50,12 +52,18 @@ class BookingsController < ApplicationController
         format.html { render json: { hurray: "yay" }, status: :created }
       end
     else
+      if current_user
+        params[:user_id] = current_user.id
+      else
+        params[:confirmed] = false
+      end
       @booking = Booking.new(params)
 
       respond_to do |format|
         if @booking.save
           # send mail
-          # BookingMailer.booking_notice(@booking).deliver!
+          BookingMailer.booking_received_booker(@booking).deliver!
+          BookingMailer.booking_received_board(@booking).deliver!
           format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
@@ -66,12 +74,29 @@ class BookingsController < ApplicationController
     end
   end
 
+  def confirm
+    @booking.confirmed = !@booking.confirmed
+    respond_to do |format|
+      if @booking.save
+        if @booking.confirmed && !@booking.public
+          BookingMailer.booking_confirmed(@booking).deliver!
+        end
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully confirmed.' }
+      else
+        format.html { redirect_to bookings_path, notice: 'Booking could not be confirmed...' }
+      end
+    end
+  end
+
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
     params = booking_params
     respond_to do |format|
       if @booking.update(params)
+        if @booking.confirmed && !@booking.public
+          BookingMailer.booking_confirmed(@booking).deliver!
+        end
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else

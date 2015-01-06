@@ -1,11 +1,18 @@
 class BookingMailer < ActionMailer::Base
-  default to: "bokning@vattentor.net"
-  default from: "bokning@vattentor.net"
+  default from: "info@vattentor.net"
 
-
-  def booking_notice(booking)
+  def booking_received_booker(booking)
     @booking = booking
-    @url = "http://www.vattentor.net"
-    mail subject: "Ny bokningsförfrågan"
+    mail subject: "Ny bokningsforfragan", to: @booking.email
+  end
+
+  def booking_received_board(booking)
+    @booking = booking
+    mail subject: "Ny bokningsforfragan", to: "info@vattentor.net"
+  end
+
+  def booking_confirmed(booking)
+    @booking = booking
+    mail subject: "Bokning bekraftad", to: @booking.email
   end
 end
