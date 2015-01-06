@@ -1,41 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="form-content">
+    <p id="notice"><%= notice %></p>
+    <%= form_for @booking, :html=>{'ng-app' => 'booking-form'} do |f| %>
+      <div class="main-content main-form booking-new">
+        <div class="pane">
+          <h3 class="fat"><%= yield(:title) %></h3>
 
-<p>
-  <strong>Date:</strong>
-  <%= @booking.date %>
-</p>
+          <div class="row">
+            <div class="col-sm-5">
+              <%= f.label "Mail" %><br>
+              <%= f.text_field :email, value: @booking.email, :disabled => true %>
+            </div>
+            <div class="col-sm-4">
+              <%= f.label "Datum" %><br>
+              <%= f.date_field :date, :order => [:day, :month, :year], :value => @booking.date, :disabled => true %>
+            </div>
+            <div class="col-sm-3">
+              <%= f.label "Boka puben?" %><br>
+              <%= f.check_box :pub, :disabled => true, :checked => @booking.pub %> Ja!
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= f.label "Beskrivning" %><br>
+              <%= f.text_area :description, rows: 4, value: @booking.description, :disabled => true %>
+            </div>
+          </div>
+          <div id="adminBooking" ng-controller="AdminBookingsCtrl" >
+              <div class="row">
+                <div class="col-sm-3">
+                  <% if @booking.user_id && User.find(@booking.user_id) %>
+                    <%= f.label "Bekräftad av " + User.find(@booking.user_id).name %><br>
+                  <% else %>
+                    <%= f.label "Bekräftad" %><br>
+                  <% end %>
+                  <input type="checkbox" checked="<%= @booking.confirmed %>" disabled="true">
+                </div>
+                <div class="col-sm-3">
+                  <%= f.label "Publik" %><br>
+                  <%= f.check_box :public, :disabled => true, :value => @booking.public %>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="sidebar sidebar-form booking-sidebar">
+        <div class="pane">
+          <h3 class="fat">Redigera</h3>
+          <p>
+            <% if !@booking.confirmed %>
+              <%= f.hidden_field :confirmed, :type => "hidden", :disabled => true, :value => true %>
+              <%= f.submit "Bekräfta" %>
+            <% else %>
+              <%= f.hidden_field :confirmed, :type => "hidden", :disabled => true, :value => false %>
+              <%= f.submit "Obekräfta" %>
+            <% end %>
+          </p>
+          <p>
+            <%= link_to 'Redigera', edit_booking_path(@booking) %> |
+            <%= link_to 'Ta bort', @booking, method: :delete, data: { confirm: 'Är du säker?' } %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @booking.description %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @booking.email %>
-</p>
-
-<p>
-  <strong>Pub:</strong>
-  <%= @booking.pub %>
-</p>
-
-<p>
-  <strong>Confirmed:</strong>
-  <%= @booking.confirmed %>
-</p>
-
-<p>
-  <strong>Public:</strong>
-  <%= @booking.public %>
-</p>
-
-<% if @booking.user_id && User.find(@booking.user_id) %>
-<p>
-  <strong>User:</strong>
-  <%= User.find(@booking.user_id).name %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>

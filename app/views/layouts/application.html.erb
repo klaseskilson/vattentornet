@@ -21,7 +21,7 @@
 <%= render 'layouts/header' %>
 
 <% if (defined?(notice) and !notice.blank?) or (defined?(alert) and !alert.blank?) %>
-  <section class="container">
+  <section class="container notices">
     <p class="notice"> <%= notice %> </p>
     <p class="alert"> <%= alert %> </p>
   </section>

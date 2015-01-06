@@ -10,7 +10,7 @@
   padding: 10px;
   margin-bottom: $section-margins;
 
-  @for $i from 0 through 5 {
+  @for $i from 0 through 7 {
     &.background-#{$i} {
       background-image: url('/images/home-#{$i}.jpg');
     }

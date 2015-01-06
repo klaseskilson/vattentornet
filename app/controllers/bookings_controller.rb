@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :user_confirmed, only: [:create, :update]
   before_action :authenticate_user!, except: [:index, :new, :create]
   authorize_resource
@@ -30,29 +30,26 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     params = booking_params
-    # if params[:interval]
-    #   date = Date.parse(params[:date])
-    #   end_date = Date.parse(params[:end_date])
-    #   (date..end_date).to_a.each do |d|
-    #     Rails.logger.info "dag: #{d}"
-    #     if params[:weekdays].include?((d.wday + 6) % 7)
-    #       p = params
-    #       p[:date] = d
-    #       Rails.logger.info "Dagens params: #{p}"
-    #       Booking.create(p)
-    #       # if !@booking.save
-    #       #   respond_to do |format|
-    #       #     format.html { redirect_to bookings_path, notice: "Bookings where not created......." }
-    #       #     format.html { render json: { hurray: "noooo" }, status: :created }
-    #       #   end
-    #       # end
-    #     end
-    #   end
-    #   respond_to do |format|
-    #     format.html { redirect_to bookings_path, notice: "Bookings where succesfully created" }
-    #     format.html { render json: { hurray: "yay" }, status: :created }
-    #   end
-    # else
+    if params[:interval].to_i == 1
+      params[:user_id] = current_user.id
+
+      date = Date.parse(params[:date])
+      end_date = Date.parse(params[:end_date])
+      (date..end_date).to_a.each do |d|
+        weekdays = params[:weekdays]
+        params.delete [:weekdays, :end_date, :interval]
+        if weekdays.include?(((d.wday + 6) % 7).to_s)
+          p = params
+          p[:date] = d
+          booking = Booking.new(p)
+          booking.save
+        end
+      end
+      respond_to do |format|
+        format.html { redirect_to bookings_path, notice: "Bookings where succesfully created" }
+        format.html { render json: { hurray: "yay" }, status: :created }
+      end
+    else
       if current_user
         params[:user_id] = current_user.id
       else
@@ -72,7 +69,21 @@ class BookingsController < ApplicationController
           format.json { render json: @booking.errors, status: :unprocessable_entity }
         end
       end
-    # end
+    end
+  end
+
+  def confirm
+    @booking.confirmed = !@booking.confirmed
+    respond_to do |format|
+      if @booking.save
+        if @booking.confirmed && !@booking.public
+          BookingMailer.booking_confirmed(@booking).deliver!
+        end
+        format.html { redirect_to bookings_path, notice: 'Booking was successfully confirmed.' }
+      else
+        format.html { redirect_to bookings_path, notice: 'Booking could not be confirmed...' }
+      end
+    end
   end
 
   # PATCH/PUT /bookings/1
