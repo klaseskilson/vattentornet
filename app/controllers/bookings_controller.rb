@@ -36,13 +36,11 @@ class BookingsController < ApplicationController
       date = Date.parse(params[:date])
       end_date = Date.parse(params[:end_date])
       (date..end_date).to_a.each do |d|
-        Rails.logger.info "dag: #{d.wday}"
         weekdays = params[:weekdays]
         params.delete [:weekdays, :end_date, :interval]
         if weekdays.include?(((d.wday + 6) % 7).to_s)
           p = params
           p[:date] = d
-          Rails.logger.info "Dagens params: #{p}"
           booking = Booking.new(p)
           booking.save
         end
