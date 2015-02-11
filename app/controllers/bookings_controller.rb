@@ -74,6 +74,7 @@ class BookingsController < ApplicationController
 
   def confirm
     @booking.confirmed = !@booking.confirmed
+    @booking.user = current_user
     respond_to do |format|
       if @booking.save
         if @booking.confirmed && !@booking.public
