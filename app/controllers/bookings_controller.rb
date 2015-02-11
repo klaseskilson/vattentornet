@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   def index
     @bookings = Booking.all
     @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
-    @bookings_pending = Booking.where(:confirmed => false).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
+    @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
   end
 
   # GET /bookings/1
