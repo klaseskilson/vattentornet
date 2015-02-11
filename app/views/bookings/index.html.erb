@@ -67,7 +67,7 @@
                     <td><%= booking.pub %></td>
                     <td><%= booking.confirmed %></td>
                     <td><%= booking.user %></td>
-                    <td><%= link_to 'Visa', edit_booking_path(booking) %></td>
+                    <td><%= link_to 'Visa', booking_path(booking) %></td>
                     <td><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
                   </tr>
                 <% end %>
@@ -99,7 +99,7 @@
                     <td><%= booking.pub %></td>
                     <td><%= booking.confirmed %></td>
                     <td><%= booking.user %></td>
-                    <td><%= link_to 'Visa', edit_booking_path(booking) %></td>
+                    <td><%= link_to 'Visa', booking_path(booking) %></td>
                   </tr>
                 <% end %>
               </tbody>
