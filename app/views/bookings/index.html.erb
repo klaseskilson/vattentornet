@@ -44,8 +44,8 @@
             <h3 class="fat">Bokningar</h3>
           <% end %>
           <% if !@bookings_pending.empty? %>
-            <table>
-              <h6 class="fat">Obekräftade</h6>
+            <h6 class="fat">Obekräftade</h6>
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Datum</th>
@@ -64,9 +64,13 @@
                     <td><%= booking.date %></td>
                     <td><%= booking.description %></td>
                     <td><%= booking.email %></td>
-                    <td><%= booking.pub %></td>
-                    <td><%= booking.confirmed %></td>
-                    <td><%= booking.user %></td>
+                    <td><%= booking.pub ? "Ja" : "Nej" %></td>
+                    <td><%= booking.confirmed ? "Ja" : "Nej" %></td>
+                    <% if booking.user_id && User.find(booking.user_id) %>
+                      <td><%= booking.user.name %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
                     <td><%= link_to 'Visa', booking_path(booking) %></td>
                     <td><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
                   </tr>
@@ -76,8 +80,8 @@
           <% end %>
 
           <% if !@bookings_approved.empty? %>
-            <table>
-              <h6 class="fat">Bekräftade</h6>
+            <h6 class="fat">Bekräftade</h6>
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Datum</th>
@@ -85,7 +89,7 @@
                   <th>Email</th>
                   <th>Pub</th>
                   <th>Bekräftad</th>
-                  <th>User</th>
+                  <th>Bekräftad av</th>
                   <th colspan="1"></th>
                 </tr>
               </thead>
@@ -96,9 +100,13 @@
                     <td><%= booking.date %></td>
                     <td><%= booking.description %></td>
                     <td><%= booking.email %></td>
-                    <td><%= booking.pub %></td>
-                    <td><%= booking.confirmed %></td>
-                    <td><%= booking.user %></td>
+                    <td><%= booking.pub ? "Ja" : "Nej" %></td>
+                    <td><%= booking.confirmed ? "Ja" : "Nej" %></td>
+                    <% if booking.user_id && User.find(booking.user_id) %>
+                      <td><%= booking.user.name %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
                     <td><%= link_to 'Visa', booking_path(booking) %></td>
                   </tr>
                 <% end %>
