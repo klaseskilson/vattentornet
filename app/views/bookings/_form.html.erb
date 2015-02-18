@@ -15,15 +15,11 @@
       <div class="row">
         <div class="col-sm-5">
           <%= f.label "Mail" %><br>
-          <% if user_signed_in_and_admin? %>
-            <%= f.text_field :email, value: current_user.email %>
-          <% else %>
-            <%= f.text_field :email, placeholder: "Din epostadress", :required => true %>
-          <% end %>
+          <%= f.text_field :email, placeholder: "Din epostadress", :required => true %>
         </div>
         <div class="col-sm-4">
           <%= f.label "Datum" %><br>
-          <%= f.date_field :date, :order => [:day, :month, :year], :required => true %>
+          <%= f.date_field :date, :order => [:day, :month, :year], :required => true, :placeholder => 'åååå-mm-dd' %>
         </div>
         <div class="col-sm-3">
           <%= f.label "Boka puben?" %><br>
