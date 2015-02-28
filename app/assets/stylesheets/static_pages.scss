@@ -9,7 +9,7 @@
   padding: 10px;
   margin-bottom: $section-margins;
 
-  @for $i from 0 through 7 {
+  @for $i from 0 through 8 {
     &.background-#{$i} {
       background-image: url('/images/home-#{$i}.jpg');
     }
