@@ -34,7 +34,7 @@
                   <% end %>
                   <td><%= news.created_at.strftime("%Y-%m-%d") %></td>
                   <td><%= User.find(news.user_id).name %></td>
-                  <td><%= link_to 'Visa sida', news %></td>
+                  <td><%= link_to 'Visa nyheten', public_news_path(news) %></td>
                   <td><%= link_to 'Redigera', edit_news_path(news) %></td>
                   <td><%= link_to 'Ta bort', news, method: :delete, data: { confirm: 'Är du helt säker? Går inte alls att ångra, va.' } %></td>
                 </tr>
@@ -46,8 +46,3 @@
     </div>
   </div>
 </div>
-
-
-<table>
-
-</table>
