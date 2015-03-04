@@ -28,13 +28,26 @@ Sen är det bara att först installera [Ruby](https://www.ruby-lang.org/en/)
 och kila in på [rubyonrails.org](http://rubyonrails.org/) och följa instruktionerna
 där.
 
-När det är gjort är det bara att sätta igång:
+Först behöver du installera och få igång [*PostgreSQL*](#postgresql-setup). När det är gjort är det bara att sätta igång:
 
 ```
 bundle install
 rake db:migrate
 rails server
 ```
+
+### PostgreSQL setup
+
+Denna applikationen använder sig utav PostgreSQL. Installera och sedan behöver du skapa en en användare och två databaser, följ bara dessa instruktioner:
+
+1. Skapa en databasanvändare som matchar den i [`database.yml`](config/database.yml). Vi använder `vattentornet` som användarnamn, så i psql-terminalen skriver du `CREATE USER vatentornet;`.
+2. Ändra lösenordet på användaren: `ALTER USER vattentornet WITH PASSWORD 'tornet';`.
+3. Ändra användaren så att den har massa rättigheter `ALTER USER bruse SUPERUSER;`.
+4. Skapa *development*-databasen `CREATE DATABASE vattentornet_development;`
+och *test*-databasen med `CREATE DATABASE vattentornet_test;`.
+5. Ändra ägaren genom att köra `ALTER DATABASE vattentornet_development OWNER TO vattentornet;`
+and `ALTER DATABASE vattentornet_test OWNER TO vattentornet;`.
+6. Klart!
 
 ### Lägg till en ny användare
 
