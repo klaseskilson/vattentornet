@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Bokningsförfrågan för den <%= @booking.date %></h1>
-    <p>
-      <strong>Email:</strong> <%= @booking.email %><br>
-      <strong>Beskrivning:</strong> <%= @booking.description %><br>
-      <strong>Pub:</strong> <%= @booking.pub ? "ja" : "nej" %><br>
-    </p>
-    <p>
-      Logga in på sidan för att bekräfta <br>
-      <%= @url %>
-    </p>
-  </body>
-</html>
+<%= render 'header' %>
+  <h2>Bokningsförfrågan för den <%= @booking.date %></h2>
+  <p>
+    <strong>Email:</strong> <%= @booking.email %><br>
+    <strong>Beskrivning:</strong> <%= @booking.description %><br>
+    <strong>Pub:</strong> <%= @booking.pub ? "ja" : "nej" %><br>
+  </p>
+  <p>
+    Logga in på sidan för att bekräfta <br>
+    <%= @url %>
+  </p>
+<%= render 'footer' %>

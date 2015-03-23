@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hej!</h3>
+<%= render 'header' %>
+  <h2>Hej!</h2>
 
-    <p>
-      Vi har mottagit din bokningsförfrågan för <%= @booking.date %>.
-    </p>
+  <p>
+    Vi har mottagit din bokningsförfrågan för <%= @booking.date %>.
+  </p>
 
-    <p>
-      Om ni har några funderingar kommer vi att höra av oss, och om du har några är det bara att slänga iväg ett mail till oss.
-    </p>
+  <p>
+    Om ni har några funderingar kommer vi att höra av oss, och om du har några är det bara att slänga iväg ett mail till oss.
+  </p>
 
-    <p>
-      Mvh,
-      Vattentornets boråd
-    </p>
-  </body>
-</html>
+  <p>
+    Mvh,
+    Vattentornets boråd
+  </p>
+<%= render 'header' %>
