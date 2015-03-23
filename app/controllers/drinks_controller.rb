@@ -1,6 +1,7 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, only: [:show, :edit, :update, :destroy]
+  before_action :set_drink, only: [:show, :edit, :update, :destroy, :change_stock]
   before_action :authenticate_user!, except: [:show]
+  protect_from_forgery except: [:change_stock]
   authorize_resource
 
   # GET /sortiment/:id/dryck
@@ -62,6 +63,17 @@ class DrinksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to drinks_url, notice: 'Drink was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def change_stock
+    @drink.instock = !@drink.instock
+    respond_to do |format|
+      if @drink.save!
+        format.json { head :ok }
+      else
+        format.json { head :unprocessable_entity }
+      end
     end
   end
 

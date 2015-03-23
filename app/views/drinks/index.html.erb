@@ -33,7 +33,7 @@
               <td>{{ drink.price }}</td>
               <td>{{ drink.drink_type }}</td>
               <td>{{ drink.description }}</td>
-              <td><input type="checkbox" ng-checked="drink.instock"></td>
+              <td><input type="checkbox" ng-checked="drink.instock" ng-click="changeStock(drink)"></td>
               <td><a ng-href="{{ drink.show_url }}">Show</a></td>
               <% if user_signed_in_and_admin? %>
                 <td><a ng-href="{{ drink.edit_drink_url }}">Edit</a></td>

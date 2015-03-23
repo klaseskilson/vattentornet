@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :news, except: [:show]
     resources :drinks, as: :drinks
+    post '/drinks/changestock' => 'drinks#change_stock'
     resources :drink_types, except: [:index, :show]
   end
 
