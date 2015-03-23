@@ -20,28 +20,25 @@
               <th>Typ av dryck</th>
               <th>Beskrivning</th>
               <th>I lager</th>
-              <th colspan="3"></th>
+              <th colspan="2"></th>
             </tr>
           </thead>
 
-          <tbody>
-            <% @drinks.each do |drink| %>
-              <tr>
-                <td><%= drink.name %></td>
-                <td><%= drink.brewery %></td>
-                <td><%= drink.country %></td>
-                <td><%= drink.percentage %></td>
-                <td><%= drink.price %></td>
-                <td><%= drink.drink_type.name %></td>
-                <td><%= drink.description %></td>
-                <td><%= drink.instock %></td>
-                <td><%= link_to 'Visa', drink %></td>
-                <% if user_signed_in_and_admin? %>
-                  <td><%= link_to 'Redigera', edit_drink_path(drink) %></td>
-                  <td><%= link_to 'Ta bort', drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' } %></td>
-                <% end %>
-              </tr>
-            <% end %>
+          <tbody ng-controller="AdminDrinksCtrl">
+            <tr ng-repeat="drink in drinks">
+              <td>{{ drink.name }}</td>
+              <td>{{ drink.brewery }}</td>
+              <td>{{ drink.country }}</td>
+              <td>{{ drink.percentage }}</td>
+              <td>{{ drink.price }}</td>
+              <td>{{ drink.drink_type }}</td>
+              <td>{{ drink.description }}</td>
+              <td><input type="checkbox" ng-checked="drink.instock"></td>
+              <td><a ng-href="{{ drink.show_url }}">Show</a></td>
+              <% if user_signed_in_and_admin? %>
+                <td><a ng-href="{{ drink.edit_drink_url }}">Edit</a></td>
+              <% end %>
+            </tr>
           </tbody>
         </table>
 
