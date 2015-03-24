@@ -3,16 +3,16 @@ class BookingMailer < ActionMailer::Base
 
   def booking_received_booker(booking)
     @booking = booking
-    mail subject: "Ny bokningsforfragan", to: @booking.email
+    mail subject: "Ny bokningsförfrågan", to: @booking.email
   end
 
   def booking_received_board(booking)
     @booking = booking
-    mail subject: "Ny bokningsforfragan", to: "info@vattentor.net"
+    mail subject: "Ny bokningsförfrågan", to: "info@vattentor.net"
   end
 
   def booking_confirmed(booking)
     @booking = booking
-    mail subject: "Bokning bekraftad", to: @booking.email
+    mail subject: "Bokning bekräftad", to: @booking.email
   end
 end
