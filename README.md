@@ -42,7 +42,7 @@ Denna applikationen använder sig utav PostgreSQL. Installera och sedan behöver
 
 1. Skapa en databasanvändare som matchar den i [`database.yml`](config/database.yml). Vi använder `vattentornet` som användarnamn, så i psql-terminalen skriver du `CREATE USER vatentornet;`.
 2. Ändra lösenordet på användaren: `ALTER USER vattentornet WITH PASSWORD 'tornet';`.
-3. Ändra användaren så att den har massa rättigheter `ALTER USER bruse SUPERUSER;`.
+3. Ändra användaren så att den har massa rättigheter `ALTER USER vattentornet SUPERUSER;`.
 4. Skapa *development*-databasen `CREATE DATABASE vattentornet_development;`
 och *test*-databasen med `CREATE DATABASE vattentornet_test;`.
 5. Ändra ägaren genom att köra `ALTER DATABASE vattentornet_development OWNER TO vattentornet;`
