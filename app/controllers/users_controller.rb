@@ -26,14 +26,14 @@ class UsersController < ApplicationController
   # def update
   # end
 
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.destroy
+  def destroy
+     @user = User.find(params[:id])
+     @user.destroy
 
-  #   if @user.destroy
-  #       redirect_to root_url, notice: "User deleted."
-  #   end
-  # end
+     if @user.destroy
+         redirect_to users_path, notice: "Användare borttagen."
+     end
+  end
 
   def user_admin?
     self.admin
