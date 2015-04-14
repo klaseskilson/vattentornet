@@ -27,12 +27,12 @@ class UsersController < ApplicationController
   # end
 
   def destroy
-     @user = User.find(params[:id])
-     @user.destroy
-
-     if @user.destroy
-         redirect_to users_path, notice: "Användare borttagen."
-     end
+    if @user.destroy
+      msg = "Användare borttagen."
+    else
+      msg = "Användare kunde inte tas bort."
+    end
+    redirect_to users_path, notice: msg
   end
 
   def user_admin?
