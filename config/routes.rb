@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   end
 
   resources :drink_types, path: '/sortiment', as: :stock, only: [:index, :show] do
-    resources :drinks, path: '/', only: [:show]
+    resources :drinks, path: '/', only: [:show] do
+      member do
+        get 'drank' => 'drinks#cookie'
+      end
+    end
   end
 
   resources :news, path: 'nyheter', as: :public_news, only: [:show]
