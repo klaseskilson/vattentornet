@@ -2,8 +2,7 @@ class DrinksController < ApplicationController
   before_action :set_drink, only: [:show, :edit, :update, :destroy, :change_stock, :cookie]
   before_action :authenticate_user!, except: [:show, :cookie]
   protect_from_forgery except: [:change_stock]
-  skip_authorize_resource only: [:cookie]
-  authorize_resource
+  authorize_resource except: [:cookie]
 
   # GET /sortiment/:id/dryck
   # GET /sortiment/:id/dryck.json

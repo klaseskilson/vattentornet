@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # User handling
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.4.0'
 
 # User level authentication
 gem 'cancan'

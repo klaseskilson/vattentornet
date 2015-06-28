@@ -7,6 +7,7 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types.json
   def index
     @drink_types = DrinkType.all
+    @updated =  Drink.order('updated_at').last.updated_at
   end
 
   # GET /drink_types/1
