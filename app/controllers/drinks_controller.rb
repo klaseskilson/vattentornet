@@ -33,7 +33,7 @@ class DrinksController < ApplicationController
 
     respond_to do |format|
       if @drink.save
-        format.html { redirect_to stock_drink_path(@drink.drink_type, @drink), notice: 'Drink was successfully created.' }
+        format.html { redirect_to new_drink_path, notice: 'Drycken skapades.' }
         format.json { render :show, status: :created, location: @drink }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class DrinksController < ApplicationController
   def update
     respond_to do |format|
       if @drink.update(drink_params)
-        format.html { redirect_to stock_drink_path(@drink.drink_type, @drink), notice: 'Drink was successfully updated.' }
+        format.html { redirect_to edit_drink_path(@drink), notice: 'Drycken uppdaterades.' }
         format.json { render :show, status: :ok, location: @drink }
       else
         format.html { render :edit }
