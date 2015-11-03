@@ -67,8 +67,11 @@
         <%= f.submit %>
       </p>
       <p>
-        <%= link_to 'Visa drycken', drink_path(@drink.drink_type, @drink) if @drink.id? %> |
-        <%= link_to 'Ta bort', @drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' } %>
+        <% if @drink.persisted? %>
+          <%= link_to 'Visa drycken', drink_path(@drink.drink_type, @drink) if @drink.id? %> <br>
+          <%= link_to 'Ta bort', @drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' }  %><br>
+        <% end %>
+        <%= link_to 'Alla drycker', drinks_path %>
       </p>
     </div>
   </div>

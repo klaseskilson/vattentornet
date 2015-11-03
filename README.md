@@ -1,5 +1,7 @@
 # Vattentornet
 
+[![Dependency Status](https://gemnasium.com/klaseskilson/vattentornet.svg)](https://gemnasium.com/klaseskilson/vattentornet)
+
 En fin hemsida för studentpuben **[Pub Vattentornet](http://www.vattentor.net)** i Norrköping.
 
 Vi som pillar på denna sidan är:
