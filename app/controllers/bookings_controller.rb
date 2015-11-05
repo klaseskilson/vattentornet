@@ -4,6 +4,12 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :new, :create]
   authorize_resource
 
+  # GET /admin/bookings/all
+  # GET /bookings.json
+  def all
+    @bookings = Booking.paginate(:page => params[:page], :per_page => 30).order('date DESC')
+  end
+
   # GET /bookings
   # GET /bookings.json
   def index
