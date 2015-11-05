@@ -19,11 +19,11 @@
         </div>
         <div class="col-sm-4">
           <%= f.label "Ditt namn" %><br>
-          <%= f.text_field :name, required: true, placeholder: 'För- och efternamn' %>
+          <%= f.text_field :name, required: !@booking.public, placeholder: 'För- och efternamn' %>
         </div>
         <div class="col-sm-4">
           <%= f.label "Lägenhetsnummer", title: 'Ditt lägenhetsnummer' %><br>
-          <%= f.number_field :apartment, min: 0, required: true, placeholder: 'Ditt lägenhetsnummer' %>
+          <%= f.number_field :apartment, min: 0, required: !@booking.public, placeholder: 'Ditt lägenhetsnummer' %>
         </div>
       </div>
       <div class="row">

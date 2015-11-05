@@ -20,6 +20,10 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    if current_user.admin
+      @booking.public = true
+      @booking.confirmed = true
+    end
   end
 
   # GET /bookings/1/edit
