@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: true do |t|
+  create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "bookings", force: true do |t|
+  create_table "bookings", force: :cascade do |t|
     t.date     "date"
     t.text     "description"
     t.string   "email"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
 
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
-  create_table "drink_types", force: true do |t|
+  create_table "drink_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
 
   add_index "drink_types", ["slug"], name: "index_drink_types_on_slug", using: :btree
 
-  create_table "drinks", force: true do |t|
+  create_table "drinks", force: :cascade do |t|
     t.string   "name"
     t.string   "brewery"
     t.string   "country"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   add_index "drinks", ["drink_type_id"], name: "index_drinks_on_drink_type_id", using: :btree
   add_index "drinks", ["slug"], name: "index_drinks_on_slug", using: :btree
 
-  create_table "friendly_id_slugs", force: true do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "news", force: true do |t|
+  create_table "news", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.boolean  "published"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
     t.text     "text"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20140925174118) do
 
   add_index "pages", ["slug"], name: "index_pages_on_slug", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

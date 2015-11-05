@@ -19,16 +19,15 @@ Rails.application.routes.draw do
     resources :drink_types, except: [:index, :show]
   end
 
+  get '/sortiment/:id/drunk' => 'drinks#cookie', as: :drunk
+
   resources :drink_types, path: '/sortiment', as: :stock, only: [:index, :show] do
-    resources :drinks, path: '/', only: [:show] do
-      member do
-        get 'drank' => 'drinks#cookie'
-      end
-    end
+    resources :drinks, path: '/', only: [:show]
   end
 
   resources :news, path: 'nyheter', as: :public_news, only: [:show]
 
+  
   root 'static_pages#home'
 
   get '/hem' => 'static_pages#home'
