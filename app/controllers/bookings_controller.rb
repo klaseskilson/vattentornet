@@ -62,7 +62,7 @@ class BookingsController < ApplicationController
           # send mail
           BookingMailer.booking_received_booker(@booking).deliver!
           BookingMailer.booking_received_board(@booking).deliver!
-          format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
+          format.html { redirect_to bookings_path, notice: 'Bokningen emottagen! Vi återkommer.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
           format.html { render :new }
@@ -129,6 +129,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :description, :email, :pub, :confirmed, :user_id, :public, :interval, :end_date, :weekdays=>[])
+      params.require(:booking).permit(:date, :description, :email, :pub, :name, :apartment, :confirmed, :user_id, :public, :interval, :end_date, :weekdays=>[])
     end
 end

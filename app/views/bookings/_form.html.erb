@@ -13,15 +13,25 @@
       <h3 class="fat"><%= yield(:title) %></h3>
 
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
           <%= f.label "Mail" %><br>
-          <%= f.text_field :email, placeholder: "Din epostadress", :required => true %>
+          <%= f.email_field :email, placeholder: "Din epostadress", required: true, autofocus: true %>
         </div>
         <div class="col-sm-4">
-          <%= f.label "Datum" %><br>
-          <%= f.date_field :date, :order => [:day, :month, :year], :required => true, :placeholder => 'åååå-mm-dd' %>
+          <%= f.label "Ditt namn" %><br>
+          <%= f.text_field :name, required: true, placeholder: 'För- och efternamn' %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
+          <%= f.label "Lägenhetsnummer", title: 'Ditt lägenhetsnummer' %><br>
+          <%= f.number_field :apartment, min: 0, required: true, placeholder: 'Ditt lägenhetsnummer' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <%= f.label "Datum" %><br>
+          <%= f.date_field :date, order: [:day, :month, :year], required: true, placeholder: 'åååå-mm-dd' %>
+        </div>
+        <div class="col-xs-6">
           <%= f.label "Boka puben?" %><br>
           <%= f.check_box :pub %> Ja!
         </div>
