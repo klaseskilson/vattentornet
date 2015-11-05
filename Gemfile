@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 # set ruby version
-ruby '2.2.2'
+ruby '2.2.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # User handling
-gem 'devise', '~> 3.4.0'
+gem 'devise', '~> 3'
 
 # User level authentication
 gem 'cancan'
