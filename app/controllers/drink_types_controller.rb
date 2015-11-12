@@ -22,6 +22,12 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types/1.json
   def show
     @drinks = @drink_type.drinks
+    @drank = []
+    @drinks.each do |d|
+      if cookies[d.slug]
+        @drank.push(d.slug)
+      end
+    end
   end
 
   # GET /drink_types/new
