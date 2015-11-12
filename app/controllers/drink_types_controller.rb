@@ -8,6 +8,14 @@ class DrinkTypesController < ApplicationController
   def index
     @drink_types = DrinkType.all
     @updated =  Drink.order('updated_at').last.updated_at
+    @drank = []
+    @drink_types.each do |dt|
+      dt.drinks.each do |d|
+        if cookies[d.slug]
+          @drank.push(d.slug)
+        end
+      end
+    end
   end
 
   # GET /drink_types/1

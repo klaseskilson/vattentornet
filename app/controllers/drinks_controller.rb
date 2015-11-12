@@ -78,7 +78,11 @@ class DrinksController < ApplicationController
   end
 
   def cookie
-    cookies.permanent[@drink.slug] = 'yes'
+    if cookies.permanent[@drink.slug]
+      cookies.delete(@drink.slug)
+    else
+      cookies.permanent[@drink.slug] = 'yes'
+    end
     redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
