@@ -24,12 +24,12 @@ pubApp.controller('CalendarCtrl', ['$scope', '$http', function ($scope, $http) {
     for(var j=1; j<=i; j++) {
       loopDate = $scope.month.format("YYYY-MM-");
       var d = loopDate;
-      if((j-1)<10) {
-        loopDate += "0"+((j));
-        d += "0"+(j);
+      if(j < 10) {
+        loopDate += "0" + j;
+        d += "0" + j;
       }
       else {
-        loopDate += (j);
+        loopDate += j;
         d += j;
       }
       var n = bookings.length != 0 ? bookings.length : 1;
