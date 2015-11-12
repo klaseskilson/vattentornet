@@ -7,9 +7,9 @@
         <h1>
           <%= link_to drunk_path(@drink), :class =>"icon-link" do%>
               <% if @have_drank %>
-                <i class="fa fa-star" title="Du har druckit denna ölen"></i>
+                <i class="fa fa-star" title="Du har druckit denna dryck"></i>
               <% else %>
-                <i class="fa fa-star-o" title="Markera ölen som drucken"></i>
+                <i class="fa fa-star-o" title="Markera drycken som drucken"></i>
               <% end %>
           <% end %>
           <%= @drink.name if @drink.name.present? %>

@@ -45,7 +45,7 @@
 
           <h4 ng-repeat="drink in drink_type.drinks | filter: drinksSearch">
             <span>
-               <i class="fa {{drink.drank ? 'fa-star' : 'fa-star-o'}}" title="{{drink.drank ? 'Du har druckit denna ölen' : 'Markera ölen som drucken'}}"></i>
+               <i class="fa {{drink.drank ? 'fa-star' : 'fa-star-o'}}" title="{{drink.drank ? 'Du har druckit denna sort' : 'Du har inte provat denna än!'}}"></i>
             </span>
             <a href="{{drink.url}}" title="Läs mer om drycken">{{drink.name}}</a>
             <small>
