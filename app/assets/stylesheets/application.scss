@@ -3,7 +3,6 @@
  * Made by Klas Eskilson, Daniel Rönnkvist, Carl Englund
  * With inspiration from Finest Kind IPA, Hercules and lots of other tasty beers.
  *
- *= require font-awesome
  *= require_self
  */
 
@@ -12,6 +11,8 @@
 @import "bourbon";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "mixins";
 @import "fonts";
 
