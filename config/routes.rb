@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :bookings
   get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
+
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     resources :drinks, as: :drinks
     post '/drinks/changestock' => 'drinks#change_stock'
     resources :drink_types, except: [:index, :show]
+    get '/bookings/all' => 'bookings#all', :as => :all_bookings
   end
 
   resources :drink_types, path: '/sortiment', as: :stock, only: [:index, :show] do

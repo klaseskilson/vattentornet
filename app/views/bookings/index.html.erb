@@ -40,20 +40,24 @@
     <div class="row">
       <div class="main-content wide">
         <div class="admin-bookings pane">
-          <% if !@bookings.empty? %>
-            <h3 class="fat">Bokningar</h3>
+          <% if @bookings.any? %>
+            <h3 class="fat">
+              Bokningar
+              <small>
+                <%= link_to 'Visa alla', all_bookings_path %>
+              </small>
+            </h3>
           <% end %>
-          <% if !@bookings_pending.empty? %>
+          <% if @bookings_pending.any? %>
             <h6 class="fat">Obekräftade</h6>
             <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Datum</th>
                   <th>Beskrivning</th>
+                  <th>Namn</th>
                   <th>Email</th>
                   <th>Pub</th>
-                  <th>Bekräftad</th>
-                  <th>Användare</th>
                   <th colspan="2"></th>
                 </tr>
               </thead>
@@ -62,15 +66,15 @@
                 <% @bookings_pending.each do |booking| %>
                   <tr>
                     <td><%= booking.date %></td>
-                    <td><%= booking.description %></td>
+                    <td>
+                      <%= booking.description[0, 20] %>
+                      <% if booking.description.size > 20 %>
+                        ...
+                      <% end %>
+                    </td>
+                    <td><%= booking.name %></td>
                     <td><%= booking.email %></td>
                     <td><%= booking.pub ? "Ja" : "Nej" %></td>
-                    <td><%= booking.confirmed ? "Ja" : "Nej" %></td>
-                    <% if booking.user_id && User.find(booking.user_id) %>
-                      <td><%= booking.user.name %></td>
-                    <% else %>
-                      <td></td>
-                    <% end %>
                     <td><%= link_to 'Visa', booking_path(booking) %></td>
                     <td><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
                   </tr>
@@ -79,16 +83,17 @@
             </table>
           <% end %>
 
-          <% if !@bookings_approved.empty? %>
+          <% if @bookings_approved.any? %>
             <h6 class="fat">Bekräftade</h6>
             <table class="table table-hover">
               <thead>
                 <tr>
                   <th>Datum</th>
                   <th>Beskrivning</th>
+                  <th>Namn</th>
                   <th>Email</th>
+                  <th>Lgh.nr</th>
                   <th>Pub</th>
-                  <th>Bekräftad</th>
                   <th>Bekräftad av</th>
                   <th colspan="1"></th>
                 </tr>
@@ -98,15 +103,23 @@
                 <% @bookings_approved.each do |booking| %>
                   <tr>
                     <td><%= booking.date %></td>
-                    <td><%= booking.description %></td>
+                    <td>
+                      <%= booking.description[0, 20] %>
+                      <% if booking.description.size > 20 %>
+                        ...
+                      <% end %>
+                    </td>
+                    <td><%= booking.name %></td>
                     <td><%= booking.email %></td>
+                    <td><%= booking.apartment %></td>
                     <td><%= booking.pub ? "Ja" : "Nej" %></td>
-                    <td><%= booking.confirmed ? "Ja" : "Nej" %></td>
-                    <% if booking.user_id && User.find(booking.user_id) %>
-                      <td><%= booking.user.name %></td>
-                    <% else %>
-                      <td></td>
-                    <% end %>
+                    <td>
+                      <% if booking.user && booking.user.name %>
+                        <%= booking.user.name %>
+                      <% else %>
+                        ej tillg.
+                      <% end %>
+                    </td>
                     <td><%= link_to 'Visa', booking_path(booking) %></td>
                   </tr>
                 <% end %>
