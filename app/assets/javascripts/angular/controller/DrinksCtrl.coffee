@@ -6,7 +6,8 @@
   $http.get('/sortiment.json')
   .success((data) ->
     $scope.message = ""
-    angular.forEach data, (drink_type) ->
+    $scope.last_updated = data.last_updated
+    angular.forEach data.drink_list, (drink_type) ->
       $scope.drink_types.push(drink_type) unless drink_type.drinks.length is 0
     return
   )

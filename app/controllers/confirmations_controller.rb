@@ -42,8 +42,9 @@ class ConfirmationsController < Devise::ConfirmationsController
 
   def with_unconfirmed_confirmable
     original_token = params[:confirmation_token]
-    confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
-    @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
+    #as of devise 3.5.2, it doesnt store the digested token anymore
+    #confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
+    @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, original_token)
     if !@confirmable.new_record?
       @confirmable.only_if_unconfirmed {yield}
     end
