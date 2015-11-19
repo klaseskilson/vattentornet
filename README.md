@@ -1,6 +1,7 @@
 # Vattentornet
 
 [![Dependency Status](https://gemnasium.com/klaseskilson/vattentornet.svg)](https://gemnasium.com/klaseskilson/vattentornet)
+[![Build Status](https://travis-ci.org/klaseskilson/vattentornet.svg)](https://travis-ci.org/klaseskilson/vattentornet)
 
 En fin hemsida för studentpuben **[Pub Vattentornet](http://www.vattentor.net)** i Norrköping.
 

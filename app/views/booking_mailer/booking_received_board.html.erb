@@ -2,6 +2,8 @@
   <h2 style="color: #f07060;margin-top: -5px;width: 100%;">Bokningsförfrågan för den <%= @booking.date %></h2>
   <p style="width: 100%;">
     <strong>Email:</strong> <%= @booking.email %><br>
+    <strong>Namn:</strong> <%= @booking.name %><br>
+    <strong>Lägenhetsnummer:</strong> <%= @booking.apartment %><br>
     <strong>Beskrivning:</strong> <%= @booking.description %><br>
     <strong>Pub:</strong> <%= @booking.pub ? "ja" : "nej" %><br>
   </p>
