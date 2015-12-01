@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy, :confirm]
   before_action :user_confirmed, only: [:create, :update]
-  before_action :authenticate_user!, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: [:index, :month, :new, :create]
   authorize_resource
 
   # GET /admin/bookings/all
@@ -13,9 +13,16 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
-    @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
-    @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
+    if current_user && current_user.admin
+      @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
+      @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
+    end
+  end
+
+  # GET /bookings/:year/:month.json
+  def month
+    month = Date.new(params[:year].to_i, params[:month].to_i).to_time
+    @bookings = Booking.where(:date => month..month.end_of_month)
   end
 
   # GET /bookings/1

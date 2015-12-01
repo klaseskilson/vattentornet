@@ -40,14 +40,12 @@
     <div class="row">
       <div class="main-content wide">
         <div class="admin-bookings pane">
-          <% if @bookings.any? %>
-            <h3 class="fat">
-              Bokningar
-              <small>
-                <%= link_to 'Visa alla', all_bookings_path %>
-              </small>
-            </h3>
-          <% end %>
+          <h3 class="fat">
+            Bokningar
+            <small>
+              <%= link_to 'Visa alla', all_bookings_path %>
+            </small>
+          </h3>
           <% if @bookings_pending.any? %>
             <h6 class="fat">Obekräftade</h6>
             <table class="table table-hover">
@@ -125,9 +123,6 @@
                 <% end %>
               </tbody>
             </table>
-          <% end %>
-          <% if @bookings.empty? %>
-            <h4 class="fat">Inga bokningar</h4>
           <% end %>
         </div>
       </div>
