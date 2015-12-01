@@ -60,22 +60,18 @@ gem 'brewery_db', '~> 0.2.4'
 # Pagination gem
 gem 'will_paginate'
 
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Use unicorn as the app server
 gem 'unicorn'
 
-# heroku wants this to be here
-gem 'rails_12factor', group: "production"
+group :production do
+  # heroku wants this to be here
+  gem 'rails_12factor'
+  # gzip them assets
+  gem 'heroku-deflater'
+  # minify dat html
+  gem 'htmlcompressor'
+end
 
-# gzip them assets
-gem 'heroku-deflater', :group => :production
-# minify dat html
-gem 'htmlcompressor', :group => :production
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'minitest-happy'
 
 gem 'byebug', :group => :development

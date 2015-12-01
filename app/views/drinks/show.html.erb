@@ -5,6 +5,13 @@
     <div class="main-content">
       <div class="pane">
         <h1>
+          <%= link_to drunk_path(@drink), :class =>"icon-link" do%>
+              <% if @have_drank %>
+                <i class="fa fa-star" title="Du har druckit denna dryck"></i>
+              <% else %>
+                <i class="fa fa-star-o" title="Markera drycken som drucken"></i>
+              <% end %>
+          <% end %>
           <%= @drink.name if @drink.name.present? %>
           <small>
             <%= @drink.price.round if @drink.price.present? %> kr
@@ -13,6 +20,7 @@
               <%= link_to 'Redigera', edit_drink_path(@drink) %>
             <% end %>
           </small>
+
         </h1>
 
         <div class="drink-info">

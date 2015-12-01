@@ -1,8 +1,7 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, only: [:show, :edit, :update, :destroy, :change_stock]
-  before_action :authenticate_user!, except: [:show]
+  before_action :set_drink, except: [:index, :new, :create]
+  before_action :authenticate_user!, except: [:show, :cookie]
   protect_from_forgery except: [:change_stock]
-  authorize_resource
 
   # GET /sortiment/:id/dryck
   # GET /sortiment/:id/dryck.json
@@ -15,6 +14,7 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck/1.json
   def show
     @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+    @have_drank = cookies[@drink.slug]
   end
 
   # GET /sortiment/:id/dryck/new
@@ -75,6 +75,15 @@ class DrinksController < ApplicationController
         format.json { head :unprocessable_entity }
       end
     end
+  end
+
+  def cookie
+    if cookies.permanent[@drink.slug]
+      cookies.delete(@drink.slug)
+    else
+      cookies.permanent[@drink.slug] = 'yes'
+    end
+    redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
   private

@@ -4,10 +4,16 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :month, :new, :create]
   authorize_resource
 
+  # GET /admin/bookings/all
+  # GET /bookings.json
+  def all
+    @bookings = Booking.paginate(:page => params[:page], :per_page => 30).order('date DESC')
+  end
+
   # GET /bookings
   # GET /bookings.json
   def index
-    if current_user
+    if true #current_user && current_user.admin
       @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
       @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
     end
@@ -27,6 +33,10 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
+    if current_user && current_user.admin
+      @booking.public = true
+      @booking.confirmed = true
+    end
   end
 
   # GET /bookings/1/edit
@@ -48,12 +58,11 @@ class BookingsController < ApplicationController
         if weekdays.include?(((d.wday + 6) % 7).to_s)
           p = params
           p[:date] = d
-          booking = Booking.new(p)
-          booking.save
+          Booking.create(p)
         end
       end
       respond_to do |format|
-        format.html { redirect_to bookings_path, notice: "Bookings where succesfully created" }
+        format.html { redirect_to bookings_path, notice: 'Intervallbokningen har skapats.' }
         format.html { render json: { hurray: "yay" }, status: :created }
       end
     else
@@ -69,7 +78,7 @@ class BookingsController < ApplicationController
           # send mail
           BookingMailer.booking_received_booker(@booking).deliver!
           BookingMailer.booking_received_board(@booking).deliver!
-          format.html { redirect_to bookings_path, notice: 'Booking was successfully created.' }
+          format.html { redirect_to bookings_path, notice: 'Bokningen mottagen! Vi återkommer.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
           format.html { render :new }
@@ -87,9 +96,9 @@ class BookingsController < ApplicationController
         if @booking.confirmed && !@booking.public
           BookingMailer.booking_confirmed(@booking).deliver!
         end
-        format.html { redirect_to bookings_path, notice: 'Booking was successfully confirmed.' }
+        format.html { redirect_to bookings_path, notice: 'Bokningen har bekräftats!' }
       else
-        format.html { redirect_to bookings_path, notice: 'Booking could not be confirmed...' }
+        format.html { redirect_to bookings_path, notice: 'Bokningen kunde inte bekräftas. Försök igen senare.' }
       end
     end
   end
@@ -103,7 +112,7 @@ class BookingsController < ApplicationController
         if @booking.confirmed && !@booking.public
           BookingMailer.booking_confirmed(@booking).deliver!
         end
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.html { redirect_to @booking, notice: 'Bokningen har uppdaterats.' }
         format.json { render :show, status: :ok, location: @booking }
       else
         format.html { render :edit }
@@ -117,7 +126,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookings_url, notice: 'Bokningen har tagits bort.' }
       format.json { head :no_content }
     end
   end
@@ -136,6 +145,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :description, :email, :pub, :confirmed, :user_id, :public, :interval, :end_date, :weekdays=>[])
+      params.require(:booking).permit(:date, :description, :email, :pub, :name, :apartment, :confirmed, :user_id, :public, :interval, :end_date, :weekdays=>[])
     end
 end
