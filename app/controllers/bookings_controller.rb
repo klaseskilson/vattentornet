@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    if true #current_user && current_user.admin
+    if current_user && current_user.admin
       @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
       @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
     end
