@@ -69,15 +69,13 @@ Följ sedan instruktionerna i rutan som dyker upp. Vipps är det klart!
 
 Vi använder BreweryDB! För att använda detta behöver ni ha tillgång till en API-nyckel
 från dem. Gör det genom att gå in [här](http://www.brewerydb.com/developers/apps).
-Först, spara api-nyckeln som en miljövariabel i din datta! I din `.bashrc`-fil kan
-du exempelvis skriva
+Först, spara api-nyckeln som en miljövariabel i din datta! 
 
-```
-export BREWERYDB_API_KEY='NYCKEL'
-```
+Detta gör du lämpligtvis genom att först **kopiera** [`config/application.example.yml`](config/application.example.yml) till 
+`config/application.yml`. Lägg sedan in nyckeln du fått från BreweryDB på rätt plats i din nya fil.
 
 Det som är viktigt här är att den heter just `BREWERYDB_API_KEY`, eftersom det är här
-rails-appen kommer leta efter nyckeln i `config/initializers/brewery_db.rb`.
+rails-appen kommer leta efter nyckeln i [`config/initializers/brewery_db.rb`](config/initializers/brewery_db.rb).
 
 Läs mer om gemet [`brewery_db` här](https://github.com/tylerhunt/brewery_db)!
 

@@ -1,0 +1,5 @@
+# Here, you can list the environment variables that the application uses. They can later be used by calling
+# `ENV["the_key"]` anywhere in a ruby env inside the application.
+
+# brewery db api key here
+BREWERYDB_API_KEY: ''

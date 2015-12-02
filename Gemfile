@@ -70,6 +70,8 @@ group :development do
   gem 'web-console', '~> 2.0'
   # replaces the standard Rails error page with a much better and more useful error page
   gem 'better_errors'
+  # handle secrets secretly and simple
+  gem 'figaro'
 end
 
 group :production do
