@@ -1,6 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
+# Drink data
 DrinkType.create(name: 'Lager')
 DrinkType.create(name: 'IPA')
 DrinkType.create(name: 'DIPA')
@@ -18,3 +19,7 @@ Drink.create(name: "test-DIPA #1", brewery:"Toilet Brewery", country: 'Sweden',
 Drink.create(name: "test-Stout #1", brewery:"Toilet Brewery", country: 'Sweden',
              percentage: 5.6, price: 10, instock: true, description: "god Stout",
              drink_type_id: DrinkType.find_by(:name => 'Stout').id )
+
+# Pages that should exists (contact and about)
+Page.find_or_initialize_by(slug: 'om-puben').update(title: 'Om puben', text: 'Beer ipsum')
+Page.find_or_initialize_by(slug: 'kontakt').update(title: 'Kontakt', text: 'Beer ipsum')
