@@ -9,7 +9,7 @@
 		<%= link_to 'Redigera', edit_news_path(@news) %>
     <%= link_to 'Tillbaka', news_index_path %>
 		<% end %>
-        <h5>Skapad <%= distance_of_time_in_words_to_now(@news.created_at) %> av <%= @news.user.name if @news.user %></h5>
+        <h5><%= l @news.created_at, format: '%e %B %Y' %> av <%= @news.user.name if @news.user %></h5>
 
         <div class="page-content news-content">
           <%= GitHub::Markdown.render_gfm(@news.body).html_safe %>
