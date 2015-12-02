@@ -41,7 +41,10 @@
       <% @latest_post.each do |single_post| %>
         <div class="pane">
           <h3><%= link_to single_post.title, public_news_path(single_post) %></h3>
-          <h5><%= l single_post.created_at, format: '%e %B %Y' %> av <%= single_post.user.name %></h5>
+          <h5>
+            <%= l single_post.created_at, format: (single_post.created_at < 2.days.ago ? '%e %B %Y' : :long) %>
+            <%= "av #{single_post.user.name}" if single_post.user %>
+          </h5>
           <div class="page-content news-content">
             <%= GitHub::Markdown.render_gfm(single_post.body).html_safe %>
           </div>
