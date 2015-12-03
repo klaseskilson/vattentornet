@@ -55,8 +55,8 @@ gem 'brewery_db', '~> 0.2.4'
 # Pagination gem
 gem 'will_paginate'
 
-# Use unicorn as the app server
-gem 'unicorn'
+# Use Puma as the app server
+gem 'puma'
 
 gem 'minitest-happy'
 
