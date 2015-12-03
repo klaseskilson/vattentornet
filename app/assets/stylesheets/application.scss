@@ -29,7 +29,7 @@ html, body {
 }
 
 body {
-  background-image: url('/images/background.jpg');
+  background-image: image-url("background.jpg");
   background-repeat: repeat-x;
   padding-top: 80px;
 }
