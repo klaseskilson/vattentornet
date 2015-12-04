@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:show, :cookie]
+  before_action :set_drink, except: [:get_beer_info, :index, :new, :create]
+  before_action :authenticate_user!, except: [:get_beer_info, :show, :cookie]
   protect_from_forgery except: [:change_stock]
 
   # GET /sortiment/:id/dryck
@@ -86,6 +86,14 @@ class DrinksController < ApplicationController
     redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
+  #get the five first hits from the breweryDB
+  def get_beer_info
+    beer = params[:id]
+    @beer_info = BREWERY.search.beers(q: beer).first(5)
+
+    render json: @beer_info
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drink
@@ -97,3 +105,4 @@ class DrinksController < ApplicationController
       params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
     end
 end
+
