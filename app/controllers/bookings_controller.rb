@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  # GET /bookings/:year/:month.json
+  # GET /bookings/month/:year/:month.json
   def month
     month = Date.new(params[:year].to_i, params[:month].to_i).to_time
     @bookings = Booking.where(:date => month..month.end_of_month)

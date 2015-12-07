@@ -3,7 +3,7 @@ pubApp.controller 'CalendarCtrl', ['$scope', '$http', ($scope, $http)->
   $scope.days = []
 
   fetchMonth = ->
-    $http.get "/bookings/#{$scope.month.year()}/#{$scope.month.month()+1}.json"
+    $http.get "/bookings/month/#{$scope.month.year()}/#{$scope.month.month()+1}.json"
       .then (response)->
         $scope.days = makeArray response.data
 
