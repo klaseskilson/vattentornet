@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, except: [:get_beer_info, :index, :new, :create]
-  before_action :authenticate_user!, except: [:get_beer_info, :show, :cookie]
+  before_action :set_drink, except: [:get_db_list, :index, :new, :create]
+  before_action :authenticate_user!, except: [:get_db_list, :show, :cookie]
   protect_from_forgery except: [:change_stock]
 
   # GET /sortiment/:id/dryck
@@ -87,11 +87,15 @@ class DrinksController < ApplicationController
   end
 
   #get the five first hits from the breweryDB
-  def get_beer_info
-    beer = params[:id]
-    @beer_info = BREWERY.search.beers(q: beer).first(5)
-
-    render json: @beer_info
+  def get_db_list
+    beername = params[:name]
+    @beer_info = BREWERY.search.beers(q: beername, withBreweries: 'Y').first(10)
+    @beers_with_breweries = []
+    @beerlist = @beer_info.map do |b|
+      {:id => b.id, :name => b.name, :brewery => b.breweries[0].name,
+       :abv => b.abv }
+    end
+    render json: @beerlist
   end
 
   private
