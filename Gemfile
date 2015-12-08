@@ -60,7 +60,11 @@ gem 'will_paginate'
 # Use Puma as the app server
 gem 'puma'
 
+# happy testing
 gem 'minitest-happy'
+
+# the simplest way to get direct s3 uploads
+gem 's3_direct_upload'
 
 group :development do
   gem 'byebug'

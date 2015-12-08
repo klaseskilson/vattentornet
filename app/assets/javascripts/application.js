@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require angular
+//= require s3_direct_upload
 //= require moment
 //= require moment/sv.js
 //= require main
