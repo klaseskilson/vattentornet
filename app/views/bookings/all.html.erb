@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="main-content wide">
+    <div class="admin-bookings pane">
+      <h3 class="fat">Alla bokningar</h3>
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Beskrivning</th>
+          <th>Namn</th>
+          <th title="Lägenhetsnummer">Lgh.nr</th>
+          <th>Pub</th>
+          <th>Publik</th>
+          <th title="Bekräftad">Bekr.</th>
+          <th title="Bekräftad av">Bekr. av</th>
+          <th colspan="1"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.date %></td>
+              <td>
+                <%= booking.description[0, 20] %>
+                <% if booking.description.size > 20 %>
+                    ...
+                <% end %>
+              </td>
+              <td><%= booking.name %></td>
+              <td><%= booking.apartment %></td>
+              <td><%= booking.pub ? "Ja" : "Nej" %></td>
+              <td><%= booking.public ? "Ja" : "Nej" %></td>
+              <td><%= booking.confirmed ? "Ja" : "Nej" %></td>
+              <td>
+                <% if booking.user && booking.user.name %>
+                    <%= booking.user.name %>
+                <% else %>
+                    ej tillg.
+                <% end %>
+              </td>
+              <td><%= link_to 'Visa', booking_path(booking) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% if @bookings.total_pages > 1 %>
+    <div class="main-content wide">
+      <div class="pane">
+        <% if@bookings.total_pages == @bookings.current_page %>
+            <%= will_paginate @bookings, :next_label => '' %>
+        <% else %>
+            <%= will_paginate @bookings %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

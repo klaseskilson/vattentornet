@@ -1,4 +1,5 @@
-json.array!(@drink_types) do |drink_type|
+json.last_updated @updated
+json.drink_list(@drink_types) do |drink_type|
   json.extract! drink_type, :id, :name
   json.url stock_url(drink_type)
   json.admin_url edit_drink_type_url(drink_type)
@@ -7,5 +8,8 @@ json.array!(@drink_types) do |drink_type|
     json.name drink.name
     json.country drink.country
     json.price drink.price.to_i
+    if @drank.include?(drink.slug)
+      json.drank true
+    end
   end
 end

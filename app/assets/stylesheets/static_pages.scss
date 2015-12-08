@@ -11,7 +11,7 @@
 
   @for $i from 0 through 8 {
     &.background-#{$i} {
-      background-image: url('/images/home-#{$i}.jpg');
+      background-image: image-url("home/home-#{$i}.jpg");
     }
   }
 

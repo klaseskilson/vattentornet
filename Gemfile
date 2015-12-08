@@ -25,9 +25,6 @@ gem 'cancan'
 # nice, pretty urls
 gem 'friendly_id', '~> 5.0.0'
 
-# Opens mails in browser
-gem 'letter_opener', :group => :development
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -48,8 +45,6 @@ gem 'bourbon'
 
 gem 'autoprefixer-rails'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 # render pages and news with github flavored markdown
 gem 'github-markdown', '~> 0.6.7'
@@ -60,23 +55,30 @@ gem 'brewery_db', '~> 0.2.4'
 # Pagination gem
 gem 'will_paginate'
 
+# Use Puma as the app server
+gem 'puma'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'minitest-happy'
 
-# Use unicorn as the app server
-gem 'unicorn'
+group :development do
+  gem 'byebug'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  # Opens mails in browser
+  gem 'letter_opener'
+  # add a rails console to the error pages
+  gem 'web-console', '~> 2.0'
+  # replaces the standard Rails error page with a much better and more useful error page
+  gem 'better_errors'
+  # handle secrets secretly and simple
+  gem 'figaro'
+end
 
-# heroku wants this to be here
-gem 'rails_12factor', group: "production"
-
-# gzip them assets
-gem 'heroku-deflater', :group => :production
-# minify dat html
-gem 'htmlcompressor', :group => :production
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :production do
+  # heroku wants this to be here
+  gem 'rails_12factor'
+  # gzip them assets
+  gem 'heroku-deflater'
+  # minify dat html
+  gem 'htmlcompressor'
+end

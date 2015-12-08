@@ -9,7 +9,7 @@ class Ability
     else
       can :read, Drink
       can :read, DrinkType
-      can [:read, :create], Booking
+      can [:read, :create, :month], Booking
       can :read, Page
       can :read, News
       can :update, User do |user|
