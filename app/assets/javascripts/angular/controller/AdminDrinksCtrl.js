@@ -30,6 +30,7 @@ pubApp.controller('AdminAddDrinksCtrl', ['$scope', '$http', '$timeout', 'beerinf
     $scope.ABV = parseFloat(item.abv);
     $scope.brewery = item.brewery;
     $scope.beer = item.name;
+    $scope.beerid = item.id;
   }
   $scope.getinfo = function(drinkname) {
     var delayInMs = 1500;
