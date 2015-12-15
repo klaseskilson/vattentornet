@@ -7,6 +7,7 @@ ruby '2.2.3'
 gem 'rails', '4.2.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -18,7 +19,6 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # User handling
 gem 'devise', '~> 3'
-
 # User level authentication
 gem 'cancan'
 
@@ -29,6 +29,10 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+# make sure events jquery rely on works
+gem 'jquery-turbolinks'
+# add loading indicator to turbolinks events
+gem 'nprogress-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -38,11 +42,13 @@ gem 'angularjs-rails'
 # moment.js
 gem 'momentjs-rails'
 
-# front end stuff
+# css related stuff
 gem 'bootstrap-sass', '~> 3.2.0.2'
+# icons!
 gem 'font-awesome-sass'
+# neat toolkit for bourbon
 gem 'bourbon'
-
+# add vendor prefixes without hassle
 gem 'autoprefixer-rails'
 
 # Add new relic apm
