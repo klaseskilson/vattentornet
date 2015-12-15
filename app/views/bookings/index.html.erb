@@ -52,10 +52,10 @@
               <thead>
                 <tr>
                   <th>Datum</th>
-                  <th>Beskrivning</th>
+                  <th class="hidden-xs">Beskrivning</th>
                   <th>Namn</th>
-                  <th>Email</th>
-                  <th>Pub</th>
+                  <th class="hidden-xs">Email</th>
+                  <th class="hidden-xs">Pub</th>
                   <th colspan="2"></th>
                 </tr>
               </thead>
@@ -64,17 +64,17 @@
                 <% @bookings_pending.each do |booking| %>
                   <tr>
                     <td><%= booking.date %></td>
-                    <td>
+                    <td class="hidden-xs">
                       <%= booking.description[0, 20] %>
                       <% if booking.description.size > 20 %>
                         ...
                       <% end %>
                     </td>
-                    <td><%= booking.name %></td>
-                    <td><%= booking.email %></td>
-                    <td><%= booking.pub ? "Ja" : "Nej" %></td>
+                    <td ><%= booking.name %></td>
+                    <td class="hidden-xs"><%= booking.email %></td>
+                    <td class="hidden-xs"><%= booking.pub ? "Ja" : "Nej" %></td>
                     <td><%= link_to 'Visa', booking_path(booking) %></td>
-                    <td><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
+                    <td class="hidden-xs"><%= link_to 'Bekräfta', confirm_booking_path(booking) %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -129,3 +129,4 @@
     </div>
   <% end %>
 </div>
+
