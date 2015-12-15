@@ -87,12 +87,12 @@
               <thead>
                 <tr>
                   <th>Datum</th>
-                  <th>Beskrivning</th>
+                  <th class="hidden-xs">Beskrivning</th>
                   <th>Namn</th>
-                  <th>Email</th>
-                  <th>Lgh.nr</th>
-                  <th>Pub</th>
-                  <th>Bekräftad av</th>
+                  <th class="hidden-xs">Email</th>
+                  <th class="hidden-xs">Lgh.nr</th>
+                  <th class="hidden-xs">Pub</th>
+                  <th class="hidden-xs">Bekräftad av</th>
                   <th colspan="1"></th>
                 </tr>
               </thead>
@@ -101,17 +101,17 @@
                 <% @bookings_approved.each do |booking| %>
                   <tr>
                     <td><%= booking.date %></td>
-                    <td>
+                    <td class="hidden-xs">
                       <%= booking.description[0, 20] %>
                       <% if booking.description.size > 20 %>
                         ...
                       <% end %>
                     </td>
                     <td><%= booking.name %></td>
-                    <td><%= booking.email %></td>
-                    <td><%= booking.apartment %></td>
-                    <td><%= booking.pub ? "Ja" : "Nej" %></td>
-                    <td>
+                    <td class="hidden-xs"><%= booking.email %></td>
+                    <td class="hidden-xs"><%= booking.apartment %></td>
+                    <td class="hidden-xs"><%= booking.pub ? "Ja" : "Nej" %></td>
+                    <td class="hidden-xs">
                       <% if booking.user && booking.user.name %>
                         <%= booking.user.name %>
                       <% else %>
