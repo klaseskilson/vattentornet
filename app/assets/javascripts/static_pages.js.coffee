@@ -1,7 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 jQuery ->
   $(window).on "scroll", ->
-    $(".static_pages.home #main-header").toggleClass "transparent", $(window).scrollTop() < ($("#big-img .wall-logo").offset().top) * .625
+    logo_pos = $("#big-img .wall-logo").offset()
+    # ensure that the big logo exists on current page before assuming so
+    toggle_scroll = logo_pos && $(window).scrollTop() < logo_pos.top * .625
+    $(".static_pages.home #main-header").toggleClass "transparent", toggle_scroll
