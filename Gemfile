@@ -45,6 +45,8 @@ gem 'bourbon'
 
 gem 'autoprefixer-rails'
 
+# Add new relic apm
+gem 'newrelic_rpm'
 
 # render pages and news with github flavored markdown
 gem 'github-markdown', '~> 0.6.7'

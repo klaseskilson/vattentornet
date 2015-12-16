@@ -7,6 +7,7 @@ En fin hemsida för studentpuben **[Pub Vattentornet](http://www.vattentor.net)*
 
 Vi som pillar på denna sidan är:
 * [Carl Englund](https://twitter.com/Englundi)
+* [Erik Sandrén](https://twitter.com/tistatos_)
 * [Klas Eskilson](https://twitter.com/Eskilicious)
 * [Daniel Rönnkvist](https://twitter.com/trevligheten)
 
