@@ -1,2 +1,3 @@
-@pubApp.controller 'AdminBookingsCtrl', ($scope) ->
+@pubApp.controller 'AdminBookingsCtrl', ['$scope', ($scope) ->
   return
+  ]
