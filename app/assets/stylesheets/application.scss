@@ -3,6 +3,8 @@
  * Made by Klas Eskilson, Daniel Rönnkvist, Carl Englund
  * With inspiration from Finest Kind IPA, Hercules and lots of other tasty beers.
  *
+ *= require nprogress
+ *= require nprogress-bootstrap
  *= require_self
  */
 
@@ -16,7 +18,6 @@
 @import "mixins";
 @import "fonts";
 
-@import "pages";
 @import "news";
 @import "bookings";
 @import "static_pages";
