@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:show, :cookie]
+  before_action :set_drink, except: [:get_db_list, :index, :new, :create]
+  before_action :authenticate_user!, except: [:get_db_list, :show, :cookie]
   protect_from_forgery except: [:change_stock]
 
   # GET /sortiment/:id/dryck
@@ -86,6 +86,18 @@ class DrinksController < ApplicationController
     redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
+  #get the ten first hits from the breweryDB
+  def get_db_list
+    beername = params[:name]
+    @beer_info = BREWERY.search.beers(q: beername, withBreweries: 'Y').first(10)
+    @beers_with_breweries = []
+    @beerlist = @beer_info.map do |b|
+      {:labelurl => (b.labels== nil ? "" : b.labels.large), :name => b.name, :brewery => b.breweries[0].name,
+       :abv => b.abv }
+    end
+    render json: @beerlist
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drink
@@ -94,6 +106,7 @@ class DrinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
+      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label_url)
     end
 end
+

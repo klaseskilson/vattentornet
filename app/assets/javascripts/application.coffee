@@ -17,7 +17,9 @@
 #= require nprogress-turbolinks
 #= require bootstrap-sprockets
 #= require angular
+#= require angular-ui-bootstrap-tpls
 #= require moment
 #= require moment/sv.js
 #= require main
 #= require_tree .
+
