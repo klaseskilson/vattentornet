@@ -13,10 +13,11 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'nprogress';
+@import 'nprogress-bootstrap';
+
 @import "mixins";
 @import "fonts";
-
-@import "pages";
 @import "news";
 @import "bookings";
 @import "static_pages";

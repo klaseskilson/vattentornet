@@ -11,8 +11,11 @@
 # about supported directives.
 #
 #= require jquery
-#= require bootstrap-sprockets
 #= require jquery_ujs
+#= require jquery.turbolinks
+#= require nprogress
+#= require nprogress-turbolinks
+#= require bootstrap-sprockets
 #= require angular
 #= require moment
 #= require moment/sv.js
