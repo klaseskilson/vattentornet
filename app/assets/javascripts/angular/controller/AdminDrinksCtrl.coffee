@@ -26,7 +26,6 @@ pubApp.controller 'AdminAddDrinksCtrl', [
     timeoutPromise = undefined
 
     $scope.fillform = (item, model, label) ->
-      console.log item
       $scope.beer = item.name
       $scope.ABV = parseFloat(item.abv)
       $scope.brewery = item.brewery
