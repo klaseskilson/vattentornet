@@ -8,3 +8,7 @@ aws = {
 }
 Refile.cache = Refile::S3.new(prefix: "cache", **aws)
 Refile.store = Refile::S3.new(prefix: "store", **aws)
+
+unless Rails.env.development?
+  Refile.cdn_host = ENV['CDN_HOST']
+end
