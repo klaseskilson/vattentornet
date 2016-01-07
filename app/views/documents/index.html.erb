@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="main-content wide">
+      <div class="pane">
+        <% @documents.each do |document| %>
+          <h3><%= document.name %></h3>
+          <%= link_to "länk", attachment_url(document, :document, format: "pdf"), target: "_blank" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

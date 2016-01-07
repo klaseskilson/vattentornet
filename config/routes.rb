@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :bookings
+  resources :documents, only: [:index, :new, :create]
   get '/bookings/month/:year/:month' => 'bookings#month'
   get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
