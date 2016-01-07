@@ -51,6 +51,8 @@ gem 'bourbon'
 # add vendor prefixes without hassle
 gem 'autoprefixer-rails'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Add new relic apm
 gem 'newrelic_rpm'
 
@@ -70,6 +72,7 @@ gem 'minitest-happy'
 
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
+gem 'refile-s3'
 
 group :development do
   gem 'byebug'
