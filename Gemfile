@@ -68,8 +68,10 @@ gem 'will_paginate'
 # Use Puma as the app server
 gem 'puma'
 
+# happy testing
 gem 'minitest-happy'
 
+# Simple file upload
 gem 'refile', require: 'refile/rails'
 gem 'refile-mini_magick'
 gem 'refile-s3'
