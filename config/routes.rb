@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :bookings
-  resources :documents, only: [:index, :new, :create]
   get '/bookings/month/:year/:month' => 'bookings#month'
   get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
     resources :pages
     resources :news, except: [:show]
     resources :drinks, as: :drinks
+    resources :documents, only: [:index, :new, :create, :destroy]
     post '/drinks/changestock' => 'drinks#change_stock'
     resources :drink_types, except: [:index, :show]
     get '/bookings/all' => 'bookings#all', :as => :all_bookings

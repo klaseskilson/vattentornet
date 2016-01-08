@@ -20,6 +20,11 @@
           <%= GitHub::Markdown.render_gfm(@page.text).html_safe %>
         </div>
       </div>
+      <% if @page.slug == 'om-puben' %>
+        <div class="pane">
+          <%= render 'documents/index' %>
+        </div>
+      <% end %>
     </div>
     <div class="sidebar">
       <%= render 'layouts/sidebar' %>

@@ -1,5 +1,20 @@
-<%= form_for @document do |form| %>
-  <%= form.text_field :name %>
-  <%= form.attachment_field :document %>
-  <%= form.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="main-content">
+      <div class="pane">
+        <h1>Nytt dokument</h1>
+        <%= form_for @document do |form| %>
+          <p>
+            Namn:
+            <%= form.text_field :name %>
+          </p>
+          <p>
+            <%= form.attachment_field :document, accept: 'pdf' %>
+            <small>Endast pdf.</small>
+          </p>
+          <%= form.submit "Skapa dokument" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

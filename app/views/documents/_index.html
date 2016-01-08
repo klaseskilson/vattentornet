@@ -1,0 +1,20 @@
+<h2>
+  Dokument
+  <% if user_signed_in_and_admin? %>
+    <small>
+      Admin:
+      <%= link_to "Ladda upp nytt", new_document_path %>
+    </small>
+  <% end %>
+</h2>
+<% @documents.each do |document| %>
+  <h3>
+    <%= document.name %>
+    <small>
+      <%= link_to(document, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort detta dokument?' }) do %>
+        <i class="fa fa-trash"></i>
+      <%end%>
+    </small>
+  </h3>
+  <%= link_to "länk", attachment_url(document, :document, format: "pdf"), target: "_blank" %>
+<% end %>
