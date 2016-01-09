@@ -1,6 +1,7 @@
 class Drink < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
+  attachment :label
 
   belongs_to :drink_type
   validates :drink_type, presence: :true
