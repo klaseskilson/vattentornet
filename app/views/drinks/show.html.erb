@@ -30,11 +30,6 @@
             <% else %>
               <%= image_tag @api_info.labels.large, alt: 'Etikett!' if @api_info and @api_info.labels %>
             <% end %>
-
-            <% if @drink.description.present? and (!@api_info or !@api_info.labels) %>
-              <h5 class="fat text-left">Beskrivning</h5>
-              <%= GitHub::Markdown.render_gfm(@drink.description).html_safe%>
-            <% end %>
           </div>
           <div class="info">
             <div class="point">
@@ -82,7 +77,7 @@
               </div>
             </div>
 
-            <% if @drink.description.present? and @api_info and @api_info.labels %>
+            <% if @drink.description.present? and (!@api_info or !@api_info.labels) %>
               <h5 class="fat text-left">Beskrivning</h5>
               <%= GitHub::Markdown.render_gfm(@drink.description).html_safe%>
             <% end %>
