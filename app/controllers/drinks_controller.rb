@@ -1,5 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_drink, except: [:index, :new, :create]
+  before_action :set_api_info, only: [:show, :edit]
   before_action :authenticate_user!, except: [:show, :cookie]
   protect_from_forgery except: [:change_stock]
 
@@ -13,7 +14,6 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck/1
   # GET /sortiment/:id/dryck/1.json
   def show
-    @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
     @have_drank = cookies[@drink.slug]
   end
 
@@ -92,8 +92,12 @@ class DrinksController < ApplicationController
       @drink = Drink.friendly.find(params[:id])
     end
 
+    def set_api_info
+      @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
+      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label)
     end
 end

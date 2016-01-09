@@ -49,6 +49,10 @@
           <%= f.label "Pris (kr)" %><br>
           <%= f.number_field :price, placeholder: "Tex 12...", step: "any", min: 0 %>
         </div>
+        <div class="col-sm-4">
+          <%= f.label "Etikett" %><br>
+          <%= f.attachment_field :label, content_type: ["image/jpeg", "image/png", "image/gif"] %>
+        </div>
       </div>
 
       <div class="row">
@@ -74,5 +78,15 @@
         <%= link_to 'Alla drycker', drinks_path %>
       </p>
     </div>
+    <% if @drink.persisted? %>
+      <div class="pane">
+        <h4 class="fat">Etikett</h4>
+        <% if @drink.label %>
+          <%= image_tag attachment_url(@drink, :label, :fill, 300, 300, format: "jpg", fallback: "default.png"), class: 'img-responsive' %>
+        <% else %>
+          <%= image_tag @api_info.labels.large, alt: 'Etikett!', class: 'img-responsive' if @api_info and @api_info.labels %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
