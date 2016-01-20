@@ -80,7 +80,7 @@
                 <td><a ng-href="{{ drink.edit_drink_url }}">Edit</a></td>
               <% end %>
             </tr>
-          <tr ng-repeat="drink in drinks | filter:{instock: false} ">
+          <tr ng-repeat="drink in drinks | orderBy:sortType:sortReverse | filter:{instock: false} ">
               <td>{{ drink.name }}</td>
               <td>{{ drink.brewery }}</td>
               <td>{{ drink.country }}</td>
