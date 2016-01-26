@@ -55,9 +55,6 @@
                   <span ng-show="sortType == 'drink_type' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </th>
-              <th class="hidden-xs hidden-sm">
-                Beskrivning
-              </th>
               <th>
                 I lager
               </th>
@@ -73,7 +70,6 @@
               <td>{{ drink.percentage }}</td>
               <td>{{ drink.price }}</td>
               <td>{{ drink.drink_type }}</td>
-              <td class="hidden-xs hidden-sm">{{ drink.description }}</td>
               <td><input type="checkbox" ng-checked="drink.instock" ng-click="changeStock(drink)"></td>
               <td><a ng-href="{{ drink.show_url }}">Show</a></td>
               <% if user_signed_in_and_admin? %>
@@ -87,7 +83,6 @@
               <td>{{ drink.percentage }}</td>
               <td>{{ drink.price }}</td>
               <td>{{ drink.drink_type }}</td>
-              <td class="hidden-xs hidden-sm">{{ drink.description }}</td>
               <td><input type="checkbox" ng-checked="drink.instock" ng-click="changeStock(drink)"></td>
               <td><a ng-href="{{ drink.show_url }}">Show</a></td>
               <% if user_signed_in_and_admin? %>
