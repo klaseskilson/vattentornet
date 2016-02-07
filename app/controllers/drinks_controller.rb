@@ -83,7 +83,8 @@ class DrinksController < ApplicationController
     else
       cookies.permanent[@drink.slug] = 'yes'
     end
-    redirect_to stock_drink_path(@drink.drink_type, @drink)
+    redirect_to(:back)
+    #redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
   private
@@ -97,3 +98,4 @@ class DrinksController < ApplicationController
       params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock)
     end
 end
+

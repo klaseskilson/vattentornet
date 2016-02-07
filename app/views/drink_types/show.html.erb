@@ -15,11 +15,13 @@
         </p>
         <% @drinks.each do |drink| %>
           <h4>
-          <% if @drank.include?(drink.slug)%>
-            <i class="fa fa-check-square-o" title="Du har druckit denna dryck"></i>
-          <% else %>
-            <i class="fa fa-square-o" title="Du har inte druckit denna dryck"></i>
-          <% end %>
+            <%= link_to drunk_path(drink), :class =>"icon-link" do%>
+              <% if @drank.include?(drink.slug)%>
+                <i class="fa fa-check-square-o" title="Du har druckit denna dryck"></i>
+              <% else %>
+                <i class="fa fa-square-o" title="Du har inte druckit denna dryck"></i>
+              <% end %>
+            <%end%>
           <%= link_to drink.name, stock_drink_path(@drink_type, drink), title: "Läs mer om drycken" %>
           <%= icon('beer', 'Finns i lager!', title: 'I lager!') if drink.instock? %>
           <small>
