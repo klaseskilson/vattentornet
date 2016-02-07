@@ -16,9 +16,9 @@
         <% @drinks.each do |drink| %>
           <h4>
           <% if @drank.include?(drink.slug)%>
-            <i class="fa fa-star" title="Du har druckit denna dryck"></i>
+            <i class="fa fa-check-square-o" title="Du har druckit denna dryck"></i>
           <% else %>
-            <i class="fa fa-star-o" title="Du har inte druckit denna dryck"></i>
+            <i class="fa fa-square-o" title="Du har inte druckit denna dryck"></i>
           <% end %>
           <%= link_to drink.name, stock_drink_path(@drink_type, drink), title: "Läs mer om drycken" %>
           <%= icon('beer', 'Finns i lager!', title: 'I lager!') if drink.instock? %>
@@ -34,3 +34,4 @@
     </div>
   </div>
 </div>
+
