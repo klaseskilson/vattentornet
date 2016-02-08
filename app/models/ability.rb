@@ -7,6 +7,9 @@ class Ability
     if user.admin?
       can :manage, :all # Admins can do everything
     else
+      if user.persisted?
+        can [:update, :read], Drink
+      end
       can :read, Drink
       can :read, DrinkType
       can [:read, :create, :month], Booking
