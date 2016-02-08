@@ -12,8 +12,8 @@ class Ability
       can [:read, :create, :month], Booking
       can :read, Page
       can :read, News
-      can :update, User do |user|
-        user.try(:user) == user
+      can :update, User do |u|
+        u.try(:user) == user
       end
     end
   end
