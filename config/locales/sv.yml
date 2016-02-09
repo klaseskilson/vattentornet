@@ -1,4 +1,12 @@
 sv:
+  activerecord:
+    attributes:
+      booking:
+        name: namnet
+        date: datumet
+        apartment: lägenhetsnummret
+        description: beskrivningen
+        email: email-adressen
   will_paginate:
     next_label: Nästa &#8594;
     page_entries_info:

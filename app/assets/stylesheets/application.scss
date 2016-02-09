@@ -217,6 +217,10 @@ button, input[type="submit"] {
   }
 }
 
+.field_with_errors {
+  @extend .has-warning;
+}
+
 // misc
 .beige-color {
   color: $beige;
@@ -239,6 +243,11 @@ button, input[type="submit"] {
     text-align: right;
   }
 }
+
 .notices {
   background-color: $beige;
+
+  body > & {
+    padding: $section-margins / 2;
+  }
 }
