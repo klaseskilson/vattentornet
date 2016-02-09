@@ -33,13 +33,14 @@
     <div class="card">
       <div class="pane">
         <h3 class="fat">
-          <%= @new_users %> användare
+          <%= pluralize @unconfirmed_bookings, 'bokning', 'bokningar' %>
         </h3>
         <p class="text-center">
-          har ännu inte bekräftat sitt konto
+          har ännu inte bekräftats
         </p>
         <p class="text-center">
-          <%= link_to "Ny användare", new_user_registration_path %>, <%= link_to "alla användare", users_path %>
+          <%= link_to 'Visa bokningar', bookings_path(anchor: 'bookings') %>,
+          <%= link_to 'ny bokning', new_booking_path %>
         </p>
       </div>
     </div>
