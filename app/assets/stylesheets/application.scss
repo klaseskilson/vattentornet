@@ -221,6 +221,11 @@ button, input[type="submit"] {
   @extend .has-warning;
 }
 
+input:invalid, textarea:invalid {
+  border-color: $red;
+  box-shadow: inset 0 0 4px rgba($red, .6);
+}
+
 // misc
 .beige-color {
   color: $beige;
