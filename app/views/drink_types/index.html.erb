@@ -4,7 +4,7 @@
       <div class="pane">
         <h1>
           Vårt sortiment
-          <% if user_signed_in_and_admin? %>
+          <% if user_signed_in? %>
             <small>
               Admin:
               <%= link_to "Drycker", drinks_path %>
