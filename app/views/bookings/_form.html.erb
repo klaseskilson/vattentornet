@@ -22,31 +22,31 @@
 
     <div class="row">
       <div class="col-sm-4">
-        <%= f.label "Mail" %><br>
+        <%= f.label "Mail *" %><br>
         <%= f.email_field :email, placeholder: "Din epostadress", required: true, autofocus: true %>
       </div>
       <div class="col-sm-4">
-        <%= f.label "Ditt namn" %><br>
+        <%= f.label "Ditt namn *" %><br>
         <%= f.text_field :name, required: !@booking.public, placeholder: 'För- och efternamn' %>
       </div>
       <div class="col-sm-4">
         <%= f.label "Lägenhetsnummer", title: 'Ditt lägenhetsnummer' %><br>
-        <%= f.text_field :apartment, required: !@booking.public, placeholder: 'Ditt lägenhetsnummer' %>
+        <%= f.text_field :apartment, placeholder: 'Ditt lägenhetsnummer' %>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <%= f.label "Datum" %><br>
+        <%= f.label "Datum *" %><br>
         <%= f.date_field :date, order: [:day, :month, :year], required: true, placeholder: 'åååå-mm-dd' %>
       </div>
       <div class="col-xs-6">
-        <%= f.label "Boka puben?" %><br>
+        <%= f.label "Boka puben?" %> <%= help('Kryssa i denna om du vill ha pub-personal, till exempel för sektionspub.') %><br>
         <%= f.check_box :pub %> Ja!
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <%= f.label "Beskrivning" %><br>
+        <%= f.label "Beskrivning *" %><br>
         <%= f.text_area :description, rows: 4, placeholder: "Vad skall du göra? Hur många är ni? Vilka är ni?", required: true %>
       </div>
     </div>
