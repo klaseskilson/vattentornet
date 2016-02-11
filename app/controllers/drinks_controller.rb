@@ -1,6 +1,7 @@
 class DrinksController < ApplicationController
   before_action :set_drink, except: [:get_db_list, :index, :new, :create]
   before_action :authenticate_user!, except: [:get_db_list, :show, :cookie]
+  before_action :check_admin, only: [:edit, :update]
   protect_from_forgery except: [:change_stock]
 
   # GET /sortiment/:id/dryck
@@ -99,6 +100,10 @@ class DrinksController < ApplicationController
   end
 
   private
+    def check_admin
+      redirect_to admin_dashboard_path, alert: 'Du har inte åtkomst till den sidan.' unless current_user.admin?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_drink
       @drink = Drink.friendly.find(params[:id])

@@ -77,7 +77,7 @@
       </p>
       <p>
         <% if @drink.persisted? %>
-          <%= link_to 'Visa drycken', drink_path(@drink.drink_type, @drink) if @drink.id? %> <br>
+          <%= link_to 'Visa drycken', stock_drink_path(@drink.drink_type, @drink) if @drink.id? %> <br>
           <%= link_to 'Ta bort', @drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' }  %><br>
         <% end %>
         <%= link_to 'Alla drycker', drinks_path %>

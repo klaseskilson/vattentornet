@@ -1,6 +1,8 @@
 pubApp.controller 'AdminDrinksCtrl', ['$scope', '$http', ($scope, $http) ->
   $http.get('/admin/drinks.json').success (drinks) ->
     $scope.drinks = drinks
+    $scope.sortType = 'name'
+    $scope.sortReverse = false
 
   $scope.changeStock = (drink) ->
     $http.post('/admin/drinks/changestock.json', id: drink.id)
@@ -34,7 +36,7 @@ pubApp.controller 'AdminAddDrinksCtrl', [
       return
 
     $scope.getinfo = (drinkname) ->
-      delayInMs = 1500
+      delayInMs = 550
       $timeout.cancel timeoutPromise
       timeoutPromise = $timeout((->
         beerinfo.getSearchResult(drinkname).then (resp) ->
