@@ -14,9 +14,7 @@
           <li><%= link_to "Kontakt", pretty_page_path(:id => 'kontakt') %></li>
           <li><%= link_to "Sortiment", stock_index_path %></li>
           <% if user_signed_in? %>
-            <% if user_admin? %>
-              <li><%= link_to "Admin", "/admin" %></li>
-            <% end %>
+            <li><%= link_to "Admin", admin_dashboard_path %></li>
             <li><%= link_to 'Redigera min profil', edit_user_registration_path %></li>
             <li><%= link_to 'Logga ut', destroy_user_session_path, method: :delete %></li>
           <% else %>
