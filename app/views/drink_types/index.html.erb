@@ -42,8 +42,12 @@
               <% end %>
             </small>
           </h3>
-          <p ng-hide="drink_type.description == '' || drinksSearch !== ''">
+          <p ng-show="show_description(drink_type)">
             {{drink_type.description}}
+          </p>
+          <p ng-hide="show_description(drink_type)">
+            {{drink_type.short_desc}}...
+            <a href="#" ng-click="drink_type.show_desc = true" onclick="return false;">Visa mer.</a>
           </p>
 
           <h4 ng-repeat="drink in drink_type.drinks | filter: drinksSearch">
