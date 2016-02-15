@@ -33,7 +33,7 @@
           {{message}}
         </p>
         <div ng-repeat="drink_type in drink_types | orderBy: name" class="drinks-list-item">
-          <h3 ng-show="drinksSearch == ''">
+          <h3 ng-show="drinksSearch === ''">
             {{drink_type.name}}, {{drink_type.drinks.length}} st. inne
             <small>
               <a href="{{drink_type.url}}">Visa alla</a>
@@ -42,10 +42,10 @@
               <% end %>
             </small>
           </h3>
-          <p ng-show="show_description(drink_type)">
+          <p ng-show="drinksSearch === '' && show_description(drink_type)">
             {{drink_type.description}}
           </p>
-          <p ng-hide="show_description(drink_type)">
+          <p ng-hide="drinksSearch !== '' || show_description(drink_type)">
             {{drink_type.short_desc}}...
             <a href="#" ng-click="drink_type.show_desc = true" onclick="return false;">Visa mer.</a>
           </p>
@@ -57,7 +57,7 @@
             <a href="{{drink.url}}" title="Läs mer om drycken">{{drink.name}}</a>
             <span ng-hide="drink.brewery == ''">{{drink.brewery}}</span>
             <small>
-              <span ng-hide="drinksSearch == ''">
+              <span ng-hide="drinksSearch === ''">
                 {{drink_type.name}},
               </span>
               {{drink.country}}, {{drink.price}} kr
