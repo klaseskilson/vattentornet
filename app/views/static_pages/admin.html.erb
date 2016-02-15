@@ -5,13 +5,15 @@
       <div class="pane">
         <h1>Admin</h1>
 
-        <ul class="list-inline">
-          <li><%= link_to "Hantera användare", users_path %></li>
-          <li><%= link_to "Se nyheter", news_index_path %></li>
-          <li><%= link_to "Redigera sidor", pages_path %></li>
-          <li><%= link_to "Alla drycker", drinks_path %></li>
-          <li><%= link_to "Dryckestyper", drink_types_path %></li>
-        </ul>
+        <% if user_admin? %>
+          <ul class="list-inline">
+            <li><%= link_to "Hantera användare", users_path %></li>
+            <li><%= link_to "Se nyheter", news_index_path %></li>
+            <li><%= link_to "Redigera sidor", pages_path %></li>
+            <li><%= link_to "Alla drycker", drinks_path %></li>
+            <li><%= link_to "Dryckestyper", stock_index_path %></li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>
@@ -26,10 +28,15 @@
           i lager just nu
         </p>
         <p class="text-center">
-          <%= link_to "Dryckestyper", stock_index_path %>, <%= link_to "ny dryckestyp", new_drink_type_path %>, <%= link_to "drycker", drinks_path %>, <%= link_to "ny dryck", new_drink_path %>
+          <%= link_to 'Alla drycker', drinks_path %>,
+          <%= link_to('ny dryck', new_drink_path) + ', ' if can?(:create, Drink) %>
+          <%= link_to('dryckestyper', stock_index_path) + ', ' %>
+          <%= link_to('ny dryckestyp', new_drink_type_path) if can?(:create, DrinkType) %>
         </p>
       </div>
     </div>
+
+    <% if user_admin? %>
     <div class="card">
       <div class="pane">
         <h3 class="fat">
@@ -53,10 +60,12 @@
           sedan senaste nyhetsinlägget
         </p>
         <p class="text-center">
-          <%= link_to "Alla nyheter", news_index_path %>, <%= link_to "ny nyhet", new_news_path %>
+          <%= link_to 'Alla nyheter', news_index_path %>,
+          <%= link_to 'ny nyhet', new_news_path %>
         </p>
       </div>
     </div>
+    <% end %>
   </div>
 
 </div>
