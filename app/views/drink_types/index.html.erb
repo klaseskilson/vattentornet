@@ -17,7 +17,7 @@
           är vårt mål att du ska hitta en ny favorit hos oss varje gång. Nedan finner
           du allt vi har inne för tillfället.
         </p>
-        <p> Sortimentet uppdaterades senast: {{last_updated | date:'mediumDate'}} </p>
+        <p>Sortimentet uppdaterades senast {{last_updated}}.</p>
       </div>
 
       <div class="pane">
@@ -33,23 +33,31 @@
           {{message}}
         </p>
         <div ng-repeat="drink_type in drink_types | orderBy: name" class="drinks-list-item">
-          <h3 ng-show="drinksSearch == ''">
+          <h3 ng-show="drinksSearch === ''">
             {{drink_type.name}}, {{drink_type.drinks.length}} st. inne
             <small>
               <a href="{{drink_type.url}}">Visa alla</a>
               <% if user_signed_in_and_admin? %>
-                <a href="{{drink_type.admin_url}}">Byt namn</a>
+                <a href="{{drink_type.admin_url}}">Redigera</a>
               <% end %>
             </small>
           </h3>
+          <p ng-show="drinksSearch === '' && show_description(drink_type)">
+            {{drink_type.description}}
+          </p>
+          <p ng-hide="drinksSearch !== '' || show_description(drink_type)">
+            {{drink_type.short_desc}}...
+            <a href="#" ng-click="drink_type.show_desc = true" onclick="return false;">Visa mer.</a>
+          </p>
 
           <h4 ng-repeat="drink in drink_type.drinks | filter: drinksSearch">
             <span>
                <i class="fa {{drink.drank ? 'fa-star' : 'fa-star-o'}}" title="{{drink.drank ? 'Du har druckit denna sort' : 'Du har inte provat denna än!'}}"></i>
             </span>
             <a href="{{drink.url}}" title="Läs mer om drycken">{{drink.name}}</a>
+            <span ng-hide="drink.brewery == ''">{{drink.brewery}}</span>
             <small>
-              <span ng-hide="drinksSearch == ''">
+              <span ng-hide="drinksSearch === ''">
                 {{drink_type.name}},
               </span>
               {{drink.country}}, {{drink.price}} kr

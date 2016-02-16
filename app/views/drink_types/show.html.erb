@@ -10,6 +10,7 @@
             </small>
           <% end %>
         </h1>
+        <%= content_tag :p, @drink_type.description, class: 'lead' unless @drink_type.description.blank? %>
         <p>
           Här visas alla drycker av typen <%= @drink_type.name %> vi någonsin haft inne.
         </p>
