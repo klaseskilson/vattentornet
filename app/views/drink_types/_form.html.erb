@@ -21,6 +21,13 @@
           <%= f.text_field :name, placeholder: "Tex IPA, Lager, Rött vin, Whisky..." %>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.label :description, "Beskrivning" %><br>
+          <%= f.text_area :description, placeholder: "En DIPA är tokgod, Vitt vin är friskt, osv.", rows: 6 %>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
   <div class="sidebar sidebar-form">
@@ -28,6 +35,9 @@
       <h4 class="fat">Spara</h4>
       <p>
         <%= f.submit %>
+      </p>
+      <p>
+        <%= link_to 'Gå till dryckestyp', stock_path(@drink_type) if @drink_type.persisted? %>
       </p>
     </div>
   </div>
