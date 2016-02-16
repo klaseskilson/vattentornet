@@ -14,7 +14,10 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck/1
   # GET /sortiment/:id/dryck/1.json
   def show
-    @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+    unless @drink.label_url.present?
+      api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+      @drink.label_url = api_info.labels.large if api_info and api_info.labels
+    end
     @have_drank = cookies[@drink.slug]
   end
 
