@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     get '/' => 'static_pages#admin', as: :admin_dashboard
+    post '/drinks/beerinfo' => 'drinks#get_db_list'
     resources :users
     resources :pages
     resources :news, except: [:show]
@@ -39,3 +40,4 @@ Rails.application.routes.draw do
 
 
 end
+
