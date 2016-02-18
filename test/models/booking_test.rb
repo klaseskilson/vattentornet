@@ -10,7 +10,7 @@ class BookingTest < ActiveSupport::TestCase
 
   test 'it should create a public booking' do
     assert_difference('Booking.count', 1) do
-      Booking.create(date: '2015-11-12', public: true)
+      Booking.create(date: '2015-11-12', public: true, apartment: 1)
     end
   end
 
