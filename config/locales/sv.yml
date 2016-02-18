@@ -1,5 +1,12 @@
 sv:
   activerecord:
+    attributes:
+      booking:
+        name: namnet
+        date: datumet
+        apartment: lägenhetsnummret
+        description: beskrivningen
+        email: email-adressen
     models:
       booking:
         one: bokning
