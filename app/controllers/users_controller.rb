@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include Devise::Controllers::Helpers
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  authorize_resource
 
   def index
     @users = User.all.order(admin: :desc, name: :asc)
@@ -13,18 +14,15 @@ class UsersController < ApplicationController
   def update
     @person = User.find(params[:id])
     if @person.update_attributes(user_params)
-      sign_in @person, :bypass => true if current_user.id == @person.id
-      redirect_to  users_path, :notice  => "Användare uppdaterad."
+      sign_in @person, bypass: true if current_user == @person
+      redirect_to users_path, notice: 'Användare uppdaterad.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def show
   end
-
-  # def update
-  # end
 
   def destroy
     if @user.destroy
@@ -33,10 +31,6 @@ class UsersController < ApplicationController
       msg = "Användare kunde inte tas bort."
     end
     redirect_to users_path, notice: msg
-  end
-
-  def user_admin?
-    self.admin
   end
 
   private

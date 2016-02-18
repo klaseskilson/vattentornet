@@ -7,13 +7,16 @@ class Ability
     if user.admin?
       can :manage, :all # Admins can do everything
     else
+      if user.persisted?
+        can [:update, :read], Drink
+      end
       can :read, Drink
       can :read, DrinkType
       can [:read, :create, :month], Booking
       can :read, Page
       can :read, News
-      can :update, User do |user|
-        user.try(:user) == user
+      can :update, User do |u|
+        u.try(:user) == user
       end
     end
   end

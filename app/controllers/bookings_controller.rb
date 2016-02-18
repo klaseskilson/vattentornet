@@ -78,7 +78,7 @@ class BookingsController < ApplicationController
           # send mail
           BookingMailer.booking_received_booker(@booking).deliver!
           BookingMailer.booking_received_board(@booking).deliver!
-          format.html { redirect_to bookings_path, notice: 'Bokningen mottagen! Vi återkommer.' }
+          format.html { redirect_to bookings_path, notice: 'Bokningen mottagen! Vi återkommer när den har granskats.' }
           format.json { render :show, status: :created, location: bookings_path }
         else
           format.html { render :new }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105123421) do
+ActiveRecord::Schema.define(version: 20160210172440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20151105123421) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.string   "description"
   end
 
   add_index "drink_types", ["slug"], name: "index_drink_types_on_slug", using: :btree
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151105123421) do
     t.string   "description"
     t.boolean  "instock"
     t.string   "slug"
+    t.string   "label_url"
   end
 
   add_index "drinks", ["drink_type_id"], name: "index_drinks_on_drink_type_id", using: :btree

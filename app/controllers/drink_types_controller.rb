@@ -87,6 +87,6 @@ class DrinkTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_type_params
-      params.require(:drink_type).permit(:name)
+      params.require(:drink_type).permit(:name, :description)
     end
 end
