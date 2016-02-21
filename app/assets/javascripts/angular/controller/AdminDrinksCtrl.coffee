@@ -12,13 +12,13 @@ pubApp.controller 'AdminDrinksCtrl', ['$scope', '$http', ($scope, $http) ->
         alert 'Något gick fel vid uppdateringen...'
 ]
 
-pubApp.factory 'beerinfo', ($http) ->
+pubApp.factory 'beerinfo', ['$http', ($http) ->
   endpoint = '/admin/drinks/beerinfo'
   { getSearchResult: (name) ->
     $http.post(endpoint, name: name).then (res) ->
       res
- }
-
+  }
+]
 pubApp.controller 'AdminAddDrinksCtrl', [
   '$scope'
   '$http'
@@ -27,11 +27,16 @@ pubApp.controller 'AdminAddDrinksCtrl', [
   ($scope, $http, $timeout, beerinfo) ->
     timeoutPromise = undefined
 
+    $scope.init  = (name, brewery, abv, label) ->
+      $scope.beer = name
+      $scope.brewery = brewery
+      $scope.ABV = parseFloat(abv)
+      $scope.label_url = label
+
     $scope.fillform = (item, model, label) ->
       $scope.beer = item.name
       $scope.ABV = parseFloat(item.abv)
       $scope.brewery = item.brewery
-      $scope.beer = item.name
       $scope.label_url = item.labelurl
       return
 
