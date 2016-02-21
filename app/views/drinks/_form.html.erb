@@ -18,7 +18,10 @@
         </ul>
       </div>
     <% end %>
-    <div class="pane" ng-controller="AdminAddDrinksCtrl">
+    <div class="pane" ng-controller="AdminAddDrinksCtrl"
+      ng-init="init('<%=@drink.name%>','<%=@drink.brewery%>','<%=@drink.percentage%>','<%=@drink.label_url%>')"
+      >
+
       <h3 class="fat"><%= yield(:title) %></h3>
 
       <div class="row">
@@ -49,7 +52,7 @@
         </div>
         <div class="col-sm-4">
           <%= f.label "Land" %><br>
-          <%= f.text_field :country, placeholder: "Tex Bärkaland...", 'ng-model' => 'country'  %>
+          <%= f.text_field :country, placeholder: "Tex Bärkaland..."%>
         </div>
       </div>
 
