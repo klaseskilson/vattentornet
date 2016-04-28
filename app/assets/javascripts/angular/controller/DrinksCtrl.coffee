@@ -12,6 +12,13 @@
         word_limt = 15
         if drink_type.description && drink_type.description.split(' ').length > word_limt
           drink_type.short_desc = drink_type.description.split(' ')[0..word_limt].join(' ')
+
+        angular.forEach drink_type.drinks, (drink) ->
+          updated = new Date(drink.updated_at)
+          today = new Date()
+          lastMonth = today.setMonth(today.getMonth()-1)
+          drink.new = (lastMonth <= updated)
+
         $scope.drink_types.push(drink_type)
     return
   )
@@ -25,3 +32,4 @@
 
   return
 ]
+
