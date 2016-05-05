@@ -6,7 +6,7 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types
   # GET /drink_types.json
   def index
-    @drink_types = DrinkType.all
+    @drink_types = DrinkType.all.order('name ASC')
     @updated =  Drink.order('updated_at').last.updated_at
     @drank = []
     @drink_types.each do |dt|
@@ -90,3 +90,4 @@ class DrinkTypesController < ApplicationController
       params.require(:drink_type).permit(:name, :description)
     end
 end
+
