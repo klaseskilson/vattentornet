@@ -5,7 +5,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.all
+    @news = News.all.order('updated_at DESC')
   end
 
   # GET /news/1
@@ -75,3 +75,4 @@ class NewsController < ApplicationController
       params.require(:news).permit(:title, :body, :published, :user_id)
     end
 end
+
