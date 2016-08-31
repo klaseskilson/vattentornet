@@ -1,3 +1,4 @@
 {
-  "userBlacklist": ["CarlEnglund"]
+  "userBlacklist": ["CarlEnglund"],
+  "maxReviewers": 1
 }
