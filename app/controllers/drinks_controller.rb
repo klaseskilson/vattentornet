@@ -92,12 +92,23 @@ class DrinksController < ApplicationController
       @drink = Drink.friendly.find(params[:id])
     end
 
+    # Fetch the information about the beer from brewery db
     def set_api_info
-      @api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+      @api_info = BREWERY.search.beers(q: "#{@drink.brewery} #{@drink.name}").first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label)
+      params.require(:drink).permit(
+        :name,
+        :brewery,
+        :country,
+        :percentage,
+        :price,
+        :drink_type_id,
+        :description,
+        :instock,
+        :label
+      )
     end
 end

@@ -13,9 +13,9 @@ class DocumentsController < ApplicationController
     @document = Document.new document_params
 
     if @document.save!
-      redirect_to documents_path, notice: "Dokumentet har laddats upp"
+      redirect_to documents_path, notice: 'Dokumentet har laddats upp'
     else
-      redirect_to new_document_path, notice: "Dokumentet kunde inte skapas..."
+      redirect_to new_document_path, notice: 'Dokumentet kunde inte skapas...'
     end
   end
 

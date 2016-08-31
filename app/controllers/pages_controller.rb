@@ -12,9 +12,8 @@ class PagesController < ApplicationController
   # GET /1
   # GET /slug
   def show
-    if @page.slug == "om-puben"
-      @documents = Document.all
-    end
+    @documents = Document.all if @page.slug == 'om-puben'
+
     if request.path != pretty_page_path(@page)
       redirect_to pretty_page_path(@page), status: :moved_permanently
     end
