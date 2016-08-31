@@ -1,3 +1,5 @@
+shorten = (text, limit) -> text.split(' ')[0..limit].join(' ')
+
 @pubApp.controller 'DrinksCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.drink_types = []
   $scope.message = "Laddar drycker..."
@@ -9,14 +11,14 @@
     $scope.last_updated = data.last_updated
     angular.forEach data.drink_list, (drink_type) ->
       unless drink_type.drinks.length is 0
-        word_limt = 15
-        if drink_type.description && drink_type.description.split(' ').length > word_limt
-          drink_type.short_desc = drink_type.description.split(' ')[0..word_limt].join(' ')
+        word_limit = 45
+        if drink_type.description && drink_type.description.split(' ').length > word_limit
+          drink_type.short_desc = drink_type.description.split(' ')[0..word_limit].join(' ')
 
+        today = new Date()
+        lastMonth = today.setMonth(today.getMonth()-1)
         angular.forEach drink_type.drinks, (drink) ->
           updated = new Date(drink.updated_at)
-          today = new Date()
-          lastMonth = today.setMonth(today.getMonth()-1)
           drink.new = (lastMonth <= updated)
 
         $scope.drink_types.push(drink_type)
@@ -32,4 +34,3 @@
 
   return
 ]
-
