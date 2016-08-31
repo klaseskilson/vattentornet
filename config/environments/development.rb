@@ -18,7 +18,7 @@ Rails.application.configure do
 
   # Gem letter opener
   # Opens mails in the browser instead of sending
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener_web
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
