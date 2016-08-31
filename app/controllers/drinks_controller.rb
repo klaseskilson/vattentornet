@@ -7,7 +7,7 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck
   # GET /sortiment/:id/dryck.json
   def index
-    @drinks = Drink.all.order('name ASC');
+    @drinks = Drink.all.order('name ASC')
     @drink_types = DrinkType.all
   end
 
