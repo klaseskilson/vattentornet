@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
 
   def admin
     @in_stock = Drink.where(instock: true).count
-    @unconfirmed_bookings = Booking.where(['confirmed = ? and date > ?', true, DateTime.now]).count
+    @unconfirmed_bookings = Booking.where(['confirmed = ? and date > ?', false, DateTime.now]).count
     @latest_news = News.select('created_at').last
   end
 end

@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 # set ruby version
-ruby '2.2.3'
+ruby '2.3.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -45,7 +45,7 @@ gem 'angular-ui-bootstrap-rails'
 gem 'momentjs-rails'
 
 # css related stuff
-gem 'bootstrap-sass', '~> 3.2.0.2'
+gem 'bootstrap-sass', '~> 3'
 # icons!
 gem 'font-awesome-sass'
 # neat toolkit for bourbon
@@ -75,9 +75,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Opens mails in browser
-  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.2.0'
   # add a rails console to the error pages
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
   # replaces the standard Rails error page with a much better and more useful error page
   gem 'better_errors'
   # handle secrets secretly and simple

@@ -1,3 +1,5 @@
+shorten = (text, limit) -> text.split(' ')[0..limit].join(' ')
+
 @pubApp.controller 'DrinksCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.drink_types = []
   $scope.message = "Laddar drycker..."
@@ -9,9 +11,9 @@
     $scope.last_updated = data.last_updated
     angular.forEach data.drink_list, (drink_type) ->
       unless drink_type.drinks.length is 0
-        word_limt = 15
-        if drink_type.description && drink_type.description.split(' ').length > word_limt
-          drink_type.short_desc = drink_type.description.split(' ')[0..word_limt].join(' ')
+        word_limit = 45
+        if drink_type.description && drink_type.description.split(' ').length > word_limit
+          drink_type.short_desc = shorten(drink_type.description, word_limit)
         $scope.drink_types.push(drink_type)
     return
   )
