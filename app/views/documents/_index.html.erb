@@ -8,8 +8,8 @@
   <% end %>
 </h2>
 <% @documents.each do |document| %>
-  <h3>
-    <%= document.name %>
+  <h4>
+    <%= link_to document.name, attachment_url(document, :document, format: 'pdf'), target: '_blank' %>
     <% if user_signed_in_and_admin? %>
       <small>
         <%= link_to(document, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort detta dokument?' }) do %>
@@ -17,6 +17,8 @@
         <%end%>
       </small>
     <%end%>
-  </h3>
-  <%= link_to "länk", attachment_url(document, :document, format: "pdf"), target: "_blank" %>
+    <small>
+      <%= document.description %>
+    </small>
+  </h4>
 <% end %>
