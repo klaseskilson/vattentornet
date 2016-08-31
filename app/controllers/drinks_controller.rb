@@ -7,7 +7,7 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck
   # GET /sortiment/:id/dryck.json
   def index
-    @drinks = Drink.all
+    @drinks = Drink.all.order('name ASC');
     @drink_types = DrinkType.all
   end
 
@@ -117,4 +117,3 @@ class DrinksController < ApplicationController
       params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label_url)
     end
 end
-

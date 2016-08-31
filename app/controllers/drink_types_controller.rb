@@ -6,7 +6,7 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types
   # GET /drink_types.json
   def index
-    @drink_types = DrinkType.all.order('name ASC')
+    @drink_types = DrinkType.all.order('name')
     @updated =  Drink.order('updated_at').last.updated_at
     @drank = []
     @drink_types.each do |dt|
@@ -21,7 +21,7 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types/1
   # GET /drink_types/1.json
   def show
-    @drinks = @drink_type.drinks
+    @drinks = @drink_type.drinks.order('name')
     @drank = []
     @drinks.each do |d|
       if cookies[d.slug]
@@ -90,4 +90,3 @@ class DrinkTypesController < ApplicationController
       params.require(:drink_type).permit(:name, :description)
     end
 end
-
