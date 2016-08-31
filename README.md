@@ -40,6 +40,22 @@ rake db:migrate
 rails server
 ```
 
+### Alternativ lösning: Docker 🎊
+
+Börja med att installera [Docker](https://www.docker.com/). När det är gjort och
+allt funkar, kör dessa commandon i din favvoterminal:
+
+```shell
+# create docker machine and install dependencies
+docker-compose build
+# start machine
+docker-compose up
+# create database
+docker-compose run web rake db:create
+```
+
+Kör sedan dina kommandon mot Rails genom att skriva `docker-compose run web ` innan kommandona.
+
 ### PostgreSQL setup
 
 Denna applikationen använder sig utav PostgreSQL. Installera och sedan behöver du skapa en en användare och två databaser, följ bara dessa instruktioner:
@@ -70,9 +86,9 @@ Följ sedan instruktionerna i rutan som dyker upp. Vipps är det klart!
 
 Vi använder BreweryDB! För att använda detta behöver ni ha tillgång till en API-nyckel
 från dem. Gör det genom att gå in [här](http://www.brewerydb.com/developers/apps).
-Först, spara api-nyckeln som en miljövariabel i din datta! 
+Först, spara api-nyckeln som en miljövariabel i din datta!
 
-Detta gör du lämpligtvis genom att först **kopiera** [`config/application.example.yml`](config/application.example.yml) till 
+Detta gör du lämpligtvis genom att först **kopiera** [`config/application.example.yml`](config/application.example.yml) till
 `config/application.yml`. Lägg sedan in nyckeln du fått från BreweryDB på rätt plats i din nya fil.
 
 Det som är viktigt här är att den heter just `BREWERYDB_API_KEY`, eftersom det är här
