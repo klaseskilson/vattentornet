@@ -75,4 +75,3 @@ class NewsController < ApplicationController
       params.require(:news).permit(:title, :body, :published, :user_id)
     end
 end
-
