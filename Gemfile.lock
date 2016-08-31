@@ -114,6 +114,9 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    letter_opener_web (1.2.3)
+      letter_opener (~> 1.0)
+      rails (>= 3.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -231,7 +234,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  letter_opener
+  letter_opener_web (~> 1.2.0)
   minitest-happy
   momentjs-rails
   newrelic_rpm
@@ -248,5 +251,8 @@ DEPENDENCIES
   web-console (~> 2.0)
   will_paginate
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.10.6
+   1.12.5
