@@ -33,9 +33,9 @@
   margin-bottom: $section-margins/2;
 }
 .new-beer {
-  background-color: #ff0000;
+  background-color: $red;
   border-radius: 7px;
-  color: #ffffff;
+  color: $white;
 
   font-family: "Vollkorn";
   font-size: 16px;
@@ -48,9 +48,9 @@
     position: absolute;
   }
 
-  @media (min-width: $screen-xs-min) {
-    float: right;
-  }
+  //@media (min-width: $screen-xs-min) {
+    //float: right;
+  //}
 }
 
 .icon-link:hover {
