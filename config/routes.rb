@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  root 'static_pages#home'
   resources :bookings
   get '/bookings/month/:year/:month' => 'bookings#month'
   get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
-
 
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     get '/' => 'static_pages#admin', as: :admin_dashboard
+    post '/drinks/beerinfo' => 'drinks#get_db_list'
     resources :users
     resources :pages
     resources :news, except: [:show]
@@ -31,12 +34,7 @@ Rails.application.routes.draw do
 
   resources :news, path: 'nyheter', as: :public_news, only: [:show]
 
-
-  root 'static_pages#home'
-
   get '/hem' => 'static_pages#home'
 
-  get ':id' => 'pages#show', as: :pretty_page
-
-
+  get '*id' => 'pages#show', as: :pretty_page
 end

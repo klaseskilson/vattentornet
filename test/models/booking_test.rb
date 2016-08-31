@@ -10,23 +10,23 @@ class BookingTest < ActiveSupport::TestCase
 
   test 'it should create a public booking' do
     assert_difference('Booking.count', 1) do
-      Booking.create(date: '2015-11-12', public: true)
+      Booking.create(date: '2015-11-12', public: true, apartment: 1)
     end
   end
 
   test 'it should not create duplicate bookings on same date' do
     assert_difference('Booking.count', 1) do
-      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@example', confirmed: true, apartment: 1)
+      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', confirmed: true, apartment: 1)
       # conflicting date!
-      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@example', apartment: 1)
+      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', apartment: 1)
     end
   end
 
   test 'it should create duplicate bookings on same date since none are confirmed' do
     assert_difference('Booking.count', 2) do
-      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@example', apartment: 1)
+      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', apartment: 1)
       # conflicting date!
-      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@example', apartment: 1)
+      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', apartment: 1)
     end
   end
 end

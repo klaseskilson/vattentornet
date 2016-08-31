@@ -1,4 +1,11 @@
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query" ></span>
+  </a>
+</script>
+
 <%= form_for(@drink) do |f| %>
+
   <div class="main-content main-form">
     <% if @drink.errors.any? %>
       <div class="pane" id="error_explanation">
@@ -11,13 +18,23 @@
         </ul>
       </div>
     <% end %>
-    <div class="pane">
+    <div class="pane" ng-controller="AdminAddDrinksCtrl"
+      ng-init="init('<%=@drink.name%>','<%=@drink.brewery%>','<%=@drink.percentage%>','<%=@drink.label_url%>')"
+      >
+
       <h3 class="fat"><%= yield(:title) %></h3>
 
       <div class="row">
         <div class="col-sm-6">
           <%= f.label "Namn" %><br>
-          <%= f.text_field :name, placeholder: "Tex Berkants Bärka..." %>
+          <%= f.text_field :name,
+                           :placeholder => 'Tex Berkants Bärka...',
+                           :autocomplete => 'off',
+                           'ng-model' => 'beer',
+                           'uib-typeahead' => 'beers.name + " från " + beers.brewery for beers in getinfo($viewValue)',
+                           'typeahead-template-url' => 'customTemplate.html',
+                           'typeahead-min-length' => '5',
+                           'typeahead-on-select' => 'fillform($item, $model, $label)' %>
         </div>
         <div class="col-sm-6">
           <%= f.label "I lager" %><br>
@@ -32,18 +49,18 @@
         </div>
         <div class="col-sm-4">
           <%= f.label "Bryggeri" %><br>
-          <%= f.text_field :brewery, placeholder: "Tex Bärkeriet..." %>
+          <%= f.text_field :brewery, placeholder: "Tex Bärkeriet...", 'ng-model' => 'brewery'%>
         </div>
         <div class="col-sm-4">
           <%= f.label "Land" %><br>
-          <%= f.text_field :country, placeholder: "Tex Bärkaland..."  %>
+          <%= f.text_field :country, placeholder: "Tex Bärkaland..."%>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-4">
           <%= f.label "Styrka (%)" %><br>
-          <%= f.number_field :percentage, placeholder: "Tex 13.37...", step: "any", min: 0 %>
+          <%= f.number_field :percentage, placeholder: "Tex 13.37...", step: "any", min: 0 , 'ng-model' => 'ABV'%>
         </div>
         <div class="col-sm-4">
           <%= f.label "Pris (kr)" %><br>
@@ -61,6 +78,7 @@
           <%= f.text_area :description, rows: 4, placeholder: "Tex Den finaste fulölen på norra hemisvären..." %>
         </div>
       </div>
+      <%= f.hidden_field :label_url, :value => '{{label_url}}' %>
     </div>
   </div>
 
@@ -72,7 +90,7 @@
       </p>
       <p>
         <% if @drink.persisted? %>
-          <%= link_to 'Visa drycken', drink_path(@drink.drink_type, @drink) if @drink.id? %> <br>
+          <%= link_to 'Visa drycken', stock_drink_path(@drink.drink_type, @drink) if @drink.id? %> <br>
           <%= link_to 'Ta bort', @drink, method: :delete, data: { confirm: 'Är du säker på att du vill ta bort denna dryck?' }  %><br>
         <% end %>
         <%= link_to 'Alla drycker', drinks_path %>
@@ -90,3 +108,4 @@
     <% end %>
   </div>
 <% end %>
+

@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 # set ruby version
-ruby '2.2.3'
+ruby '2.3.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.1'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -23,7 +23,7 @@ gem 'devise', '~> 3'
 gem 'cancan'
 
 # nice, pretty urls
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id', '~> 5.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -39,6 +39,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # angular es nice
 gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
+
 # moment.js
 gem 'momentjs-rails'
 
@@ -57,7 +59,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'newrelic_rpm'
 
 # render pages and news with github flavored markdown
-gem 'github-markdown', '~> 0.6.7'
+gem 'github-markdown', '~> 0.6'
 
 # BEEEEEER
 gem 'brewery_db', '~> 0.2.4'
@@ -81,7 +83,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Opens mails in browser
-  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.2.0'
   # add a rails console to the error pages
   gem 'web-console', '~> 2.0'
   # replaces the standard Rails error page with a much better and more useful error page

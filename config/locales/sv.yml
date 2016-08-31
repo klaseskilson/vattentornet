@@ -1,4 +1,30 @@
 sv:
+  activerecord:
+    attributes:
+      booking:
+        name: namnet
+        date: datumet
+        apartment: lägenhetsnummret
+        description: beskrivningen
+        email: email-adressen
+    models:
+      booking:
+        one: bokning
+        other: bokningar
+      drink:
+        one: dryck
+        other: drycker
+      drink_type:
+        one: dryckestyp
+        other: dryckestyper
+      news:
+        one: nyhet
+        other: nyheter
+      page:
+        one: sida
+        other: sidor
+      post: inlägg
+      user: användare
   will_paginate:
     next_label: Nästa &#8594;
     page_entries_info:

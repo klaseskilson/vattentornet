@@ -1,7 +1,8 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, except: [:index, :new, :create]
+  before_action :set_drink, except: [:get_db_list, :index, :new, :create]
   before_action :set_api_info, only: [:show, :edit]
-  before_action :authenticate_user!, except: [:show, :cookie]
+  before_action :authenticate_user!, except: [:get_db_list, :show, :cookie]
+  before_action :check_admin, only: [:edit, :update]
   protect_from_forgery except: [:change_stock]
 
   # GET /sortiment/:id/dryck
@@ -14,6 +15,10 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck/1
   # GET /sortiment/:id/dryck/1.json
   def show
+    unless @drink.label_url.present?
+      api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+      @drink.label_url = api_info.labels.large if api_info and api_info.labels
+    end
     @have_drank = cookies[@drink.slug]
   end
 
@@ -86,7 +91,23 @@ class DrinksController < ApplicationController
     redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
+  #get the ten first hits from the breweryDB
+  def get_db_list
+    beername = params[:name]
+    @beer_info = BREWERY.search.beers(q: beername, withBreweries: 'Y').first(10)
+    @beers_with_breweries = []
+    @beerlist = @beer_info.map do |b|
+      {:labelurl => (b.labels== nil ? "" : b.labels.large), :name => b.name, :brewery => b.breweries[0].name,
+       :abv => b.abv }
+    end
+    render json: @beerlist
+  end
+
   private
+    def check_admin
+      redirect_to admin_dashboard_path, alert: 'Du har inte åtkomst till den sidan.' unless current_user.admin?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_drink
       @drink = Drink.friendly.find(params[:id])
