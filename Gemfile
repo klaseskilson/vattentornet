@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # set ruby version
-ruby '2.2.3'
+ruby '2.3.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -75,7 +75,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # Opens mails in browser
-  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 1.2.0'
   # add a rails console to the error pages
   gem 'web-console', '~> 2.0'
   # replaces the standard Rails error page with a much better and more useful error page

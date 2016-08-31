@@ -28,11 +28,31 @@ låta något hindra dig. Vi föreslår att du gör något utav följande:
 
 Detta är en Ruby on Rails-app. För att utveckla sidan kan vi varmt rekommendera
 [tryruby.org](http://tryruby.org/) samt [railsforzombies.org](http://railsforzombies.org/).
-Sen är det bara att först installera [Ruby](https://www.ruby-lang.org/en/)
-och kila in på [rubyonrails.org](http://rubyonrails.org/) och följa instruktionerna
-där.
 
-Först behöver du installera och få igång [*PostgreSQL*](#postgresql-setup). När det är gjort är det bara att sätta igång:
+Börja med att installera [Docker](https://www.docker.com/). När det är gjort och
+allt funkar, kör dessa commandon i din favvoterminal:
+
+```shell
+# create docker machine and install dependencies
+docker-compose build
+# start machine
+docker-compose up
+# create database
+docker-compose run web rake db:create
+```
+
+Du kommer nu åt sidan via  [`localhost:3000`](http://localhost:3000). Om du behöver
+göra något mot servern, till exempel komma åt Rails-consolen, kör dina kommandon
+genom att skriva `docker-compose run web ` innan kommandona. Tex
+`docker-compose run web rails c`.
+
+### Alternativ lösning: lokal installation
+
+Om du inte vill använda docker kan du installera allt som behövs lokalt.Börja med att
+installera [Ruby](https://www.ruby-lang.org/en/) och kila in på
+[rubyonrails.org](http://rubyonrails.org/) och följa instruktionerna där.
+
+Du beövher också installera och få igång [*PostgreSQL*](#postgresql-setup). När det är gjort är det bara att sätta igång:
 
 ```
 bundle install
@@ -40,18 +60,16 @@ rake db:migrate
 rails server
 ```
 
-### PostgreSQL setup
+#### PostgreSQL setup
 
 Denna applikationen använder sig utav PostgreSQL. Installera och sedan behöver du skapa en en användare och två databaser, följ bara dessa instruktioner:
 
-1. Skapa en databasanvändare som matchar den i [`database.yml`](config/database.yml). Vi använder `vattentornet` som användarnamn, så i psql-terminalen skriver du `CREATE USER vatentornet;`.
-2. Ändra lösenordet på användaren: `ALTER USER vattentornet WITH PASSWORD 'tornet';`.
-3. Ändra användaren så att den har massa rättigheter `ALTER USER vattentornet SUPERUSER;`.
-4. Skapa *development*-databasen `CREATE DATABASE vattentornet_development;`
+1. Skapa en databasanvändare som matchar den i [`database.yml`](config/database.yml). Vi använder `postgresql` som användarnamn, så i psql-terminalen skriver du `CREATE USER postgresql;`.
+1. Skapa *development*-databasen `CREATE DATABASE vattentornet_development;`
 och *test*-databasen med `CREATE DATABASE vattentornet_test;`.
-5. Ändra ägaren genom att köra `ALTER DATABASE vattentornet_development OWNER TO vattentornet;`
-and `ALTER DATABASE vattentornet_test OWNER TO vattentornet;`.
-6. Klart!
+1. Ändra ägaren genom att köra `ALTER DATABASE vattentornet_development OWNER TO postgresql;`
+and `ALTER DATABASE vattentornet_test OWNER TO postgresql;`.
+1. Klart!
 
 ### Lägg till en ny användare
 
@@ -61,18 +79,19 @@ favorit-terminal. (Se till så att du har migrerat databasen genom att först sk
 `Loading development environment (Rails 4.1.1)`, och då vill du skriva:
 
 ```
-User.create(:email => 'din@email.se', :admin => true)
+User.create(email: 'din@email.se', admin: true)
 ```
 
-Följ sedan instruktionerna i rutan som dyker upp. Vipps är det klart!
+Gå sedan in på [`localhost:3000/letter_opener`](http://localhost:3000/letter_opener)
+och öppna mailet som skall ha dykt upp där om allt gick vägen.
 
 ### BreweryDB – Info om drycker
 
 Vi använder BreweryDB! För att använda detta behöver ni ha tillgång till en API-nyckel
 från dem. Gör det genom att gå in [här](http://www.brewerydb.com/developers/apps).
-Först, spara api-nyckeln som en miljövariabel i din datta! 
+Först, spara api-nyckeln som en miljövariabel i din datta!
 
-Detta gör du lämpligtvis genom att först **kopiera** [`config/application.example.yml`](config/application.example.yml) till 
+Detta gör du lämpligtvis genom att först **kopiera** [`config/application.example.yml`](config/application.example.yml) till
 `config/application.yml`. Lägg sedan in nyckeln du fått från BreweryDB på rätt plats i din nya fil.
 
 Det som är viktigt här är att den heter just `BREWERYDB_API_KEY`, eftersom det är här

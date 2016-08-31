@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: vattentornet
-  password: tornet
-  host: localhost
+  username: postgres
+  password:
+  host: db
 
 development:
   <<: *default

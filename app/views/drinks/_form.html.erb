@@ -29,6 +29,7 @@
           <%= f.label "Namn" %><br>
           <%= f.text_field :name,
                            :placeholder => 'Tex Berkants Bärka...',
+                           :autocomplete => 'off',
                            'ng-model' => 'beer',
                            'uib-typeahead' => 'beers.name + " från " + beers.brewery for beers in getinfo($viewValue)',
                            'typeahead-template-url' => 'customTemplate.html',
