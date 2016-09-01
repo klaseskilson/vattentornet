@@ -21,6 +21,5 @@ module Vattentornet
     config.i18n.default_locale = :sv
 
     config.assets.initialize_on_precompile = false
-
   end
 end
