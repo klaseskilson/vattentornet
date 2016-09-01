@@ -2,4 +2,6 @@ Metrics/LineLength:
   Max: 120
 AllCops:
   Exclude:
-    - 'db/**'
+    - 'db/**/*'
+Style/Documentation:
+  Enabled: false
