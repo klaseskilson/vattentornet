@@ -84,6 +84,7 @@ group :development do
   # ci tools
   gem 'brakeman', require: false
   gem 'rubocop', require: false
+  gem 'coveralls', require: false
 end
 
 group :production do
