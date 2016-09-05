@@ -81,6 +81,9 @@ group :development do
   gem 'better_errors'
   # handle secrets secretly and simple
   gem 'figaro'
+  # ci tools
+  gem 'brakeman', require: false
+  gem 'rubocop', require: false
 end
 
 group :production do
