@@ -11,3 +11,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  bundle:
+    # Clever Bundler cache from http://bradgessler.com/articles/docker-bundler/
+    image: vattentornet_web
+    command: echo "I'm a little data container, short and stout..."
+    volumes:
+      - /bundle

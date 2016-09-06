@@ -44,7 +44,14 @@ docker-compose run web rake db:create
 Du kommer nu åt sidan via  [`localhost:3000`](http://localhost:3000). Om du behöver
 göra något mot servern, till exempel komma åt Rails-consolen, kör dina kommandon
 genom att skriva `docker-compose run web ` innan kommandona. Tex
-`docker-compose run web rails c`.
+`docker-compose run web rails c` eller  `docker-compose run web rake db:migrate`.
+
+Under utvecklingen är det sedan bra att kunna installera nya Gems enkelt. För
+att göra detta, kör följande i din terminal:
+
+```shell
+docker-compose run web bundle
+```
 
 ### Alternativ lösning: lokal installation
 
