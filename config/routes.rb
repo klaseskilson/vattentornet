@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   root 'static_pages#home'
-  resources :bookings
+  resources :bookings, path: '/bokningar'
   get '/bookings/month/:year/:month' => 'bookings#month'
-  get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
+  get '/bokningar/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
