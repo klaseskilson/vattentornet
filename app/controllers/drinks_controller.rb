@@ -117,4 +117,3 @@ class DrinksController < ApplicationController
       params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label_url)
     end
 end
-

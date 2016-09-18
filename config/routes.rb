@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :bookings
-  get '/bookings/month/:year/:month' => 'bookings#month'
-  get '/bookings/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
+  root 'static_pages#home'
+  resources :bookings, path: '/bokningar'
+  get '/bookings/month/:year/:month' => 'bookings#month'
+  get '/bokningar/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
   as :user do
       match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
@@ -31,13 +33,7 @@ Rails.application.routes.draw do
 
   resources :news, path: 'nyheter', as: :public_news, only: [:show]
 
-
-  root 'static_pages#home'
-
   get '/hem' => 'static_pages#home'
 
   get '*id' => 'pages#show', as: :pretty_page
-
-
 end
-
