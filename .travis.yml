@@ -9,7 +9,7 @@ script: bundle exec rake test
 deploy:
   provider: heroku
   api_key:
-    secure: C1qf25pl0bkNQ/4EYq+0x1Urth1roCaRVixRt1kbBTeuej9mY21ut1b44UXc8bD1+ey+0xSnLHCxpvMga+Au49q20BL01HKkTxZ8j2DehS+h7C4WlEr/v+zgcZpN16NbNofFWfCGjgaJ8fIdK+2Yh3HuhGgA1u9yCuJmALW8lcc=
+    secure: g2kYzEQUcueswnuh1ItsGo3D7SSycjt63UEep3O4Q/hAwOy0MM8gxP9etsZ8sOYdv2KkU3HTOxFSmosoZ0e24fkwFB3D9x03GEwKmGLdOVjGC5vFAP8i/7G+RZyEqJvm330FinJZTveDCAJplBqTWII0FrxZyh9JPHMZ8oH3ajs=
   app:
     master: vattentornet
     develop: vattentornet-develop
