@@ -10,8 +10,9 @@ deploy:
   provider: heroku
   api_key:
     secure: C1qf25pl0bkNQ/4EYq+0x1Urth1roCaRVixRt1kbBTeuej9mY21ut1b44UXc8bD1+ey+0xSnLHCxpvMga+Au49q20BL01HKkTxZ8j2DehS+h7C4WlEr/v+zgcZpN16NbNofFWfCGjgaJ8fIdK+2Yh3HuhGgA1u9yCuJmALW8lcc=
-  master: vattentornet
-  develop: vattentornet-develop
+  app:
+    master: vattentornet
+    develop: vattentornet-develop
   run:
     - "rake db:migrate"
     - restart
