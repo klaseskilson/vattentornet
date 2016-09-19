@@ -30,13 +30,7 @@ class NewsController < ApplicationController
     @news = News.new(params)
 
     respond_to do |format|
-      if @news.save
-        format.html { redirect_to edit_news_path(@news), notice: 'Nyheten har skapats!' }
-        format.json { render :show, status: :created, location: @news }
-      else
-        format.html { render :new }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
+      save_and_respond(format)
     end
   end
 
@@ -65,13 +59,24 @@ class NewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def news_params
-      params.require(:news).permit(:title, :body, :published, :user_id)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = News.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def news_params
+    params.require(:news).permit(:title, :body, :published, :user_id)
+  end
+
+  def save_and_respond(format)
+    if @news.save
+      format.html { redirect_to edit_news_path(@news), notice: 'Nyheten har skapats!' }
+      format.json { render :show, status: :created, location: @news }
+    else
+      format.html { render :new }
+      format.json { render json: @news.errors, status: :unprocessable_entity }
     end
+  end
 end

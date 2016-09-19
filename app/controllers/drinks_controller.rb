@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
-  before_action :set_drink, except: [:get_db_list, :index, :new, :create]
-  before_action :authenticate_user!, except: [:get_db_list, :show, :cookie]
+  before_action :set_drink, except: [:db_list, :index, :new, :create]
+  before_action :authenticate_user!, except: [:db_list, :show, :cookie]
   before_action :check_admin, only: [:edit, :update]
   protect_from_forgery except: [:change_stock]
 
@@ -15,8 +15,8 @@ class DrinksController < ApplicationController
   # GET /sortiment/:id/dryck/1.json
   def show
     unless @drink.label_url.present?
-      api_info = BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
-      @drink.label_url = api_info.labels.large if api_info and api_info.labels
+      api_info = brewery_labels
+      @drink.label_url = api_info.labels.large if api_info && api_info.labels
     end
     @have_drank = cookies[@drink.slug]
   end
@@ -90,30 +90,44 @@ class DrinksController < ApplicationController
     redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
-  #get the ten first hits from the breweryDB
-  def get_db_list
+  # get the ten first hits from the breweryDB
+  def db_list
     beername = params[:name]
     @beer_info = BREWERY.search.beers(q: beername, withBreweries: 'Y').first(10)
     @beers_with_breweries = []
-    @beerlist = @beer_info.map do |b|
-      {:labelurl => (b.labels== nil ? "" : b.labels.large), :name => b.name, :brewery => b.breweries[0].name,
-       :abv => b.abv }
+    @beerlist = @beer_info.map do |drink|
+      drink_object(drink)
     end
     render json: @beerlist
   end
 
   private
-    def check_admin
-      redirect_to admin_dashboard_path, alert: 'Du har inte åtkomst till den sidan.' unless current_user.admin?
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_drink
-      @drink = Drink.friendly.find(params[:id])
-    end
+  def drink_object(drink)
+    {
+      labelurl: (drink.labels.nil? ? '' : drink.labels.large),
+      name: drink.name,
+      brewery: drink.breweries[0].name,
+      abv: drink.abv
+    }
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def drink_params
-      params.require(:drink).permit(:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label_url)
-    end
+  def brewery_labels
+    BREWERY.search.beers(q: @drink.brewery + ' ' + @drink.name).first
+  end
+
+  def check_admin
+    redirect_to admin_dashboard_path, alert: 'Du har inte åtkomst till den sidan.' unless current_user.admin?
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_drink
+    @drink = Drink.friendly.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def drink_params
+    permitted = [:name, :brewery, :country, :percentage, :price, :drink_type_id, :description, :instock, :label_url]
+    params.require(:drink).permit(*permitted)
+  end
 end

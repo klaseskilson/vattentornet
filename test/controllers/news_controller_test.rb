@@ -35,7 +35,8 @@ class NewsControllerTest < ActionController::TestCase
   # end
   #
   # test "should update news" do
-  #   patch :update, id: @news, news: { body: @news.body, published: @news.published, title: @news.title, user_id: @news.user_id }
+  #   patch :update, id: @news, news: { body: @news.body, published: @news.published, title: @news.title, user_id:
+  #                                     @news.user_id }
   #   assert_redirected_to news_path(assigns(:news))
   # end
   #

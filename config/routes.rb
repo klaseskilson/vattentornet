@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   root 'static_pages#home'
@@ -8,10 +7,9 @@ Rails.application.routes.draw do
   get '/bokningar/:id/confirm' => 'bookings#confirm', :as => :confirm_booking
 
   as :user do
-      match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+    match '/user/confirmation' => 'confirmations#update', via: :put, as: :update_user_confirmation
   end
-  devise_for :users, :controllers => { :confirmations => 'confirmations',
-                                       :registrations => 'registrations' }
+  devise_for :users, controllers: { confirmations: 'confirmations', registrations: 'registrations' }
 
   scope '/admin' do
     get '/' => 'static_pages#admin', as: :admin_dashboard
@@ -22,7 +20,7 @@ Rails.application.routes.draw do
     resources :drinks, as: :drinks
     post '/drinks/changestock' => 'drinks#change_stock'
     resources :drink_types, except: [:index, :show]
-    get '/bookings/all' => 'bookings#all', :as => :all_bookings
+    get '/bookings/all' => 'bookings#all', as: :all_bookings
   end
 
   get '/sortiment/:id/drunk' => 'drinks#cookie', as: :drunk

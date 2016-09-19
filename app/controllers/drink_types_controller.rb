@@ -7,13 +7,11 @@ class DrinkTypesController < ApplicationController
   # GET /drink_types.json
   def index
     @drink_types = DrinkType.all
-    @updated =  Drink.order('updated_at').last.updated_at
+    @updated = Drink.order('updated_at').last.updated_at
     @drank = []
     @drink_types.each do |dt|
       dt.drinks.each do |d|
-        if cookies[d.slug]
-          @drank.push(d.slug)
-        end
+        @drank.push(d.slug) if cookies[d.slug]
       end
     end
   end
@@ -24,9 +22,7 @@ class DrinkTypesController < ApplicationController
     @drinks = @drink_type.drinks
     @drank = []
     @drinks.each do |d|
-      if cookies[d.slug]
-        @drank.push(d.slug)
-      end
+      @drank.push(d.slug) if cookies[d.slug]
     end
   end
 
@@ -80,13 +76,14 @@ class DrinkTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_drink_type
-      @drink_type = DrinkType.friendly.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def drink_type_params
-      params.require(:drink_type).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_drink_type
+    @drink_type = DrinkType.friendly.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def drink_type_params
+    params.require(:drink_type).permit(:name, :description)
+  end
 end

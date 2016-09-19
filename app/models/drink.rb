@@ -7,8 +7,5 @@ class Drink < ActiveRecord::Base
   belongs_to :drink_type
   validates :drink_type, presence: :true
 
-  validates :price, numericality: {
-    greater_than: 0,
-    message: "priset måste vara över %{count} kr"
-  }
+  validates :price, numericality: { greater_than: 0, message: 'priset måste vara över %{count} kr' }
 end

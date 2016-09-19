@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     # beer of the moment
-    @botm = Drink.where(instock: true).order("RANDOM()").first
+    @botm = Drink.where(instock: true).order('RANDOM()').first
     @latest_post = News.where(published: true)
                        .paginate(page: params[:page], per_page: 5)
                        .order('created_at DESC')
