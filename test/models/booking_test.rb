@@ -16,7 +16,8 @@ class BookingTest < ActiveSupport::TestCase
 
   test 'it should not create duplicate bookings on same date' do
     assert_difference('Booking.count', 1) do
-      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', confirmed: true, apartment: 1)
+      Booking.create(date: '2015-11-13', name: 'Test', description: 'Party',
+                     email: 'test@examp.le', confirmed: true, apartment: 1)
       # conflicting date!
       Booking.create(date: '2015-11-13', name: 'Test', description: 'Party', email: 'test@examp.le', apartment: 1)
     end

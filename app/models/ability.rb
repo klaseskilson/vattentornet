@@ -3,21 +3,13 @@ class Ability
 
   def initialize(user)
     user ||= User.new # Guest user, not logged in
-
     if user.admin?
       can :manage, :all # Admins can do everything
     else
-      if user.persisted?
-        can [:update, :read], Drink
-      end
-      can :read, Drink
-      can :read, DrinkType
+      can [:update, :read], Drink if user.persisted? # logged in user
+      can :read, [Drink, DrinkType, Page, News]
       can [:read, :create, :month], Booking
-      can :read, Page
-      can :read, News
-      can :update, User do |u|
-        u.try(:user) == user
-      end
+      can :update, User { |u| u.try(:user) == user } # user can update itself
     end
   end
 end
