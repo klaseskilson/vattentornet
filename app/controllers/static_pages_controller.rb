@@ -16,4 +16,8 @@ class StaticPagesController < ApplicationController
                                            DateTime.now]).count
     @latest_news = News.select('created_at').last
   end
+
+  def letsecrypt
+    render text: ENV['LETS_ENCRYPT_HASH'] || 'no'
+  end
 end
