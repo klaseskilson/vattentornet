@@ -33,5 +33,7 @@ Rails.application.routes.draw do
 
   get '/hem' => 'static_pages#home'
 
+  get '/.well-known/acme-challenge/:id' => 'static_pages#letsencrypt'
+
   get '*id' => 'pages#show', as: :pretty_page
 end
