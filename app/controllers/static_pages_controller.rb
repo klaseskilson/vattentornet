@@ -17,7 +17,7 @@ class StaticPagesController < ApplicationController
     @latest_news = News.select('created_at').last
   end
 
-  def letsecrypt
+  def letsencrypt
     render text: ENV['LETS_ENCRYPT_HASH'] || 'no'
   end
 end
