@@ -9,7 +9,7 @@ class Ability
       can [:update, :read], Drink if user.persisted? # logged in user
       can :read, [Drink, DrinkType, Page, News]
       can [:read, :create, :month], Booking
-      can :update, User { |u| u.try(:user) == user } # user can update itself
+      can :update, User, id: user.id # user can update itself
     end
   end
 end
