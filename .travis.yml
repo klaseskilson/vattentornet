@@ -6,3 +6,13 @@ before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - bundle exec rake db:migrate
 script: bundle exec rake test
+deploy:
+  provider: heroku
+  api_key:
+    secure: g2kYzEQUcueswnuh1ItsGo3D7SSycjt63UEep3O4Q/hAwOy0MM8gxP9etsZ8sOYdv2KkU3HTOxFSmosoZ0e24fkwFB3D9x03GEwKmGLdOVjGC5vFAP8i/7G+RZyEqJvm330FinJZTveDCAJplBqTWII0FrxZyh9JPHMZ8oH3ajs=
+  app:
+    master: vattentornet
+    develop: vattentornet-develop
+  run:
+    - "rake db:migrate"
+    - restart

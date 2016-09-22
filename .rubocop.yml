@@ -1,0 +1,12 @@
+Metrics/LineLength:
+  Max: 120
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/**/*'
+    # TODO: fix this file
+    - 'app/controllers/bookings_controller.rb'
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false

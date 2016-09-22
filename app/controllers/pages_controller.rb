@@ -12,9 +12,7 @@ class PagesController < ApplicationController
   # GET /1
   # GET /slug
   def show
-    if request.path != pretty_page_path(@page)
-      redirect_to pretty_page_path(@page), status: :moved_permanently
-    end
+    redirect_to pretty_page_path(@page), status: :moved_permanently if request.path != pretty_page_path(@page)
   end
 
   # GET /pages/new
@@ -67,13 +65,14 @@ class PagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_params
-      params.require(:page).permit(:title, :slug, :text, :preamble)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.require(:page).permit(:title, :slug, :text, :preamble)
+  end
 end

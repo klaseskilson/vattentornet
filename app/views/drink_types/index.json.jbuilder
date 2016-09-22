@@ -10,9 +10,6 @@ json.drink_list(@drink_types) do |drink_type|
     json.country drink.country
     json.price drink.price.to_i
     json.updated_at drink.updated_at
-    if @drank.include?(drink.slug)
-      json.drank true
-    end
+    json.drank true if @drank.include?(drink.slug)
   end
 end
-

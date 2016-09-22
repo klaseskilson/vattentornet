@@ -7,22 +7,22 @@ class BookingsController < ApplicationController
   # GET /admin/bookings/all
   # GET /bookings.json
   def all
-    @bookings = Booking.paginate(:page => params[:page], :per_page => 30).order('date DESC')
+    @bookings = Booking.paginate(page: params[:page], per_page: 30).order('date DESC')
   end
 
   # GET /bookings
   # GET /bookings.json
   def index
     if current_user && current_user.admin
-      @bookings_approved = Booking.where(:confirmed => true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
-      @bookings_pending = Booking.where(:confirmed => false).order('date ASC')
+      @bookings_approved = Booking.where(confirmed: true).where(['date > ?', DateTime.now - 7.days]).order('date ASC')
+      @bookings_pending = Booking.where(confirmed: false).order('date ASC')
     end
   end
 
   # GET /bookings/month/:year/:month.json
   def month
     month = Date.new(params[:year].to_i, params[:month].to_i).to_time
-    @bookings = Booking.where(:date => month..month.end_of_month)
+    @bookings = Booking.where(date: month..month.end_of_month)
   end
 
   # GET /bookings/1
@@ -55,15 +55,15 @@ class BookingsController < ApplicationController
       (date..end_date).to_a.each do |d|
         weekdays = params[:weekdays]
         params.delete [:weekdays, :end_date, :interval]
-        if weekdays.include?(((d.wday + 6) % 7).to_s)
-          p = params
-          p[:date] = d
-          Booking.create(p)
-        end
+        next unless weekdays.include?(((d.wday + 6) % 7).to_s)
+
+        p = params
+        p[:date] = d
+        Booking.create(p)
       end
       respond_to do |format|
         format.html { redirect_to bookings_path, notice: 'Intervallbokningen har skapats.' }
-        format.html { render json: { hurray: "yay" }, status: :created }
+        format.html { render json: { hurray: 'yay' }, status: :created }
       end
     else
       if current_user
@@ -132,19 +132,20 @@ class BookingsController < ApplicationController
   end
 
   private
-    def user_confirmed
-      if params[:confirmed]
-        params[:user_id] = current_user.id
-      end
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
+  def user_confirmed
+    params[:user_id] = current_user.id if params[:confirmed]
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def booking_params
-      params.require(:booking).permit(:date, :description, :email, :pub, :name, :apartment, :confirmed, :user_id, :public, :interval, :end_date, :weekdays=>[])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def booking_params
+    permitted = [:date, :description, :email, :pub, :name, :apartment, :confirmed, :user_id, :public, :interval,
+                 :end_date, weekdays: []]
+    params.require(:booking).permit(*permitted)
+  end
 end

@@ -44,17 +44,17 @@ Rails.application.configure do
 
   # config html compression
   compressor_options = {
-    :remove_quotes => false,
-    :remove_script_attributes => false,
-    :remove_style_attributes => false,
-    :remove_link_attributes => false,
-    :remove_form_attributes => false,
-    :remove_input_attributes => false,
-    :remove_javascript_protocol => false,
-    :remove_http_protocol => false,
-    :remove_https_protocol => false,
-    :preserve_line_breaks => false,
-    :simple_boolean_attributes => false
+    remove_quotes: false,
+    remove_script_attributes: false,
+    remove_style_attributes: false,
+    remove_link_attributes: false,
+    remove_form_attributes: false,
+    remove_input_attributes: false,
+    remove_javascript_protocol: false,
+    remove_http_protocol: false,
+    remove_https_protocol: false,
+    preserve_line_breaks: false,
+    simple_boolean_attributes: false
   }
 
   config.middleware.use HtmlCompressor::Rack, compressor_options
@@ -83,17 +83,17 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # setup production host for the mailer
-  config.action_mailer.default_url_options = { :host => 'vattentor.net' }
+  config.action_mailer.default_url_options = { host: 'vattentor.net' }
 
   # setup sendgrid for heroku
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
+    address:              'smtp.sendgrid.net',
+    port:                 '587',
+    authentication:       :plain,
+    user_name:            ENV['SENDGRID_USERNAME'],
+    password:             ENV['SENDGRID_PASSWORD'],
+    domain:               'heroku.com',
+    enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
