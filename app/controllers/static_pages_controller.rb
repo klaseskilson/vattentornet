@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :authenticate_user!, except: [:home]
+  before_action :authenticate_user!, except: [:home, :letsencrypt]
 
   def home
     # beer of the moment
