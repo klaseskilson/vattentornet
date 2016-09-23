@@ -2,7 +2,7 @@ class DrinkType < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  default_scope { order(name: :asc) }
+  scope :ordered_by_name, -> { order(name: :asc) }
 
   has_many :drinks
 end
