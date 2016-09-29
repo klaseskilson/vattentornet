@@ -4,6 +4,8 @@ AllCops:
   TargetRubyVersion: 2.3
   Exclude:
     - 'db/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
     # TODO: fix this file
     - 'app/controllers/bookings_controller.rb'
 Style/Documentation:

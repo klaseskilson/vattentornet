@@ -2,7 +2,7 @@ class Drink < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
 
-  default_scope { order(name: :asc) }
+  scope :ordered_by_name, -> { order(name: :asc) }
 
   belongs_to :drink_type
   validates :drink_type, presence: :true
