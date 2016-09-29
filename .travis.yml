@@ -6,8 +6,8 @@ rvm:
 before_script:
 - cp config/database.yml.travis config/database.yml
 - psql -c 'create database travis_ci_test;' -U postgres
-- bundle exec rake db:migrate
-script:  bundle exec rake rubocop:run && bundle exec rake brakeman:run && bundle exec rake test
+- bundle exec rake db:setup
+script:  bundle exec rubocop -D && bundle exec brakeman && bundle exec rake test
 deploy:
   provider: heroku
   api_key:
