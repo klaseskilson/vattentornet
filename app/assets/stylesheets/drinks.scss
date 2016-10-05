@@ -32,6 +32,26 @@
 .drinks-list-item {
   margin-bottom: $section-margins;
 }
+.new-beer {
+  background-color: $red;
+  border-radius: 7px;
+  color: $white;
+
+  font-family: "Vollkorn";
+  font-size: 16px;
+  font-variant: small-caps;
+  font-weight: bold;
+  padding: 3px 5px;
+
+  @media (min-width: $screen-sm-min) {
+    left: 1.5em;
+    position: absolute;
+  }
+
+  //@media (min-width: $screen-xs-min) {
+    //float: right;
+  //}
+}
 
 .icon-link:hover {
     text-decoration: none;
