@@ -14,4 +14,3 @@ json.drink_list(@drink_types) do |drink_type|
     end
   end
 end
-
