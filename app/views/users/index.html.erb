@@ -12,8 +12,9 @@
           <thead>
             <tr>
               <th>Namn</th>
-              <th>email</th>
-              <th colspan="2"></th>
+              <th class="hidden-xs">email</th>
+              <th colspan="2" class="hidden-xs"></th>
+              <th colspan="1" class="visible-xs"></th>
             </tr>
           </thead>
 
@@ -24,9 +25,9 @@
                   <%= user.name %>
                   <%= icon 'flag', 'Admin' if user.admin? %>
                 </td>
-                <td><%= user.email %></td>
+                <td class="hidden-xs"><%= user.email %></td>
                 <td><%= link_to 'Redigera', edit_user_path(user) %></td>
-                <td><%= link_to 'Ta bort', user_path(user), data: { confirm: "Är du säker? Detta går verkligen inte att ångra!" }, method: :delete %></td>
+                <td class="hidden-xs"><%= link_to 'Ta bort', user_path(user), data: { confirm: "Är du säker? Detta går verkligen inte att ångra!" }, method: :delete %></td>
               </tr>
             <% end %>
           </tbody>
