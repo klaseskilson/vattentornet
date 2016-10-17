@@ -53,7 +53,9 @@
           <h4 ng-repeat="drink in drink_type.drinks | filter: drinksSearch">
             <span ng-if="drink.new" class="label label-pill new-beer">ny</span>
             <span>
-               <i class="fa {{drink.drank ? 'fa-star' : 'fa-star-o'}}" title="{{drink.drank ? 'Du har druckit denna sort' : 'Du har inte provat denna än!'}}"></i>
+              <a class="icon-link" href="{{drink.drink_url}}">
+                 <i class="fa {{drink.drank ? 'fa-check-square-o' : 'fa-square-o'}}" title="{{drink.drank ? 'Du har druckit denna sort' : 'Du har inte provat denna än!'}}"></i>
+              </a>
             </span>
             <a href="{{drink.url}}" title="Läs mer om drycken">{{drink.name}}</a>
             <span ng-hide="drink.brewery == ''">{{drink.brewery}}</span>

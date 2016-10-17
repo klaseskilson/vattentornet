@@ -87,7 +87,8 @@ class DrinksController < ApplicationController
     else
       cookies.permanent[@drink.slug] = 'yes'
     end
-    redirect_to stock_drink_path(@drink.drink_type, @drink)
+    redirect_to(:back)
+    # redirect_to stock_drink_path(@drink.drink_type, @drink)
   end
 
   # get the ten first hits from the breweryDB
